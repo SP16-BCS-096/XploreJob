@@ -4,6 +4,7 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import AdminDashboard from "./components/AdminDashboard";
 import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Cv from "./components/Cv";
