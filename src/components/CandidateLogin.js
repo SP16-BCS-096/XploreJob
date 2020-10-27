@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getFromStorage , setInStorage } from "./storage"; 
 import { useHistory } from "react-router-dom";
-import './AdminLogin.css';
+import './CandidateLogin.css';
 
 
-const AdminLogin = () =>  
+const CandidateLogin = () =>  
 {
 
 
@@ -39,13 +39,13 @@ const AdminLogin = () =>
         } else if (LoginPassword < 8) {
             setLoginError([...LoginError,"Password entered was too short, minimum length can be 8 characters"]);
         } else {
-            const admin = 
+            const candidate = 
             {
                 email : LoginEmail,
                 password : LoginPassword
                 
             }
-            axios.post('http://localhost:5000/admin/login', admin)
+            axios.post('http://localhost:5000/candidates/login', candidate)
             //   .then(res =>res.data.JSON())
                 .then(json =>
                     {   
@@ -60,7 +60,7 @@ const AdminLogin = () =>
                             setInStorage("the_main_app_loading",{loading_variable : isLoading});
                             // setInStorage("the_main_app_login_attempt",{attempt : true});
                             console.log("Success login");
-                            history.push("/AdminDashboard")
+                            history.push("/Dashboard")
                         }
                     })
               .catch(function (error) {
@@ -89,9 +89,9 @@ const AdminLogin = () =>
 
  
     return (
-      <div className ="Admincontainer">
+      <div className ="Candidatecontainer">
       <br/>
-      <div className ="AdminLogin" >
+      <div className ="CandidateLogin" >
         <h3>Sign In</h3>
         <form onSubmit={LoginHandler}>
           <div className="form-group"> 
@@ -127,4 +127,4 @@ const AdminLogin = () =>
     )
   }
 
-export default AdminLogin;
+export default CandidateLogin;

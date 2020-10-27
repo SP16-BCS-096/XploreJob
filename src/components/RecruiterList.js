@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import {Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -52,7 +50,7 @@ export default class RecruiterList extends Component {
     render() {
     return (
       <div>
-        <h3>List of Recruiters</h3>
+        <h2>List of Recruiters</h2>
         <table className="table">
           <thead className="thead-light">
             <tr>

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route} from "react-router-dom";
-import {Row, Col } from 'reactstrap';
+
 import Form from "./task/Form";
 class Cv extends Component{
   render() {
         return (
-        <div style ={{marginTop: 10, marginRight: 50}}>
-  <div>
+        <div className ="container" >
+  <div style ={{ marginRight: 50 ,marginLeft: 25}}>
 <div className="row">
 <div className="col">
 <h4>Upload Information</h4>

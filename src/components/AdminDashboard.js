@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Row, Col } from 'reactstrap';
 import RecruiterList from "./RecruiterList";
-import { Link } from 'react-router-dom';
+import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
+import './AdminLogin.css';
 
 
 const Candidate = props => (
@@ -52,7 +52,8 @@ export default class AdminDashboard extends Component {
     render() {
     return (
       <div>
-        <h3>List of Candidates</h3>
+      <Col sm="12">
+        <h2>List of Candidates</h2>
         <table className="table">
           <thead className="thead-light">
             <tr>
@@ -61,12 +62,13 @@ export default class AdminDashboard extends Component {
               <th>Password</th>
               <th>Phone </th>
             </tr>
-          </thead>
+          </thead> 
           <tbody>
             { this.CandidateList() }
           </tbody>
         </table>
         <RecruiterList />
+        </Col>
       </div>
 
     )

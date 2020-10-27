@@ -14,19 +14,17 @@ return(
         <a className="nav-link" href="./">Home </a>
       </li>
       
-      <li className="nav-item">
-        <a className="nav-link " href="./Login" >Login</a>
-      </li>
+      
     </ul>
     <form className="form-inline my-2 my-lg-0">
-      <a className="btn btn-outline-success my-2 my-sm-0" href="./AdminDashboard" >Admin</a>
+      <a className="btn btn-outline-success my-2 my-sm-0" href="./AdminLogin" >Admin</a>
       
     </form>
   </div>
 </nav>
 </div>
 
-	);	
+  );  
 }
 
 export default Navbar;

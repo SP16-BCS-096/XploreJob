@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Card, Button, CardText, Row, Col } from 'reactstrap';
+import { Col } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
+import './CandidateSignup.css';
 
 class CandidateSignup extends Component {
  constructor(props) {
@@ -11,7 +11,7 @@ class CandidateSignup extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangePhone = this.onChangePhone.bind(this);
+    this.onChangephone = this.onChangephone.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -40,7 +40,7 @@ onChangePassword(e) {
       password: e.target.value
     })
   }
-   onChangePhone(e) {
+   onChangephone(e) {
     this.setState({
       phone: e.target.value
       
@@ -72,7 +72,10 @@ onChangePassword(e) {
   }
   render() {
         return (
-        	<div className ="containers" style={{marginTop: 50, marginRight: 200,marginLeft: 150}}>
+        	<div className ="SignUpcontainer">
+          <br/>
+
+          <div className ="CandidateSignup">
             <form>
           <Col sm="4">
                 <h3>Sign Up</h3>
@@ -113,7 +116,7 @@ onChangePassword(e) {
                 required
                 className="form-control"
                 value={this.state.phone}
-                onChange={this.onChangePhone}
+                onChange={this.onChangephone}
                 />
                 </div>
 
@@ -124,11 +127,13 @@ onChangePassword(e) {
             <input type="submit" value="Create User" className="btn btn-primary" />
           </div>
                 <p className="forgot-password text-right">
-                    Already registered <a href="./Login">sign in?</a>
+                    Already registered <a href="./CandidateLogin">sign in?</a>
                 </p>
                 </Col>
 
             </form>
+            </div>
+            <br/>
             </div>
         );
     }
