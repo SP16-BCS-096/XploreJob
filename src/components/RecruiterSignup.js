@@ -78,7 +78,7 @@ onChangeCompany(e) {
       email:'',
       password: '',
       phone: '' , 
-      company:'',
+      company:''
     })
   }
   render() {
@@ -112,7 +112,7 @@ onChangeCompany(e) {
 
                 <div className="form-group">
                     <label>Password</label>
-                     <input  type="text"
+                     <input  type="password"
                 required
                 className="form-control"
                 value={this.state.password}

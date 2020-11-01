@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Form from "./task/Form";
+import Form1 from "./task/Form1";
 class Cv extends Component{
   render() {
         return (
@@ -54,10 +55,17 @@ class Cv extends Component{
  <Form />
  <hr />
  <h4> Experience</h4>
- <Form />
- 
+
+ <Form1 />
+
 
   </div>
+   <div className="form-group">
+            <input type="submit" value="Upload Cv" className="btn btn-primary" />
+             <br/>
+              <br/>
+               <br/>
+          </div>
   </div>
 
         );

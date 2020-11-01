@@ -6,7 +6,6 @@ const Recruiter = props => (
   <tr>
     <td>{props.recruiter.username}</td>
     <td>{props.recruiter.email}</td>
-     <td>{props.recruiter.password}</td>
     <td>{props.recruiter.phone}</td>
       <td>{props.recruiter.company}</td>
     
@@ -56,7 +55,7 @@ export default class RecruiterList extends Component {
             <tr>
               <th>Username</th>
               <th>Email</th>
-              <th>Password</th>
+             
               <th>Phone </th>
               <th>Company </th>
             </tr>

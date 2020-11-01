@@ -54,7 +54,7 @@ onChangePassword(e) {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,
-      phone: this.state.phone
+      phone: this.state.phone,
 
     }
 
@@ -67,7 +67,7 @@ onChangePassword(e) {
       username: '',
       email:'',
       password: '',
-      phone: '' 
+      phone: '' ,
     })
   }
   render() {
@@ -102,7 +102,7 @@ onChangePassword(e) {
 
                 <div className="form-group">
                     <label>Password</label>
-                     <input  type="text"
+                     <input  type="password"
                 required
                 className="form-control"
                 value={this.state.password}

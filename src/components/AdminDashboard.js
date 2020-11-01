@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import RecruiterList from "./RecruiterList";
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
-import './AdminLogin.css';
+import './AdminDashboard.css';
 
 
 const Candidate = props => (
   <tr>
     <td>{props.candidate.username}</td>
     <td>{props.candidate.email}</td>
-    <td>{props.candidate.password}</td>
+  
     <td>{props.candidate.phone}</td>
     
   </tr>
@@ -51,7 +51,7 @@ export default class AdminDashboard extends Component {
 
     render() {
     return (
-      <div>
+      <div className="AdminDashboard">
       <Col sm="12">
         <h2>List of Candidates</h2>
         <table className="table">
@@ -59,15 +59,21 @@ export default class AdminDashboard extends Component {
             <tr>
               <th>Username</th>
               <th>Email</th>
-              <th>Password</th>
               <th>Phone </th>
             </tr>
           </thead> 
           <tbody>
             { this.CandidateList() }
           </tbody>
+          <br/>
+             <br/>
+                <br/>
         </table>
         <RecruiterList />
+        <br/>
+        <br/>
+           <br/>
+              <br/>
         </Col>
       </div>
 
