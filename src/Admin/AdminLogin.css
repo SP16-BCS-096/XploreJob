@@ -1,0 +1,48 @@
+.Admincontainer{
+    height: 100%;
+    width: 100%;
+    background-image: url("./Banner.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative; 
+}
+.AdminLogin{ 
+    position: relative;
+    left: 35%;
+    width:400px;
+    height:350px;
+    border-radius: 25px;
+    background-color:lightgrey ;
+
+
+}
+.form-control{
+    margin-left:10px;
+    margin-right: 10px;
+    width: 380px; 
+    margin-top:22px;
+}
+
+h3 {
+  position: absolute;
+  left: 4px;
+  top: 2px;
+}
+label {
+position: relative;
+  left: 10px;
+  top: 32px;
+}
+.button {
+  background-color: #4CAF59;
+  border-radius:25px;
+  left: 10px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
