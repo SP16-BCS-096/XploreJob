@@ -2,17 +2,28 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import AdminDashboard from "./components/AdminDashboard";
-import AdminLogin from "./components/AdminLogin";
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import CandidateDashboard from "./components/Candidate/CandidateDashboard";
+
+import AdminLogin from "./components/Admin/AdminLogin";
+import CandidateLogin from "./components/Candidate/CandidateLogin";
+import RecruiterLogin from "./components/Recruiter/RecruiterLogin";
+
+import LSogout from "./components/Candidate/Logout";
+import MainMenu from "./components/Candidate/MainMenu";
 import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Cv from "./components/Cv";
-import CandidateLogin from "./components/CandidateLogin";
-import RecruiterLogin from "./components/RecruiterLogin";
-import JobCreate from "./components/JobCreate";
-import RecruiterSignup from "./components/RecruiterSignup";
-import CandidateSignup from "./components/CandidateSignup";
+import Cv from "./components/Candidate/Cv";
+import Logout from"./components/Candidate/Logout";
+import Toolbar from"./components/Toolbar/Toolbar";
+
+import JobCreate from "./components/Recruiter/JobCreate";
+import CvList from "./components/Recruiter/CvList";
+
+import JobsList from "./components/Candidate/JobsList";
+import RecruiterSignup from "./components/Recruiter/RecruiterSignup";
+import CandidateSignup from "./components/Candidate/CandidateSignup";
    
 
 class App extends Component {
@@ -27,14 +38,24 @@ class App extends Component {
           <Route path="/CandidateSignup" component={CandidateSignup} />
           <Route path="/RecruiterSignup" component={RecruiterSignup} />
           <Route path="/AdminDashboard" component={AdminDashboard} />
+          <Route path="/CandidateDashboard" component={CandidateDashboard} />
           <Route path="/AdminLogin" component={AdminLogin} />
           <Route path="/CandidateLogin" component={CandidateLogin} />
           <Route path="/RecruiterLogin" component={RecruiterLogin} />
           <Route path="/JobCreate" component={JobCreate} />
+          <Route path="/JobsList" component={JobsList} />
           <Route path="/Cv" component={Cv} />
+          <Route path="/CvList" component={CvList} />
+          <Route path="/MainMenu" component={MainMenu} />
+           <Route path="/Logout" component={Logout} />
+           <Route path="/Toolbar" component={Toolbar} />
+
+
+           
           
         
           </Router>
+
           <Footer />
 
   </div>
