@@ -1,0 +1,21 @@
+
+.CandidateDashboard{ 
+    position: relative;
+    left: 18px;
+    width:1500px;
+    height:350px;
+    border-radius: 10px;
+    background-color:lightgrey ;
+
+
+}
+.CandidateDashboard1{ 
+    position: relative;
+    left: 50%;
+    width:400px;
+    height:350px;
+    border-radius: 25px;
+    background-color:lightgrey ;
+
+
+}
