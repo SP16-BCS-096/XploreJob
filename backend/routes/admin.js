@@ -3,35 +3,26 @@ var path = require('path');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const Recruiter = require("../models/recruiter.model");
+const Admin = require("../models/admin.model");
 const UserSession = require("../models/usersession.model");
 
 router.route('/').get((req, res) => {
-  Recruiter.find()
-    .then(recruiters => res.json(recruiters))
+  Admin.find()
+    .then(admins => res.json(admins))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/Signup').post((req, res ,next) => {
   const {body}= req;
   const{
-    username,
     password,
-    phone,
-    company
   }= body;
   let{
     email
   }= body;
   email=email.toLowerCase();
 
-  
-if (!username){
-   return res.send({
-        success: false,
-        message: 'Error username cant be blank'
-        });
-}
+
 if (!email){
     return res.send({
         success: false,
@@ -44,27 +35,11 @@ if (!password){
         message: 'Error password cant be blank'
         });
 }
-if (!phone){
-   return res.send({
-        success: false,
-        message: 'Error phone cant be blank'
-        });
-}
-if (!company){
-   return res.send({
-        success: false,
-        message: 'Error company cant be blank'
-        });
-}
 
 
-
-
- 
-
- Recruiter.find({
+ Admin.find({
     email:email
- },(err , previousRecruiters)=>{
+ },(err , previousAdmins)=>{
 if (err) {
 return res.send({
         success: false,
@@ -72,7 +47,7 @@ return res.send({
         }); 
     
 }
-else if(previousRecruiters.length >0){
+else if(previousAdmins.length >0){
   return res.send({
         success: false,
         message: 'Err: Account already exist.'
@@ -80,14 +55,11 @@ else if(previousRecruiters.length >0){
     
 }
 
-const newRecruiter = new Recruiter();
-
-   newRecruiter.username=username;
-   newRecruiter.email=email;
-   newRecruiter.password=newRecruiter.generateHash(password);
-   newRecruiter.phone=phone;
-   newRecruiter.company=company;
-   newRecruiter.save((err, recruiter)=>{
+const newAdmin = new Admin();
+ newAdmin.email=email;
+   newAdmin.password=newAdmin.generateHash(password);
+   
+   newAdmin.save((err, admin)=>{
     if (err) {
   return res.send({
         success: false,
@@ -133,10 +105,10 @@ router.post("/Signin",(req,res) =>
     }
     else
     {
-        Recruiter.findOne({email : email2})
-        .then(candidate =>
+        Admin.findOne({email : email2})
+        .then(admin =>
             {
-                var valid_password = bcrypt.compareSync(password, candidate.password);
+                var valid_password = bcrypt.compareSync(password, admin.password);
                 if(!valid_password)
                 {
                     return res.status(400).send("Invalid password for user");
@@ -145,7 +117,7 @@ router.post("/Signin",(req,res) =>
                 {
                     // User session
                     const user_session = new UserSession();
-                    user_session.userId = candidate._id;
+                    user_session.userId = admin._id;
                     user_session.save()
                     .then(result =>
                         {

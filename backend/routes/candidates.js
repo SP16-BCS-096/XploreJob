@@ -6,70 +6,103 @@ const bcrypt = require("bcrypt");
 const Candidate = require("../models/candidate.model");
 const UserSession = require("../models/usersession.model");
 
-
-// Register , for User/customer
 router.route('/').get((req, res) => {
   Candidate.find()
     .then(candidates => res.json(candidates))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
-  const username = req.body.username;
-  const email = req.body.email;
-  const password = req.body.password;
-  const phone =req.body.phone;
-
-  const newCandidate = new Candidate({
+router.route('/Signup').post((req, res ,next) => {
+  const {body}= req;
+  const{
     username,
-    email,
     password,
-    phone,
-  });
+    phone
+  }= body;
+  let{
+    email
+  }= body;
+  email=email.toLowerCase();
 
-  newCandidate.save()
-  .then(() => res.json('Candidate added!'))
-  .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/:id').get((req, res) => {
-  Candidate.findById(req.params.id)
-    .then(candidate => res.json(candidate))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/:id').delete((req, res) => {
-  Candidate.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Candidate deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/update/:id').post((req, res) => {
-  Candidate.findById(req.params.id)
-    .then(candidate => {
-      candidate.username = req.body.username;
-      candidate.email = req.body.email;
-      candidate.password = req.body.password;
-      candidate.phone = req.body.phone;
-
-      candidate.save()
-        .then(() => res.json('Candidate updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-})
+  
+if (!username){
+   return res.send({
+        success: false,
+        message: 'Error username cant be blank'
+        });
+}
+if (!email){
+    return res.send({
+        success: false,
+        message: 'Error email cant be blank'
+        });
+}
+if (!password){
+   return res.send({
+        success: false,
+        message: 'Error password cant be blank'
+        });
+}
+if (!phone){
+   return res.send({
+        success: false,
+        message: 'Error phone cant be blank'
+        });
+}
 
 
-// Login , for user/customer
-router.post("/login",(req,res) =>
+
+
+ 
+
+ Candidate.find({
+    email:email
+ },(err , previousCandidates)=>{
+if (err) {
+return res.send({
+        success: false,
+        message:'Err: Server Error'
+        }); 
+    
+}
+else if(previousCandidates.length >0){
+  return res.send({
+        success: false,
+        message: 'Err: Account already exist.'
+        }); 
+    
+}
+
+const newCandidate = new Candidate();
+
+   newCandidate.username=username;
+   newCandidate.email=email;
+   newCandidate.password=newCandidate.generateHash(password);
+   newCandidate.phone=phone;
+   newCandidate.save((err, candidate)=>{
+    if (err) {
+  return res.send({
+        success: false,
+        message: 'Err: Server Error'
+        }); 
+}
+    return res.send({
+        success: true,
+        message: 'Signed Up'
+
+        });
+      });
+      });
+ });
+
+
+router.post("/Signin",(req,res) =>
 {
-    console.log('Asad');
-    let {email, password} = req.body;
-    var email2 = email.toLowerCase();
+    const {email, password} = req.body;
     let errors = [];
-     
+    var email2 = email.toLowerCase();
 
-    if(!email || !password)
+    if(!email2 || !password)
     {
         errors.push({msg:"Please fill all the fields"});
     }
@@ -92,8 +125,8 @@ router.post("/login",(req,res) =>
     }
     else
     {
-       Candidate.findOne({email : email})
-        .then(user =>
+        Candidate.findOne({email : email2})
+        .then(candidate =>
             {
                 var valid_password = bcrypt.compareSync(password, candidate.password);
                 if(!valid_password)
@@ -104,7 +137,7 @@ router.post("/login",(req,res) =>
                 {
                     // User session
                     const user_session = new UserSession();
-                    user_session.userId = user._id;
+                    user_session.userId = candidate._id;
                     user_session.save()
                     .then(result =>
                         {
@@ -191,6 +224,5 @@ router.get("/logout",(req,res) =>
 
 
 });
-
 
 module.exports = router;

@@ -4,10 +4,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const JobCreate = require("../models/JobCreate.model");
-const UserSession = require("../models/usersession.model");
 
 
-// Register , for User/customer
 router.route('/').get((req, res) => {
   JobCreate.find()
     .then(JobCreate => res.json(JobCreate))
@@ -18,6 +16,7 @@ router.route('/add').post((req, res) => {
   const JobTitle = req.body.JobTitle;
   const CompanyName = req.body.CompanyName;
   const JobDescription= req.body.JobDescription;
+  const NoofPosts = req.body.NoofPosts;
   const Address = req.body.Address;
   const RequiredQualification = req.body.RequiredQualification;
   const RequiredExperience = req.body.RequiredExperience;
@@ -28,6 +27,7 @@ router.route('/add').post((req, res) => {
     JobTitle,
     CompanyName,
     JobDescription,
+    NoofPosts,
     Address,
     RequiredQualification,
     RequiredExperience,
@@ -58,6 +58,7 @@ router.route('/update/:id').post((req, res) => {
       JobCreate.JobTitle = req.body.JobTitle;
       JobCreate.CompanyName = req.body.CompanyName;
       JobCreate.JobDescription = req.body.JobDescription;
+      JobCreate.NoofPosts = req.body.NoofPosts;
       JobCreate.Address = req.body.Address;
       JobCreate.RequiredQualification = req.body.RequiredQualification;
       JobCreate.RequiredExperience = req.body.RequiredExperience;
