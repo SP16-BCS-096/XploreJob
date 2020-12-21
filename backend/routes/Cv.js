@@ -6,6 +6,42 @@ var multer  = require('multer')
 
 const Cv = require("../models/Cv.model");
 
+const EducationStatus = [
+  { priority: 'Matric'},
+  { priority: 'Fsc'},
+  { priority: 'BS' },
+  { priority: 'MS'},
+  {               }
+]
+let sortingOrder = {
+    'Matric' : 0,
+    'Fsc' :1,
+    'BS': 2,
+    'MS': 3,
+    'PHD': 4,
+    
+  
+}
+
+
+function compare(key, order = 'asc') {
+    return function (a, b) {
+        if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) 
+      return 0;
+    
+  const first = (a[key].toLowerCase() in sortingOrder) ? sortingOrder[a[key]] : Number.MAX_SAFE_INTEGER;
+  const second = (b[key].toLowerCase() in sortingOrder) ? sortingOrder[b[key]] : Number.MAX_SAFE_INTEGER;
+    
+  let result = 0;
+  if (first < second) 
+      result = -1;
+  else if (first > second) 
+      result = 1;
+  return (order === 'desc') ? ~result : result
+    };
+}
+
+EducationStatus.sort(compare('category', 'desc'));
 
 router.route('/').get((req, res) => {
   Cv.find()
