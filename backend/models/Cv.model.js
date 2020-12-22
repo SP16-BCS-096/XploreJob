@@ -22,8 +22,30 @@ const CvSchema = new Schema({
  PostStatus : {type:String},
  isDeleted: {type: Boolean, default: false},
  timestamp: {type: Date, default: Date.now}
+},
+{
+  toObject: {
+  virtuals: true
+  },
+  toJSON: {
+  virtuals: true 
+  }
 });
 
+let sortingOrder = {
+  'Matric' : 0,
+  'Fsc' :1,
+  'BS': 2,
+  'MS': 3,
+  'PHD': 4, 
+}
+
+CvSchema
+.virtual('priority')
+.get(function () {
+  let priority = sortingOrder[this.DegreeTitle];
+  return priority;
+});
 const Cv = mongoose.model('Cv', CvSchema);
 
 module.exports = Cv;
