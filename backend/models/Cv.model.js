@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-var multer  = require('multer')
+var multer  = require('multer');
 const Schema = mongoose.Schema;
 
 const CvSchema = new Schema({
