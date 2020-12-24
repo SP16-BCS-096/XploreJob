@@ -2,7 +2,7 @@ const router = require("express").Router();
 var path = require('path');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-var multer  = require('multer');
+var multer  = require('multer')
 
 const Cv = require("../models/Cv.model");
 
@@ -11,14 +11,16 @@ const EducationStatus = [
   { priority: 'Fsc'},
   { priority: 'BS' },
   { priority: 'MS'},
-  { priority : 'PHD' }
+  { priority:  'PHD'} 
 ]
 let sortingOrder = {
     'Matric' : 0,
     'Fsc' :1,
     'BS': 2,
     'MS': 3,
-    'PHD': 4, 
+    'PHD': 4,
+    
+  
 }
 
 
@@ -43,21 +45,13 @@ EducationStatus.sort(compare('category', 'desc'));
 
 router.route('/').get((req, res) => {
   Cv.find()
-    .then(Cv => 
-      {
-        if (Cv.length > 0) {
-          Cv.sort((a, b) => (a.priority < b.priority) ? 1 : -1);
-        }
-        res.json(Cv);
-      })
+    .then(Cv => res.json(Cv))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/add').post((req , res) => {
-  app.post('/add', upload.single('Image'), function (req, res, next) {
-   const Image = req.body.Image;
-})
-  console.log(req.body);
+  
+ const Image = req.body.Image;
   const FirstName = req.body.FirstName;
   const LastName= req.body.LastName;
   const Email = req.body.Email;
@@ -67,11 +61,12 @@ router.route('/add').post((req , res) => {
   const DegreeTitle = req.body.DegreeTitle;
   const CGPA =req.body.CGPA;
   const Year =req.body.Year;
-  const EducationStatus =req.body.EducationStatus;
+ 
   const JobPost =req.body.JobPost;
   const Company =req.body.Company;
   const Address =req.body.Address;
   const PostStatus =req.body.PostStatus;
+
   const newCv = new Cv({
     Image,
     FirstName,
