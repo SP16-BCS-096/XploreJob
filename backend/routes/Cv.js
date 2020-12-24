@@ -11,7 +11,7 @@ const EducationStatus = [
   { priority: 'Fsc'},
   { priority: 'BS' },
   { priority: 'MS'},
-  {               }
+  { priority : 'PHD' }
 ]
 let sortingOrder = {
     'Matric' : 0,
