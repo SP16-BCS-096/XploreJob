@@ -58,7 +58,7 @@ const RecruiterLogin = () =>
                             setInStorage("the_main_app_loading",{loading_variable : isLoading});
                             // setInStorage("the_main_app_login_attempt",{attempt : true});
                             console.log("Success login");
-                            history.push("/cv")
+                            history.push("/JobCreate")
                         }
                     })
               .catch(function (error) {

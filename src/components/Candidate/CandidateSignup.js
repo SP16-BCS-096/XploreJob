@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Col } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
+import './CandidateSignup.css';
 
 import{
    getFromStorage,
@@ -150,7 +151,7 @@ onChangeSignUpPassword(e) {
             <button onClick={this.onSignUp}>Sign Up</button>
           </div>
                 <p className="forgot-password text-right">
-                  Already registered <a href="./Candidate/CandidateLogin">sign in?</a>
+                  Already registered <a href="./CandidateLogin">sign in?</a>
                 </p>
                 </Col>
 

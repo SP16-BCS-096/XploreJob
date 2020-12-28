@@ -13,8 +13,12 @@ return(
       <li className="nav-item active">
         <a className="nav-link" href="./">Home </a>
       </li>
-      
-      
+      <li className="nav-item active">
+        <a className="nav-link" href="./CandidateLogin">Candidate Portal </a>
+      </li>
+      <li className="nav-item active">
+        <a className="nav-link" href="./RecruiterLogin">Recruiter Portal </a>
+      </li>
     </ul>
     <form className="form-inline my-2 my-lg-0">
       <a className="btn btn-outline-success my-2 my-sm-0" href="./AdminLogin" >Admin</a>

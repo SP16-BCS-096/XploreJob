@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
-
+import './CvList.css';
  
+
 const Cv = props => (
 <tr>
-    <td>{props.Cv.Image}</td>
-    <td> {props.Cv.FirstName}</td>
-    <td> {props.Cv.LastName}</td>
-    <td>{props.Cv.Email}</td>
-    <td> {props.Cv.ContactNo}</td>
-    <td> {props.Cv.PresentAddress}</td>
-    <td> {props.Cv.PermanentAddress}</td>
-    <td> {props.Cv.DegreeTitle}</td>
-    <td> {props.Cv.CGPA}</td>
-    <td> {props.Cv.Year}</td>
-    <td> {props.Cv.EducationStatus}</td>
-    <td> {props.Cv.JobPost}</td>
-    <td> {props.Cv.Company}</td>
-    <td> {props.Cv.Address}</td>
-    <td> {props.Cv.PostStatus}</td>
-
+<div className="thead-light">
+    <tr>FirstName: <th></th>{props.Cv.FirstName}</tr>
+    <tr>LastName: <th> </th> {props.Cv.LastName}</tr>
+    <tr>Email:<th> </th>{props.Cv.Email}</tr>
+    <tr>ContactNo:<th> </th> {props.Cv.ContactNo}</tr>
+    <tr>PresentAddress: <th> </th> {props.Cv.PresentAddress}</tr>
+    <tr>PermanentAddress:<th> </th> {props.Cv.PermanentAddress}</tr>
+    <tr>DegreeTitle:<th> </th> {props.Cv.DegreeTitle}</tr>
+    <tr>CGPA:<th> </th> {props.Cv.CGPA}</tr>
+    <tr>Year:<th> </th> {props.Cv.Year}</tr>
+    <tr>Institute:<th> </th> {props.Cv.Institute}</tr>
+    <tr>JobPost :<th> </th> {props.Cv.JobPost}</tr>
+    <tr>Company:<th> </th> {props.Cv.Company}</tr>
+    <tr>Address:<th> </th> {props.Cv.Address}</tr>
+    <tr>PostStatus:<th> </th>{props.Cv.PostStatus}</tr>
+    </div>
+    <br/>
+    <br/>
 </tr>
 
+
 )
+
 
 export default class CvList extends Component {
   constructor(props) {
@@ -61,37 +66,22 @@ export default class CvList extends Component {
 
     render() {
     return (
-     <div className="AdminDashboard">
+     <div className="CvList">
       <Col sm="12">
-        <h2>List of Candidates</h2>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Image</th>
-              <th>FirstName</th>
-              <th>LastName </th>
-              <th>Email</th>
-              <th>ContactNo</th>
-              <th>PresentAddress</th>
-              <th>PermanentAddress</th>
-              <th>DegreeTitle</th>
-              <th>CGPA</th>
-              <th>Year</th>
-              <th>EducationStatus</th>
-              <th>JobPost</th>
-              <th>Company</th>
-              <th>Address</th>
-              <th>PostStatus</th>
-            </tr>
-          </thead> 
+        <h2>List of Candidates Data</h2>
+        <div >
           <tbody>
             { this.CvList() }
           </tbody>
         
-        </table>
+        </div>
         
         </Col>
         <br/>
+        <br/>
+        <br/>
+         <br/>
+                 <br/>
         <br/>
         <br/>
          <br/>

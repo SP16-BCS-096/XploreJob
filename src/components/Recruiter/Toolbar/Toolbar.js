@@ -15,9 +15,10 @@ const toolbar = (props) =>
             <div className="spacer" />
             <div className="toolbar_navigation-items">
                 <ul>
-                    <li><a href="/mainmenu">Main Menu</a></li>
-                    <li><a href="/CvList">Cv List</a></li>
+                    
                     <li><a href="/logout">Logout</a></li>
+                    <li><a href="/CvList">CvList</a></li>
+                    <li><a href="/ViewJobsList">JobsList</a></li>
                 </ul>
             </div>
         

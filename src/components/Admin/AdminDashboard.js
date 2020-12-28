@@ -3,6 +3,7 @@ import RecruiterList from './RecruiterList';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import './AdminDashboard.css';
+import ToolBar from './Toolbar/Toolbar';
 
 const Candidate = props => (
   <tr>
@@ -51,6 +52,7 @@ export default class AdminDashboard extends Component {
     render() {
     return (
       <div className="AdminDashboard">
+      <ToolBar />
       <Col sm="12">
         <h2>List of Candidates</h2>
         <table className="table">

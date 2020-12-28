@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
-import './JobsList.css';
+import './ViewJobsList.css';
  
 const JobCreate = props => (
 <tr>
@@ -13,12 +13,12 @@ const JobCreate = props => (
     <td> {props.JobCreate.RequiredExperience}</td>
     <td> {props.JobCreate.CompanyWeb}</td>
     <td> {props.JobCreate.Phone}</td>
-    <td><Button><a href="./Cv">Apply for Job</a></Button></td>
+   
 </tr>
 
 )
 
-export default class JobList extends Component {
+export default class ViewJobList extends Component {
   constructor(props) {
     super(props);
 
@@ -54,7 +54,7 @@ export default class JobList extends Component {
 
     render() {
     return (
-     <div className = "JobsList">
+     <div className = "ViewJobsList">
       <Col sm="12">
         <h2>List of Jobs</h2>
         <table className="table">
@@ -65,11 +65,10 @@ export default class JobList extends Component {
               <th>JobDescription </th>
               <th>Address</th>
               <th>MinimumQualification</th>
-              <th>RequiredExperience</th>
+              <th>MinimumExperience</th>
               <th>CompanyWeb</th>
               <th>Phone</th>
               <th></th>
-                 <th></th>
             </tr>
           </thead> 
           <tbody>
@@ -84,7 +83,8 @@ export default class JobList extends Component {
         <br/>
          <br/>
          <br/>
-           <br/>
+         <br/>
+         <br/>
       </div>
  
     )

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import Form from "./task/Form";
-import Form1 from "./task/Form1";
-import Toolbar from "../Toolbar/Toolbar";
+import './Cv.css';
+import Toolbar from "./Toolbar/Toolbar";
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
 
@@ -10,7 +9,7 @@ class Cv extends Component{
   constructor(props) {
     super(props);
 
-    this.onChangeImage = this.onChangeImage.bind(this);
+   
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
     this.onChangeLastName = this.onChangeLastName.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -20,16 +19,16 @@ class Cv extends Component{
     this.onChangeDegreeTitle = this.onChangeDegreeTitle.bind(this);
     this.onChangeCGPA = this.onChangeCGPA.bind(this);
     this.onChangeYear = this.onChangeYear.bind(this);
-    this.onChangeEducationStatus = this.onChangeEducationStatus.bind(this);
+    this.onChangeInstitute = this.onChangeInstitute.bind(this);
     this.onChangeJobPost = this.onChangeJobPost.bind(this);
     this.onChangeCompany = this.onChangeCompany.bind(this);
     this.onChangeAddress = this.onChangeAddress.bind(this);
     this.onChangePostStatus = this.onChangePostStatus.bind(this);
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
 
     this.state = {
-    Image :'',
     FirstName : '',
     LastName :'',
     Email : '',
@@ -39,7 +38,7 @@ class Cv extends Component{
     DegreeTitle: '',
     CGPA :  '',
     Year : '',
-    EducationStatus : '',
+    Institute : '',
     JobPost: '',
     Company: '',
     Address: '',
@@ -47,12 +46,7 @@ class Cv extends Component{
     }
   }
 
-  onChangeImage(e) {
-    this.setState({
-      Image: e.target.value
-      
-    })
-  }
+  
    onChangeFirstName(e) {
     this.setState({
       FirstName: e.target.value
@@ -109,10 +103,10 @@ onChangeLastName(e) {
       Year: e.target.value
     })
   }
-  onChangeEducationStatus(e) {
+  onChangeInstitute(e) {
     this.setState({
       
-      EducationStatus: e.target.value
+      Institute: e.target.value
     })
   }
   onChangeJobPost(e) {
@@ -144,7 +138,7 @@ onChangeLastName(e) {
     e.preventDefault();
 
     const Cv = {
-      Image : this.state.Image,
+
       FirstName:this.state.FirstName,
       LastName : this.state.LastName,
       Email :this.state.Email,
@@ -154,20 +148,17 @@ onChangeLastName(e) {
       DegreeTitle : this.state.DegreeTitle,
       CGPA : this.state.CGPA,
       Year : this.state.Year,
-      EducationStatus : this.state.EducationStatus,
+      Institute : this.state.Institute,
       JobPost : this.state.JobPost,
       Company : this.state.Company,
       Address : this.state.Address,
-      PostStatus : this.state.PostStatus
+      PostStatus : this.state.PostStatus,
     }
-
-    console.log(Cv);
-
-    axios.post('http://localhost:5000/Cv/add', Cv)
+  
+  axios.post('http://localhost:5000/Cv/add', Cv)
       .then(res => console.log(res.data));
 
     this.setState({
-    Image :'',
     FirstName : '',
     LastName :'',
     Email : '',
@@ -177,7 +168,49 @@ onChangeLastName(e) {
     DegreeTitle: '',
     CGPA :  '',
     Year : '',
-    EducationStatus : '',
+    Institute : '',
+    JobPost: '',
+    Company: '',
+    Address: '',
+    PostStatus:''
+    })
+  };
+    onUpdate(e) {
+    e.preventDefault();
+
+    const Cv = {
+
+      FirstName:this.state.FirstName,
+      LastName : this.state.LastName,
+      Email :this.state.Email,
+      ContactNo :this.state.ContactNo,
+      PresentAddress :this.state.PresentAddress,
+      PermanentAddress : this.state.PermanentAddress,
+      DegreeTitle : this.state.DegreeTitle,
+      CGPA : this.state.CGPA,
+      Year : this.state.Year,
+      Institute : this.state.Institute,
+      JobPost : this.state.JobPost,
+      Company : this.state.Company,
+      Address : this.state.Address,
+      PostStatus : this.state.PostStatus
+    }
+
+    
+  axios.post('http://localhost:5000/Cv/update/:id', Cv)
+      .then(res => console.log(res.data));
+
+    this.setState({
+    FirstName : '',
+    LastName :'',
+    Email : '',
+    ContactNo: '',
+    PresentAddress: '',
+    PermanentAddress : '',
+    DegreeTitle: '',
+    CGPA :  '',
+    Year : '',
+    Institute : '',
     JobPost: '',
     Company: '',
     Address: '',
@@ -186,8 +219,10 @@ onChangeLastName(e) {
   }
   render() {
         return (
+          <div>
+          <Toolbar />
         <div className ="container" >
-      
+    
   <div style ={{ marginRight: 50 ,marginLeft: 25}}>
   <div ref={ref}>
 <div className="row">
@@ -195,14 +230,7 @@ onChangeLastName(e) {
 <h4>Upload Information</h4>
 
 <ul className="list-unstyled">
- <div className="form-group">
-
- <label for="img">Select image: </label>
-            <input type="file" id="img" name="img" accept="image/*"
-                value={this.state.Image}
-                onChange={this.onChangeImage} />
-              </div>
-                <div className="form-group">
+                 <div className="form-group">
                     <label>First name</label>
                     <input  type="text"
                 required
@@ -268,15 +296,19 @@ onChangeLastName(e) {
 <hr />
 <h4>Recent Degree</h4>
   <div class="row">
-    <div  className="form-group">
-        <label>DegreeTitle</label>
-                    <input  type="textBox"
-                required
-                className="form-control"
-                value={this.state.DegreeTitle}
-                onChange={this.onChangeDegreeTitle}
-                />
+    <div  className="select" style ={{marginTop: 60 ,marginRight: 100}} >
+        
+  <select name="form-control" value={this.state.DegreeTitle}
+                onChange={this.onChangeDegreeTitle}>
+  <option >DegreeTitle</option>
+  <option >Matric</option>
+  <option >Fsc</option>
+  <option >BS</option>
+  <option >MS</option>
+  <option >PHD</option>
+ </select>
     </div>
+
     <div >
      <label>CGPA</label>
                     <input  type="textBox"
@@ -297,12 +329,12 @@ onChangeLastName(e) {
   
   </div>
   <div >
-     <label>EducationStatus</label>
+     <label>Institute</label>
                     <input  type="textBox"
                 required
                 className="form-control"
-                value={this.state.EducationStatus}
-                onChange={this.onChangeEducationStatus}
+                value={this.state.Institute}
+                onChange={this.onChangeInstitute}
                 />
   
   </div>
@@ -344,8 +376,8 @@ onChangeLastName(e) {
                     <input  type="textBox"
                 required
                 className="form-control"
-                value={this.state.JobStatus}
-                onChange={this.onChangeJobStatus}
+                value={this.state.PostStatus}
+                onChange={this.onChangePostStatus}
                 />
   
   </div>
@@ -357,16 +389,20 @@ onChangeLastName(e) {
   <br/>
                <br/>
    <div className="form-group">
-             <button onClick={this.onSubmit}>Upload Cv </button>
-             <br/>
+             <button className="footer-email-link"  onClick={this.onSubmit}>Upload Cv </button>
+         {"                      "}
 
-               <br/>
-          </div>
+             <button className="footer-email-link"  onClick={this.onUpdate}>Update Cv </button>
+              {"                      "}
+           {"                      "}
+          
         <Pdf targetRef={ref} filename="Cv">
-        {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+        {({ toPdf }) => <button  className="footer-email-link"  onClick={toPdf}>Generate Pdf</button>}
       </Pdf>
       </div>
+      </div>
   </div>
+    </div>
 
         );
     }

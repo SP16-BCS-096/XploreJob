@@ -58,7 +58,7 @@ const CandidateLogin = () =>
                             setInStorage("the_main_app_loading",{loading_variable : isLoading});
                             // setInStorage("the_main_app_login_attempt",{attempt : true});
                             console.log("Success login");
-                            history.push("/MainMenu")
+                            history.push("/JobsList")
                         }
                     })
               .catch(function (error) {

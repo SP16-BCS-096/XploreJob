@@ -3,6 +3,7 @@ import { Col } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 import './RecruiterSignup.css';
+import Toolbar from './Toolbar/Toolbar';
 
 class JobCreate extends Component {
  constructor(props) {
@@ -123,6 +124,7 @@ onChangeJobDescription(e) {
   render() {
         return (
         <div className="container">
+        <Toolbar />
   <div>
 <div className="row">
 <div className="col">

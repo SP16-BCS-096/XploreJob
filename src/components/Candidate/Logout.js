@@ -8,10 +8,6 @@ import { getFromStorage , setInStorage, removeFromStorage } from "./utils/storag
 
 import Toolbar from "../Toolbar/Toolbar";
 
-
-
-
-
 const Logout = () =>
 {
     const [token, setToken] = useState("");
@@ -58,20 +54,7 @@ const Logout = () =>
 
     },[]);
 
-    const drawerToggleClickHandler = () =>
-    {
-        setSideDrawer((prev) =>
-        {
-            return !prev;
-        })
-    };
-
-    const backdropClickHandler =() =>
-    {
-        setSideDrawer(false);
-    };
     
-    let backdrop_var;
 
     
 
@@ -84,9 +67,7 @@ if(token)
 <div style={{height:"100%"}}>
 
 
-        <Toolbar drawerClickHandler={drawerToggleClickHandler}/>
-       
-        {backdrop_var}
+        
 
 <br />
 <br />
@@ -119,7 +100,7 @@ if(token)
          <button
              
              className='btn btn-lg  form-control'
-          ><a href="/">Return To Home Screen</a>
+          ><a href="/Logout">Return To Home Screen</a>
           </button>
         </div>
       </div>
@@ -143,9 +124,7 @@ else
         <div style={{height:"100%"}}>
 
 
-        <Toolbar drawerClickHandler={drawerToggleClickHandler}/>
-      
-        {backdrop_var}
+        
 
 <br />
 <br />
@@ -161,7 +140,7 @@ else
 
     <div className="ui message red inverted">
       <div class="header">Description : </div>
-      <p>Failed to log Admin out</p>
+      <p>Failed to log Candidate out</p>
     </div>
     <button className="fluid ui button"><a href="/">Return To Home Screen</a></button>
     
