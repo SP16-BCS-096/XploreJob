@@ -5,7 +5,6 @@ var multer  = require('multer');
 const Schema = mongoose.Schema;
 
 const CvSchema = new Schema({
- Image: {type: String},
  FirstName: {type: String, required: true},
  LastName: {type: String},
  Email :{ type: String, required: true},
@@ -15,7 +14,7 @@ const CvSchema = new Schema({
  DegreeTitle : {type:String, required: true},
  CGPA :{ type: String, required: true },
  Year : {type:String, required: true},
- EducationStatus : {type:String, required: true},
+ Institute : {type:String, required: true},
  JobPost :{ type: String },
  Company : {type:String},
  Address:{type:String},
@@ -33,11 +32,12 @@ const CvSchema = new Schema({
 });
 
 let sortingOrder = {
-  'Matric' : 0,
-  'Fsc' :1,
-  'BS': 2,
-  'MS': 3,
-  'PHD': 4, 
+  
+  "Matric" : 0,
+  "Fsc" :1,
+  "BS": 2,
+  "MS": 3,
+  "PHD": 4, 
 }
 
 CvSchema
