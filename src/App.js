@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import AdminDashboard from "./components/Admin/AdminDashboard";
-import Sarvey from "./components/Sarvey";
+import Sarvey from "./components/Recruiter/Sarvey";
 
 import AdminLogin from "./components/Admin/AdminLogin";
 import CandidateLogin from "./components/Candidate/CandidateLogin";
