@@ -17,6 +17,7 @@ const toolbar = (props) =>
                 <ul>
                     
                     <li><a href="/logout">Logout</a></li>
+                    <li><a href ="./ViewJobsList">JobsList</a></li>
                 </ul>
             </div>
         
