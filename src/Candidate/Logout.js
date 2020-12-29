@@ -6,11 +6,11 @@ import { useHistory } from "react-router-dom";
 import { getFromStorage , setInStorage, removeFromStorage } from "./utils/storage"; 
 
 
-import Toolbar from "../Toolbar/Toolbar";
+import Toolbar from "./Toolbar/Toolbar";
 
 
 
-
+// This is a black screen that is to cover the current screen whenever we open navbar and it is to appear behind navbar
 
 const Logout = () =>
 {
@@ -28,7 +28,7 @@ const Logout = () =>
         if(token2)
         {
             //Logout
-            axios.get(`http://localhost:5000/candidates/logout?token=${token2.token}`)
+            axios.get(`http://localhost:5000/recruiters/logout?token=${token2.token}`)
             
                 .then(json =>
                     {
