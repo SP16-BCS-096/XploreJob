@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import AdminDashboard from "./components/Admin/AdminDashboard";
-
+import Sarvey from "./components/Sarvey";
 
 import AdminLogin from "./components/Admin/AdminLogin";
 import CandidateLogin from "./components/Candidate/CandidateLogin";
@@ -34,6 +34,7 @@ class App extends Component {
          
          <Router>
           <Route path="/" exact component={Dashboard} />
+           <Route path="/Sarvey" exact component={Sarvey} />
           <Route path="/CandidateSignup" component={CandidateSignup} />
           <Route path="/RecruiterSignup" component={RecruiterSignup} />
           <Route path="/AdminDashboard" component={AdminDashboard} />
