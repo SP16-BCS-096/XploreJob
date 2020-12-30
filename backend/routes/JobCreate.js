@@ -2,10 +2,11 @@ const router = require("express").Router();
 var path = require('path');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-
 const JobCreate = require("../models/JobCreate.model");
+const UserSession = require("../models/usersession.model");
 
 
+                
 router.route('/').get((req, res) => {
   JobCreate.find()
     .then(JobCreate => res.json(JobCreate))

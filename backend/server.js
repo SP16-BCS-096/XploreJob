@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+var fs = require('fs');
+var Schema = mongoose.Schema;
+var multer = require('multer');
 
 require('dotenv').config();
 
@@ -19,9 +22,10 @@ connection.once('open', () => {
 })
 
 const candidatesRouter = require('./routes/candidates');
-const recruitersRouter = require('./routes/recruiters');
+const recruitersRouter = require('./routes/recruiters')
+const adminRouter = require('./routes/admin');
 const JobCreateRouter = require('./routes/JobCreate');
-const CvRouter = require('./routes/Cv');
+
  app.use(function(req, res, next) {
      res.header("Access-Control-Allow-Origin", "*");
      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -30,8 +34,11 @@ const CvRouter = require('./routes/Cv');
 
 app.use('/candidates', candidatesRouter);
 app.use('/recruiters', recruitersRouter);
+app.use('/admin' , adminRouter);
 app.use('/JobCreate', JobCreateRouter);
-app.use('/Cv' , CvRouter);
+
+
+
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

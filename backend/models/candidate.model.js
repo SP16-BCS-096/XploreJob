@@ -11,6 +11,7 @@ const candidateSchema = new Schema({
  isDeleted: {type: Boolean, default: false},
  timestamp: {type: Date, default: Date.now}
 });
+
 candidateSchema.methods.generateHash = function(password)
 {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

@@ -134,9 +134,9 @@ router.post("/Signin",(req,res) =>
     else
     {
         Recruiter.findOne({email : email2})
-        .then(candidate =>
+        .then(recruiter =>
             {
-                var valid_password = bcrypt.compareSync(password, candidate.password);
+                var valid_password = bcrypt.compareSync(password, recruiter.password);
                 if(!valid_password)
                 {
                     return res.status(400).send("Invalid password for user");
@@ -145,7 +145,7 @@ router.post("/Signin",(req,res) =>
                 {
                     // User session
                     const user_session = new UserSession();
-                    user_session.userId = candidate._id;
+                    user_session.userId = recruiter._id;
                     user_session.save()
                     .then(result =>
                         {

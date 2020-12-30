@@ -5,6 +5,7 @@ var multer  = require('multer');
 const Schema = mongoose.Schema;
 
 const CvSchema = new Schema({
+ Cvid : { type: String , required: true},
  FirstName: {type: String, required: true},
  LastName: {type: String},
  Email :{ type: String, required: true},

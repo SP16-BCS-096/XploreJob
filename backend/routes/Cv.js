@@ -2,8 +2,7 @@ const router = require("express").Router();
 var path = require('path');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-var multer  = require('multer')
-
+const UserSession = require("../models/usersession.model");
 const Cv = require("../models/Cv.model");
 
 const DegreeTitle = [
@@ -54,9 +53,25 @@ router.route('/').get((req, res) => {
       })
     .catch(err => res.status(400).json('Error: ' + err));
 });
+ {
+                    // User session
+                    const user_session = new UserSession();
+                    user_session.userId = candidate._id;
+                    user_session.save()
+                    .then(result =>
+                        {
+                            return res.send({success: true,
+                        token : result._id})
+                        })
+                .catch(err =>
+                    {
+                        return res.status(400).send('${err}`);
+                    });
+
+                }
 
 router.route('/add').post((req , res) => {
-  
+  const Cvid = user_session.userid;
   const FirstName = req.body.FirstName;
   const LastName= req.body.LastName;
   const Email = req.body.Email;
@@ -64,7 +79,7 @@ router.route('/add').post((req , res) => {
   const PresentAddress = req.body.PresentAddress;
   const PermanentAddress = req.body.PermanentAddress;
   const DegreeTitle =req.body.DegreeTitle;
-    const CGPA =req.body.CGPA;
+  const CGPA =req.body.CGPA;
   const Year =req.body.Year;
  const Institute = req.body.Institute;
 
@@ -110,6 +125,7 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
   Cv.findById(req.params.id)
     .then(Cv => {
+  const Cvid = UserSession.userid  
   const FirstName = req.body.Firstname;
   const LastName= req.body.LastName;
   const Email = req.body.Email;
