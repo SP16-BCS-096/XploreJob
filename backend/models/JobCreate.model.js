@@ -6,7 +6,6 @@ const Schema = mongoose.Schema;
 
 
 const JobCreateSchema = new Schema({
-Jobid : {type: String, required: true},
  JobTitle: {type: String, required: true},
  CompanyName: {type: String, required: true},
  JobDescription :{ type: String, required: true },
