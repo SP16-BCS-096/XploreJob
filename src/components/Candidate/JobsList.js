@@ -13,7 +13,7 @@ const JobCreate = props => (
     <td> {props.JobCreate.RequiredExperience}</td>
     <td> {props.JobCreate.CompanyWeb}</td>
     <td> {props.JobCreate.Phone}</td>
-    <td><Button><a href="./Cv">Apply for Job</a></Button></td>
+    <td><Button><a href="./Cv">Update Cv</a></Button></td>
 </tr>
 
 )
@@ -68,7 +68,7 @@ export default class JobList extends Component {
               <th>RequiredExperience</th>
               <th>CompanyWeb</th>
               <th>Phone</th>
-              <th></th>
+              <th><Button variant="danger">Apply for Job</Button></th>
                  <th></th>
             </tr>
           </thead> 
