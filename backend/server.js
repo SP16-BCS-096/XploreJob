@@ -25,6 +25,7 @@ const candidatesRouter = require('./routes/candidates');
 const recruitersRouter = require('./routes/recruiters')
 const adminRouter = require('./routes/admin');
 const JobCreateRouter = require('./routes/JobCreate');
+const CvRouter = require('./routes/Cv')
 
  app.use(function(req, res, next) {
      res.header("Access-Control-Allow-Origin", "*");
@@ -36,7 +37,7 @@ app.use('/candidates', candidatesRouter);
 app.use('/recruiters', recruitersRouter);
 app.use('/admin' , adminRouter);
 app.use('/JobCreate', JobCreateRouter);
-
+app.use('/Cv', CvRouter)
 
 
 
