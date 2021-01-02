@@ -11,12 +11,6 @@ router.route('/').get((req, res) => {
     .then(candidates => res.json(candidates))
     .catch(err => res.status(400).json('Error: ' + err));
 });
-
-router.route('/:id/Cv').get((req, res) => {
-  Candidate.find()
-    .then(candidates => res.json(candidates))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
 router.route('/Signup').post((req, res ,next) => {
   const {body}= req;
   const{

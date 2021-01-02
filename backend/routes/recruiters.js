@@ -11,6 +11,11 @@ router.route('/').get((req, res) => {
     .then(recruiters => res.json(recruiters))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+router.route('/:id').delete((req, res) => {
+  Recruiter.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Recruiter deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 router.route('/Signup').post((req, res ,next) => {
   const {body}= req;

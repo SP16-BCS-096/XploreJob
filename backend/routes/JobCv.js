@@ -3,8 +3,8 @@ var path = require('path');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const UserSession = require("../models/usersession.model");
-const Cv = require("../models/Cv.model");
-
+const JobCv = require("../models/Cv.model");
+const Cvid = require("../models/JobCv.model");
 const DegreeTitle = [
   { priority: "Matric"},
   { priority: "Fsc"},
@@ -21,41 +21,37 @@ let sortingOrder = {
     
   
 }
-
-
-function compare(key, order = 'asc') {
-    return function (a, b) {
-        if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) 
-      return 0;
-    
-  const first = (a[key].toLowerCase() in sortingOrder) ? sortingOrder[a[key]] : Number.MAX_SAFE_INTEGER;
-  const second = (b[key].toLowerCase() in sortingOrder) ? sortingOrder[b[key]] : Number.MAX_SAFE_INTEGER;
-    
-  let result = 0;
-  if (first < second) 
-      result = -1;
-  else if (first > second) 
-      result = 1;
-  return (order === 'desc') ? ~result : result
-    };
-}
-
-DegreeTitle.sort(compare('category', 'desc'));
-
 router.route('/').get((req, res) => {
-  Cv.find()
-    .then(Cv => 
-      {
-        if (Cv.length > 0) {
-          Cv.sort((a, b) => (a.priority < b.priority) ? 1 : -1);
-        }
-        res.json(Cv);
+  JobCv.find()
+    .then(JobCv => 
+        res.json(JobCv);
       })
     .catch(err => res.status(400).json('Error: ' + err));
 });
  
 
 router.route('/add').post((req , res) => {
+
+JobCv.find({
+    Cvid:Cvid
+ },(err , previousCv)=>{
+if (err) {
+return res.send({
+        success: false,
+        message:'Upload Your Cv'
+        }); 
+    
+}
+else if(previousCv.length >0){
+  return res.send({
+        success: false,
+        message: 'Err: Cv already exist.'
+        }); 
+    
+}
+
+
+
   const FirstName = req.body.FirstName;
   const LastName= req.body.LastName;
   const Email = req.body.Email;
