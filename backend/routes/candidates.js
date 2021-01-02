@@ -97,6 +97,7 @@ const newCandidate = new Candidate();
 
 router.post("/Signin",(req,res) =>
 {
+    console.log(req.body);
     const {email, password} = req.body;
     let errors = [];
     var email2 = email.toLowerCase();

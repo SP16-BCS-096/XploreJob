@@ -56,6 +56,7 @@ router.route('/').get((req, res) => {
  
 
 router.route('/add').post((req , res) => {
+  console.log(req.body)
   const FirstName = req.body.FirstName;
   const LastName= req.body.LastName;
   const Email = req.body.Email;

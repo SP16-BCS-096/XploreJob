@@ -153,6 +153,7 @@ onChangeLastName(e) {
       Company : this.state.Company,
       Address : this.state.Address,
       PostStatus : this.state.PostStatus,
+      candidate_id : localStorage.getItem('candidate_id')
     }
   
   axios.post('http://localhost:5000/Cv/add', Cv)
@@ -194,7 +195,6 @@ onChangeLastName(e) {
       Company : this.state.Company,
       Address : this.state.Address,
       PostStatus : this.state.PostStatus,
-      candidate_id : localStorage.getItem('candidate_id')
     }
 
     
