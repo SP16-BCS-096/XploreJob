@@ -68,7 +68,7 @@ export default class JobList extends Component {
               <th>RequiredExperience</th>
               <th>CompanyWeb</th>
               <th>Phone</th>
-              <th></th>
+              <th><Button variant="danger">Update Cv</Button></th>
                  <th></th>
             </tr>
           </thead> 
