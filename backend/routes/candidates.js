@@ -142,7 +142,8 @@ router.post("/Signin",(req,res) =>
                         {
                             return res.send({success: true,
                             msg: "valid sign in",
-                        token : result._id})
+                            token : result._id,
+                            candidate_id:  candidate._id})
                         })
                 .catch(err =>
                     {

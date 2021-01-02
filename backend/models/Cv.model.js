@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 var multer  = require('multer');
+const Candidate = require('./candidate.model');
 const Schema = mongoose.Schema;
 
 const CvSchema = new Schema({
@@ -21,7 +22,11 @@ const CvSchema = new Schema({
  Address:{type:String},
  PostStatus : {type:String},
  isDeleted: {type: Boolean, default: false},
- timestamp: {type: Date, default: Date.now}
+ timestamp: {type: Date, default: Date.now},
+ candidate: {
+   type: mongoose.Types.ObjectId,
+   ref: 'Candidate'
+ }
 },
 {
   toObject: {

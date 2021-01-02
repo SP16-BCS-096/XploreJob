@@ -33,7 +33,7 @@ const Logout = () =>
                             console.log("user logged out");
                             setToken(token2.token);
                             removeFromStorage("the_main_app");
-                            
+                            localStorage.removeItem("candidate_id");
                         }
                         else
                         {

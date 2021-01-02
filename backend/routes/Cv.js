@@ -43,7 +43,7 @@ function compare(key, order = 'asc') {
 DegreeTitle.sort(compare('category', 'desc'));
 
 router.route('/').get((req, res) => {
-  Cv.find()
+  Cv.find().populate('candidate')
     .then(Cv => 
       {
         if (Cv.length > 0) {
@@ -70,7 +70,7 @@ router.route('/add').post((req , res) => {
   const Company =req.body.Company;
   const Address =req.body.Address;
   const PostStatus =req.body.PostStatus;
-
+  const candidate = req.body.candidate_id;
   const newCv = new Cv({
     FirstName,
     LastName,
@@ -85,7 +85,8 @@ router.route('/add').post((req , res) => {
     JobPost,
     Company,
     Address,
-    PostStatus
+    PostStatus,
+    candidate
   });
 
   newCv.save()
