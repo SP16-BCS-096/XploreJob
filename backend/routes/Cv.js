@@ -98,6 +98,12 @@ router.route('/candidate').get((req, res) => {
   Cv.findOne(candidate_id)
     .then(Cv => res.json(Cv))
     .catch(err => res.status(400).json('Error: ' + err));
+   if(error){
+       return res.send({
+        success: false,
+        message: 'Upload your Info'
+        });
+    }
 });
 
 
