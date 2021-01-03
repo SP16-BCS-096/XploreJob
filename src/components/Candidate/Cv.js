@@ -389,7 +389,7 @@ onChangeLastName(e) {
   <br/>
                <br/>
    <div className="form-group">
-             <button className="footer-email-link"  onClick={this.onSubmit}>Apply For Job </button>
+             <button className="footer-email-link"  onClick={this.onSubmit}>Upload Info </button>
          {"                      "}
 
              <button className="footer-email-link"  onClick={this.onUpdate}>Update Cv </button>

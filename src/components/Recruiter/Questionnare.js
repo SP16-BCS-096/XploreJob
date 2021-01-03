@@ -11,46 +11,41 @@ function Questionnare() {
       {
        name: "page1",
       elements: [
-        {
-         type: "comment",
-         name: "question1",
-         title: "Tell us Something About u",
-         isRequired: true
-        },
-        {
-         type: "comment",
-         name: "question2",
-         title: "If you’re currently working, how much notice do you need to give to your employer",
-         isRequired: true
-        },
+       {
+     "type": "text",
+     "name": "question1",
+     "title": "Your Name",
+     "isRequired": true
+    },
+    {
+     "type": "text",
+     "name": "question2",
+     "title": "Email",
+     "isRequired": true
+    },
         {
          type: "comment",
          name: "question3",
-         title: "How did you learn about this job?",
+         title: "Tell us Something About u",
          isRequired: true
         },
+        
         {
          type: "comment",
          name: "question4",
-         title: "List all software you have used that’s related to this position.",
+         title: "How did you learn about this platform?",
          isRequired: true
         },
         {
          type: "comment",
          name: "question5",
-         visibleIf: "{question1} notempty",
-         title: "How does this position fit in with your long-term goals?",
+         title: "List all software you have used that’s related to your field.",
          isRequired: true
         },
+       
         {
          type: "comment",
          name: "question6",
-         title: "Why would you like to work with our company?",
-         isRequired: true
-        },
-        {
-         type: "comment",
-         name: "question7",
          title: "What are your salary expectations?",
          isRequired: true
         }

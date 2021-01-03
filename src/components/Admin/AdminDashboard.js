@@ -3,7 +3,7 @@ import RecruiterList from './RecruiterList';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import './AdminDashboard.css';
-import ToolBar from './Toolbar/Toolbar';
+import Toolbar from './Toolbar/Toolbar';
 import { Table, Alert } from 'react-bootstrap';
 
  class AdminDashboard extends React.Component {
@@ -44,7 +44,7 @@ render() {
     } else {
       return(
         <div className ="AdminDashboard">
-
+       <Toolbar />
           <h2>Candidate List</h2>
           {this.state.response.message && <Alert variant="info">{this.state.response.message}</Alert>}
           <Table>
