@@ -15,7 +15,7 @@ const JobCreate = props => (
     <td> {props.JobCreate.CompanyWeb}</td>
     <td> {props.JobCreate.Phone}</td>
     <td></td>
-    <td> <button className = "a">Apply for Job</button></td>
+    <td> <button className = "a"onClick={this.onPost}> Apply for Job</button></td>
 </tr>
 
 )
