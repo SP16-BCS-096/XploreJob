@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as Survey from "survey-react";
-
+import Toolbar from './Toolbar/Toolbar';
 
 import "survey-react/survey.css";
 
@@ -57,6 +57,7 @@ function Questionnare() {
   var surveyRender = <Survey.Survey json={json} />;
   return (
     <div className="Sarvey">
+    <Toolbar/>
       <h2>Questionnare</h2>
       {surveyRender}
     </div>
