@@ -94,6 +94,12 @@ router.route('/add').post((req , res) => {
   .then(() => res.json('Cv added!'))
   .catch(err => res.status(400).json('Error: ' + err));
 });
+router.route('/candidate').get((req, res) => {
+  Cv.findOne(candidate_id)
+    .then(Cv => res.json(Cv))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 
 router.route('/:id').get((req, res) => {
   Cv.findById(req.params.id)
