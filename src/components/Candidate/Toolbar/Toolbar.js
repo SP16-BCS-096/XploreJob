@@ -1,5 +1,10 @@
 import React from 'react';
 import "./Toolbar.css";
+import * as Survey from "survey-react";
+
+
+import "survey-react/survey.css";
+
 
 const toolbar = (props) =>
 {
@@ -7,7 +12,7 @@ const toolbar = (props) =>
         
     <header className="toolbar">
     <nav className="toolbar_navigation">
-        =
+        
             <div className="toolbar_logo">
               
                 
@@ -17,7 +22,10 @@ const toolbar = (props) =>
                 <ul>
                     
                     <li><a href="/logout">Logout</a></li>
-                    <li><a href ="./ViewJobsList">JobsList</a></li>
+                    
+                    <a href="Questionnare" class="notification">
+              Notifications
+          </a>
                 </ul>
             </div>
         

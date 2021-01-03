@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
-import './JobsList.css';
+import './AdminViewJobs.css';
 import Toolbar from './Toolbar/Toolbar';
  
 const JobCreate = props => (
@@ -14,28 +14,18 @@ const JobCreate = props => (
     <td> {props.JobCreate.RequiredExperience}</td>
     <td> {props.JobCreate.CompanyWeb}</td>
     <td> {props.JobCreate.Phone}</td>
-    <td></td>
-    <td> <button className = "a">Apply for Job</button></td>
+   <td><Button variant="danger" onClick={() => this.deleteJobCreate(JobCreate.id)}>Delete</Button></td>
 </tr>
 
 )
 
-export default class JobList extends Component {
+export default class AdminViewJobs extends Component {
   constructor(props) {
     super(props);
 
     this.deleteJobCreate = this.deleteJobCreate.bind(this)
 
     this.state = {JobCreates: []};
-  }
-  onClick(){
-    axios.post('http://localhost:5000/JobCv/add')
-      .then(response => {
-        this.setState({ JobCreates: response.data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
   }
 
   componentDidMount() {
@@ -47,21 +37,7 @@ export default class JobList extends Component {
         console.log(error);
       })
   }
-onPost(candidate)
-{
- axios.get('http://localhost:5000/Cv/candidate')
-      .then(response => { console.log(response.data)});
 
-    this.setState({
-      JobCreates: this.state.JobCreates.filter(el => el.candidate !== candidate)   
-    })
-       axios.post('http://localhost:5000/Cv/add') 
-       .then(response => { console.log(response.data)});
-
-    this.setState({
-      JobCreates: this.state.JobCreates.filter(el => el.candidate !== candidate)   
-    })
-}
   deleteJobCreate(id) {
     axios.delete('http://localhost:5000/JobCreates/'+id)
       .then(response => { console.log(response.data)});
@@ -79,8 +55,8 @@ onPost(candidate)
 
     render() {
     return (
-     <div className = "JobsList">
-      <Toolbar />
+     <div className = "AdminViewJobsList">
+     <Toolbar />
       <Col sm="12">
         <h2>List of Jobs</h2>
         <table className="table">
@@ -91,11 +67,10 @@ onPost(candidate)
               <th>JobDescription </th>
               <th>Address</th>
               <th>MinimumQualification</th>
-              <th>RequiredExperience</th>
+              <th>MinimumExperience</th>
               <th>CompanyWeb</th>
               <th>Phone</th>
               <th></th>
-              <th><Button className ="a"><a href="./Cv">Upload/Update Information</a></Button></th>
             </tr>
           </thead> 
           <tbody>
@@ -108,11 +83,10 @@ onPost(candidate)
         <br/>
         <br/>
         <br/>
-        <br/>
-        <br/>
          <br/>
          <br/>
-           <br/>
+         <br/>
+         <br/>
       </div>
  
     )

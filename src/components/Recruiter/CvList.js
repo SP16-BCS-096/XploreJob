@@ -21,6 +21,8 @@ const Cv = props => (
     <tr>Company:<th> </th> {props.Cv.Company}</tr>
     <tr>Address:<th> </th> {props.Cv.Address}</tr>
     <tr>PostStatus:<th> </th>{props.Cv.PostStatus}</tr>
+ 
+
     </div>
     <br/>
     <br/>
@@ -48,6 +50,7 @@ export default class CvList extends Component {
         console.log(error);
       })
   }
+
 
   deleteCv(id) {
     axios.delete('http://localhost:5000/Cv/'+id)
@@ -84,6 +87,9 @@ export default class CvList extends Component {
                  <br/>
         <br/>
         <br/>
+         <br/>
+         <br/>
+         <br/>
          <br/>
       </div>
  

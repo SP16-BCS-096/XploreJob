@@ -6,7 +6,7 @@
 .container{
 	height: 100%;
 	width: 100%;
-	background-image: linear-gradient(rgba(100,40,0,0.4),rgba(0,0,0,0.9));
+	background-image: linear-gradient(rgba(50,100,0,0.4),rgba(0,0,0,0.9));
 	background-position: center;
 	background-size: cover;
 	position: relative; 
@@ -74,4 +74,7 @@
 	border: 0;
 	outline: none;
 	border-radius:30px;
+}
+.Card{
+	border-radius: 25px;
 }

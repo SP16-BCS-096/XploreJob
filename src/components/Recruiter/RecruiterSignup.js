@@ -7,6 +7,7 @@ import{
    getFromStorage,
   setInStorage 
 } from './utils/storage.js';
+import { NotificationManager } from 'react-notifications';
 
 class RecruiterSignup extends Component {
  constructor(props) {
@@ -73,7 +74,7 @@ onChangeSignUpPassword(e) {
     console.log(recruiter);
 
     axios.post('http://localhost:5000/recruiters/Signup', recruiter)
-      .then(res => console.log(res.data));
+      .then(res => NotificationManager.log(res.data));
       
 
     this.setState({

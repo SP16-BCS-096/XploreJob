@@ -3,6 +3,7 @@ import axios from "axios";
 import { getFromStorage , setInStorage } from "./utils/storage"; 
 import { useHistory } from "react-router-dom";
 import './RecruiterLogin.css';
+import { NotificationManager } from 'react-notifications';
 
 
 const RecruiterLogin = () =>  
@@ -57,7 +58,7 @@ const RecruiterLogin = () =>
                             setInStorage("the_main_app",{token : json.data.token});
                             setInStorage("the_main_app_loading",{loading_variable : isLoading});
                             // setInStorage("the_main_app_login_attempt",{attempt : true});
-                            console.log("Success login");
+                           alert("Success login");
                             history.push("/JobCreate")
                         }
                     })

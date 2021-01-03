@@ -6,7 +6,6 @@
 .Cvcontainer{
 	height: 100%;
 	width: 100%;
-	background-image:green;
 	background-position: center;
 	background-size: cover;
 	position: fixed; 
@@ -14,6 +13,8 @@
 .footer-email-link {
     margin-left: 1rem; /* 4px */
     border-radius: 20px;
+    background-color: lightgrey;
+    color: black;
 }
 .slelect{
    border-radius: 20px;

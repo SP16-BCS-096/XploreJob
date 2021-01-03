@@ -56,10 +56,9 @@ const CandidateLogin = () =>
                             
                             setInStorage("the_main_app",{token : json.data.token});
                             setInStorage("the_main_app_loading",{loading_variable : isLoading});
-                            
-                            localStorage.setItem('candidate_id', json.data.candidate_id);
+                            localStorage.setItem('candidate_id', json.data.user_id);
                             // setInStorage("the_main_app_login_attempt",{attempt : true});
-                            console.log("Success login");
+                            alert("Success login");
                             history.push("/JobsList")
                         }
                     })

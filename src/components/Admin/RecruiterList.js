@@ -1,28 +1,20 @@
 import React, { Component } from 'react';
+import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
+import { Table, Alert } from 'react-bootstrap';
 
-
-const Recruiter = props => (
-  <tr>
-    <td>{props.recruiter.username}</td>
-    <td>{props.recruiter.email}</td>
-    <td>{props.recruiter.phone}</td>
-      <td>{props.recruiter.company}</td>
-    
-  </tr>
-)
-
-export default class RecruiterList extends Component {
+ class RecruiterList extends React.Component {
   constructor(props) {
     super(props);
-
-    this.deleteRecruiters = this.deleteRecruiter.bind(this)
-
-    this.state = {recruiters: []};
+    this.state = {
+      error: null,
+      recruiters: [],
+      response: {}
+    }
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:5000/recruiters/')
+ componentDidMount() {
+    axios.get('http://localhost:5000/Recruiters/')
       .then(response => {
         this.setState({ recruiters: response.data })
       })
@@ -30,42 +22,58 @@ export default class RecruiterList extends Component {
         console.log(error);
       })
   }
-
-  deleteRecruiter(id) {
-    axios.delete('http://localhost:5000/recruiters/'+id)
+deleteRecuiter(id) {
+    axios.delete('http://localhost:5000/Recruiters/:id')
       .then(response => { console.log(response.data)});
 
     this.setState({
       recruiters: this.state.recruiters.filter(el => el._id !== id)
     })
   }
+render() {
+    const { error, recruiters} = this.state;
 
-  RecruiterList() {
-    return this.state.recruiters.map(currentrecruiter=> {
-      return <Recruiter recruiter={currentrecruiter} deleteRecruiter={this.deleterecruiter} key={currentrecruiter._id}/>;
-    })
-  }
-
-    render() {
-    return (
-      <div>
-        <h2>List of Recruiters</h2>
-        <table className="table">
-          <thead className="thead-light">
+    if(error) {
+      return (
+        <div>Error: {error.message}</div>
+      )
+    } else {
+      return(
+        <div>
+          <h2>Recruiters List List</h2>
+          {this.state.response.message && <Alert variant="info">{this.state.response.message}</Alert>}
+          <Table>
+        <thead className="thead-light">
             <tr>
               <th>Username</th>
               <th>Email</th>
-             
               <th>Phone </th>
-              <th>Company </th>
+              <th>Company</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
-          <tbody>
-            { this.RecruiterList() }
-          </tbody>
-        </table>
-        
-</div>
-    )
+             <tbody>
+              {recruiters.map(recruiter => (
+                <tr key={recruiter.id}>
+                  <td>{recruiter.username}</td>
+                  <td>{recruiter.email}</td>
+                  <td>{recruiter.phone}</td>
+                  <td>{recruiter.company}</td>
+                  <td>     
+                <Button variant="danger" onClick={() => this.deleteRecuiter(recruiter.id)}>Delete</Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <br/>
+          <br/>
+        </div>
+      )
+    }
   }
 }
+export default RecruiterList;
+
+

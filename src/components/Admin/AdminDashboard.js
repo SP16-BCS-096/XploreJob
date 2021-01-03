@@ -4,27 +4,19 @@ import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import './AdminDashboard.css';
 import ToolBar from './Toolbar/Toolbar';
+import { Table, Alert } from 'react-bootstrap';
 
-const Candidate = props => (
-  <tr>
-    <td>{props.candidate.username}</td>
-    <td>{props.candidate.email}</td>
-  
-    <td>{props.candidate.phone}</td>
-    
-  </tr>
-)
-
-export default class AdminDashboard extends Component {
+ class AdminDashboard extends React.Component {
   constructor(props) {
     super(props);
-
-    this.deleteCandidate = this.deleteCandidate.bind(this)
-
-    this.state = {candidates: []};
+    this.state = {
+      error: null,
+      candidates: [],
+      response: {}
+    }
   }
 
-  componentDidMount() {
+ componentDidMount() {
     axios.get('http://localhost:5000/candidates/')
       .then(response => {
         this.setState({ candidates: response.data })
@@ -34,50 +26,59 @@ export default class AdminDashboard extends Component {
       })
   }
 
-  deleteCandidate(id) {
-    axios.delete('http://localhost:5000/candidates/'+id)
+deleteCandidate(id) {
+    axios.delete('http://localhost:5000/Candidates/:id')
       .then(response => { console.log(response.data)});
 
     this.setState({
       candidates: this.state.candidates.filter(el => el._id !== id)
     })
   }
+render() {
+    const { error, candidates} = this.state;
 
-  CandidateList() {
-    return this.state.candidates.map(currentcandidate => {
-      return <Candidate candidate={currentcandidate} deleteCandidate={this.deletecandidate} key={currentcandidate._id}/>;
-    })
-  }
+    if(error) {
+      return (
+        <div>Error: {error.message}</div>
+      )
+    } else {
+      return(
+        <div className ="AdminDashboard">
 
-    render() {
-    return (
-      <div className="AdminDashboard">
-      <ToolBar />
-      <Col sm="12">
-        <h2>List of Candidates</h2>
-        <table className="table">
-          <thead className="thead-light">
+          <h2>Candidate List</h2>
+          {this.state.response.message && <Alert variant="info">{this.state.response.message}</Alert>}
+          <Table>
+        <thead className="thead-light">
             <tr>
               <th>Username</th>
               <th>Email</th>
               <th>Phone </th>
+              <th></th>
+              <th></th>
             </tr>
-          </thead> 
-          <tbody>
-            { this.CandidateList() }
-          </tbody>
+          </thead>
+             <tbody>
+              {candidates.map(candidate => (
+                <tr key={candidate.id}>
+                  <td>{candidate.username}</td>
+                  <td>{candidate.email}</td>
+                  <td>{candidate.phone}</td>
+                  <td>     
+                <Button variant="danger" onClick={() => this.deleteCandidate(candidate.id)}>Delete</Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
           <br/>
-             <br/>
-                <br/>
-        </table>
-        <RecruiterList />
-        <br/>
-        <br/>
-           <br/>
-              <br/>
-        </Col>
-      </div>
-
-    )
+          <RecruiterList />
+          <br/>
+          <br/>
+        </div>
+      )
+    }
   }
 }
+export default AdminDashboard;
+
+

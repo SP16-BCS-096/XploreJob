@@ -8,6 +8,7 @@ import{
    getFromStorage,
   setInStorage 
 } from './utils/storage.js';
+import { NotificationManager } from 'react-notifications';
 
 class CandidateSignup extends Component {
  constructor(props) {
@@ -67,7 +68,7 @@ onChangeSignUpPassword(e) {
     console.log(candidate);
 
     axios.post('http://localhost:5000/candidates/Signup', candidate)
-      .then(res => console.log(res.data));
+      .then(res => NotificationManager.log(res.data));
 
     this.setState({
       username: '',
@@ -148,7 +149,7 @@ onChangeSignUpPassword(e) {
                 />
                 </div>
                  <div className="form-group">
-            <button onClick={this.onSignUp}>Sign Up</button>
+            <button className ="a" onClick={this.onSignUp}>Sign Up</button>
           </div>
                 <p className="forgot-password text-right">
                   Already registered <a href="./CandidateLogin">sign in?</a>

@@ -153,7 +153,6 @@ onChangeLastName(e) {
       Company : this.state.Company,
       Address : this.state.Address,
       PostStatus : this.state.PostStatus,
-      candidate_id : localStorage.getItem('candidate_id')
     }
   
   axios.post('http://localhost:5000/Cv/add', Cv)
@@ -194,11 +193,11 @@ onChangeLastName(e) {
       JobPost : this.state.JobPost,
       Company : this.state.Company,
       Address : this.state.Address,
-      PostStatus : this.state.PostStatus,
+      PostStatus : this.state.PostStatus
     }
 
     
-  axios.post('http://localhost:5000/Cv/update/:id', Cv)
+  axios.post('http://localhost:5000/Cv/update', Cv)
       .then(res => console.log(res.data));
 
     this.setState({
@@ -390,7 +389,7 @@ onChangeLastName(e) {
   <br/>
                <br/>
    <div className="form-group">
-             <button className="footer-email-link"  onClick={this.onSubmit}>Upload Cv </button>
+             <button className="footer-email-link"  onClick={this.onSubmit}>Apply For Job </button>
          {"                      "}
 
              <button className="footer-email-link"  onClick={this.onUpdate}>Update Cv </button>
@@ -401,6 +400,7 @@ onChangeLastName(e) {
         {({ toPdf }) => <button  className="footer-email-link"  onClick={toPdf}>Generate Pdf</button>}
       </Pdf>
       </div>
+      <br/>
       </div>
   </div>
     </div>
