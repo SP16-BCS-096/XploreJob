@@ -53,7 +53,8 @@ function Questionnare() {
       }
      ]
   };
-  
+  onComplete(survey, options) {
+  console.log("Survey results: " + JSON.stringify(survey.data));
   var surveyRender = <Survey.Survey json={json} />;
   return (
     <div className="Sarvey">
