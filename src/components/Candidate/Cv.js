@@ -156,7 +156,7 @@ onChangeLastName(e) {
     }
   
   axios.post('http://localhost:5000/Cv/add', Cv)
-      .then(res => console.log(res.data));
+      .then(res => alert(res.data));
 
     this.setState({
     FirstName : '',
