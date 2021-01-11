@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
-import './JobsList.css';
+import './PreviousJobs.css';
 import Toolbar from './Toolbar/Toolbar';
  
 const JobCreate = props => (
-<tr>
+<tr className ="JobCreate">
     <td>{props.JobCreate.JobTitle}</td>
     <td> {props.JobCreate.CompanyName}</td>
     <td> {props.JobCreate.JobDescription}</td>
@@ -78,10 +78,10 @@ onPost(candidate)
 
     render() {
     return (
-     <div className = "JobsList">
+     <div className = "PreviousJobs">
       <Toolbar />
       <Col sm="12">
-        <h2>List of Jobs</h2>
+        <h1> My Jobs</h1>
         <table className="table">
           <thead className="thead-light">
             <tr>

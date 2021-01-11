@@ -2,7 +2,7 @@
 .SignUpcontainer{
     height: 100%;
     width: 100%;
-   background-image: linear-gradient(rgba(10,40,0,0.9),rgba(0,0,0,0.4));
+   background-color: #436F5A;
     background-position: center;
     background-size: cover;
     position: ; 
@@ -61,7 +61,8 @@ border-radius:25px;
 
 }
 .b{
- background-color: grey;
- border-radius:25px;
+ background-color: #20BF73;
+ border-radius:20px;
+ padding: 12px 28px;
 
 }

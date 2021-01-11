@@ -2,30 +2,59 @@ import React, { Component } from 'react';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import './CvList.css';
- 
+import Toolbar from "./Toolbar/Toolbar"; 
 
 const Cv = props => (
 <tr>
-<div className="thead-light">
-    <tr>FirstName: <th></th>{props.Cv.FirstName}</tr>
-    <tr>LastName: <th> </th> {props.Cv.LastName}</tr>
-    <tr>Email:<th> </th>{props.Cv.Email}</tr>
-    <tr>ContactNo:<th> </th> {props.Cv.ContactNo}</tr>
-    <tr>PresentAddress: <th> </th> {props.Cv.PresentAddress}</tr>
-    <tr>PermanentAddress:<th> </th> {props.Cv.PermanentAddress}</tr>
-    <tr>DegreeTitle:<th> </th> {props.Cv.DegreeTitle}</tr>
-    <tr>CGPA:<th> </th> {props.Cv.CGPA}</tr>
-    <tr>Year:<th> </th> {props.Cv.Year}</tr>
-    <tr>Institute:<th> </th> {props.Cv.Institute}</tr>
-    <tr>JobPost :<th> </th> {props.Cv.JobPost}</tr>
-    <tr>Company:<th> </th> {props.Cv.Company}</tr>
-    <tr>Address:<th> </th> {props.Cv.Address}</tr>
-    <tr>PostStatus:<th> </th>{props.Cv.PostStatus}</tr>
- 
+<div className="thead-dark">
+<div style={{marginLeft: 90, marginRight: 50}}>
+<hr/>
+    <h3>Personal Information</h3>
+    <hr/>
+    <tr><b>FirstName: </b><th></th><b>LastName: </b></tr>
+    <tr>{props.Cv.FirstName}<th></th> {props.Cv.LastName}</tr>
+  
+    <tr><b>Email:</b><th></th><b>ContactNo:</b></tr> 
+    <tr>{props.Cv.Email}<th></th> {props.Cv.ContactNo}</tr>
 
+    <tr><b>PresentAddress: </b></tr>
+    <tr> {props.Cv.PresentAddress}</tr>
+
+    <tr><b>PermanentAddress:</b></tr>
+    <tr> {props.Cv.PermanentAddress}</tr>
+<hr/>
+    <h3>Edcation Information</h3>
+<hr/>
+    <tr><b>DegreeTitle:</b></tr>
+    <tr>{props.Cv.DegreeTitle}</tr>
+
+    <tr><b>CGPA:</b></tr>
+    <tr> {props.Cv.CGPA}</tr>
+
+    <tr><b>Year:</b></tr>
+    <tr> {props.Cv.Year}</tr>
+
+    <tr><b>Institute:</b></tr>
+    <tr> {props.Cv.Institute}</tr>
+<hr/>
+   <h3>Experience</h3>
+   <hr/>
+    <tr><b>JobPost :</b></tr>
+    <tr> {props.Cv.JobPost}</tr>
+
+    <tr><b>Company:</b></tr>
+    <tr> {props.Cv.Company}</tr>
+
+    <tr><b>Address:</b></tr>
+    <tr> {props.Cv.Address}</tr>
+
+    <tr><b>PostStatus:</b></tr>
+    <tr>{props.Cv.PostStatus}</tr>
+ 
+</div>
     </div>
     <br/>
-    <br/>
+  
 </tr>
 
 
@@ -70,6 +99,7 @@ export default class CvList extends Component {
     render() {
     return (
      <div className="CvList">
+     <Toolbar />
       <Col sm="12">
         <h2>List of Candidates Data</h2>
         <div >

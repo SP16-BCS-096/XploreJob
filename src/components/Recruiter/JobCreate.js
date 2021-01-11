@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
-import './RecruiterSignup.css';
+import './JobCreate.css';
 import Toolbar from './Toolbar/Toolbar';
 
 class JobCreate extends Component {
@@ -92,6 +92,7 @@ onChangeJobDescription(e) {
   onSubmit(e) {
     e.preventDefault();
 
+
     const JobCreate = {
       JobTitle: this.state.JobTitle,
       CompanyName: this.state.CompanyName,
@@ -107,7 +108,7 @@ onChangeJobDescription(e) {
     console.log(JobCreate);
 
     axios.post('http://localhost:5000/JobCreate/add', JobCreate)
-      .then(res => console.log(res.data));
+      .then(res => alert(res.data));
 
     this.setState({
     JobTitle: '' ,
@@ -120,6 +121,7 @@ onChangeJobDescription(e) {
     CompanyWeb: '',
     Phone:''
     })
+    
   }
   render() {
         return (
@@ -220,7 +222,7 @@ onChangeJobDescription(e) {
                 />
                 </div>
                  <div className="form-group">
-            <button onClick={this.onSubmit}>Post Job</button>
+            <button className ="JobPost" onClick={this.onSubmit}>Post Job</button>
           </div>
 </ul>
 </div>

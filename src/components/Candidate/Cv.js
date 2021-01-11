@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Cv.css';
 import Toolbar from "./Toolbar/Toolbar";
 import Pdf from "react-to-pdf";
+import { store } from 'react-notifications-component';
 const ref = React.createRef();
 
 class Cv extends Component{
@@ -136,7 +137,6 @@ onChangeLastName(e) {
 
   onSubmit(e) {
     e.preventDefault();
-
     const Cv = {
 
       FirstName:this.state.FirstName,
@@ -197,8 +197,8 @@ onChangeLastName(e) {
     }
 
     
-  axios.post('http://localhost:5000/Cv/update', Cv)
-      .then(res => console.log(res.data));
+  axios.post('http://localhost:5000/Cv/update/:id', Cv)
+      .then(res => alert(res.data));
 
     this.setState({
     FirstName : '',

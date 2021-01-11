@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import './JobsList.css';
+import { store } from 'react-notifications-component';
 import Toolbar from './Toolbar/Toolbar';
  
 const JobCreate = props => (
@@ -15,7 +16,7 @@ const JobCreate = props => (
     <td> {props.JobCreate.CompanyWeb}</td>
     <td> {props.JobCreate.Phone}</td>
     <td></td>
-    <td> <button className = "a"onClick={this.onPost}> Apply for Job</button></td>
+    <td> <button className = "ap">Apply for Job</button></td>
 </tr>
 
 )
@@ -47,7 +48,7 @@ export default class JobList extends Component {
         console.log(error);
       })
   }
-onPost(candidate)
+onSubmit(candidate)
 {
  axios.get('http://localhost:5000/Cv/candidate')
       .then(response => { console.log(response.data)});
@@ -82,7 +83,7 @@ onPost(candidate)
      <div className = "JobsList">
       <Toolbar />
       <Col sm="12">
-        <h2>List of Jobs</h2>
+        <h1>Jobs</h1>
         <table className="table">
           <thead className="thead-light">
             <tr>
@@ -95,7 +96,8 @@ onPost(candidate)
               <th>CompanyWeb</th>
               <th>Phone</th>
               <th></th>
-              <th><Button className ="a"><a href="./Cv">Upload/Update Information</a></Button></th>
+              <th><Button className ="a"><a href="./Cv">Upload Information</a></Button></th>
+
             </tr>
           </thead> 
           <tbody>

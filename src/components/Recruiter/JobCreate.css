@@ -6,8 +6,11 @@
 .container{
 	height: 100%;
 	width: 100%;
-	background-image: linear-gradient(rgba(10,20,0,0.1),rgba(0,0,0,0.1));
-	background-position: center;
-	background-size: cover;
-	position: relative; 
+	background-color:;
+}
+.JobPost
+{
+  border-radius: 500px;
+ background-color: #436F5A;
+ padding: 5px 25px;
 }

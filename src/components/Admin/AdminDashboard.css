@@ -1,8 +1,12 @@
 .AdminDashboard{
     height: 100%;
     width: 100%;
-    background-color: #c1946a;
+    background-color: #EAECEE;
     background-position: center;
     background-size: cover;
     position: ; 
+    color: black;
+}
+.thead{
+background-color: lightgrey;
 }

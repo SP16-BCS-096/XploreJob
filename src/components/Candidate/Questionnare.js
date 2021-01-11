@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as Survey from "survey-react";
-import Toolbar from './Toolbar/Toolbar';
+import Toolbar from "./Toolbar/Toolbar";
 
 import "survey-react/survey.css";
 
@@ -48,17 +48,22 @@ function Questionnare() {
          name: "question6",
          title: "What are your salary expectations?",
          isRequired: true
+        },{
+          surveyPostId: '64219482-63d6-43b4-9b73-d8b29bc78bae'
         }
        ]
       }
      ]
+
   };
-  onComplete(survey, options) {
-  console.log("Survey results: " + JSON.stringify(survey.data));
+  Survey.surveyPostId = '64219482-63d6-43b4-9b73-d8b29bc78bae';
+function sendDataToServer(Survey) {
+  Survey.sendResult('64219482-63d6-43b4-9b73-d8b29bc78bae');
+} 
   var surveyRender = <Survey.Survey json={json} />;
   return (
     <div className="Sarvey">
-    <Toolbar/>
+     <Toolbar />
       <h2>Questionnare</h2>
       {surveyRender}
     </div>

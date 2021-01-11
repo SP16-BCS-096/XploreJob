@@ -3,7 +3,7 @@ import { Col } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 import './CandidateSignup.css';
-
+import { store } from 'react-notifications-component';
 import{
    getFromStorage,
   setInStorage 
@@ -56,8 +56,7 @@ onChangeSignUpPassword(e) {
     })
   }
   onSignUp(e){
-    
-    const candidate = {
+     const candidate = {
       username: this.state.signUpUsername,
       email: this.state.signUpEmail,
       password: this.state.signUpPassword,
@@ -65,10 +64,9 @@ onChangeSignUpPassword(e) {
 
     }
 
-    console.log(candidate);
 
     axios.post('http://localhost:5000/candidates/Signup', candidate)
-      .then(res => NotificationManager.log(res.data));
+      .then(res => console.log(res.data));
 
     this.setState({
       username: '',
@@ -76,9 +74,9 @@ onChangeSignUpPassword(e) {
       password: '',
       phone: '' ,
     })
+    alert("SignUp Successfully ");
   }
   
-
 
   render() {
 
@@ -149,7 +147,7 @@ onChangeSignUpPassword(e) {
                 />
                 </div>
                  <div className="form-group">
-            <button className ="a" onClick={this.onSignUp}>Sign Up</button>
+            <button className ="b" onClick={this.onSignUp}>Sign Up</button>
           </div>
                 <p className="forgot-password text-right">
                   Already registered <a href="./CandidateLogin">sign in?</a>
@@ -159,6 +157,7 @@ onChangeSignUpPassword(e) {
             </form>
             </div>
             <br/>
+
             </div>
         );
     }

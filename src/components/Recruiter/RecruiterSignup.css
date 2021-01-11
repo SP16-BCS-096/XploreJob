@@ -2,7 +2,7 @@
 .Signupcontainer{
     height: 100%;
     width: 100%;
-    background-color: grey;
+    background-color: #436F5A;
     background-position: center;
     background-size: cover;
     position: ; 
@@ -58,5 +58,11 @@ p{
 .form-control
 {
 border-radius:25px;
+
+}
+.c{
+ background-color: #108783;
+ border-radius:20px;
+ padding: 12px 28px;
 
 }

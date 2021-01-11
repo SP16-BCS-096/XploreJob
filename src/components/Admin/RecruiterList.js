@@ -40,10 +40,10 @@ render() {
     } else {
       return(
         <div>
-          <h2>Recruiters List List</h2>
+          <h2>Recruiters List</h2>
           {this.state.response.message && <Alert variant="info">{this.state.response.message}</Alert>}
           <Table>
-        <thead className="thead-light">
+        <thead className="thead">
             <tr>
               <th>Username</th>
               <th>Email</th>

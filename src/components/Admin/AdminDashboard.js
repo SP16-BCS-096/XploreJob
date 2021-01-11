@@ -48,7 +48,7 @@ render() {
           <h2>Candidate List</h2>
           {this.state.response.message && <Alert variant="info">{this.state.response.message}</Alert>}
           <Table>
-        <thead className="thead-light">
+        <thead className="thead">
             <tr>
               <th>Username</th>
               <th>Email</th>
@@ -57,7 +57,7 @@ render() {
               <th></th>
             </tr>
           </thead>
-             <tbody>
+             <tbody className = "Admin">
               {candidates.map(candidate => (
                 <tr key={candidate.id}>
                   <td>{candidate.username}</td>

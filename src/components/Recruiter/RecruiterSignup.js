@@ -84,6 +84,7 @@ onChangeSignUpPassword(e) {
       phone: '' , 
       company:''
     })
+    alert("SignUp Successfully ");
   }
   render() {
      const{
@@ -164,7 +165,7 @@ onChangeSignUpPassword(e) {
 
 
                  <div className="form-group">
-            <button onClick={this.onSignUp}>Sign Up</button>
+            <button className="c" onClick={this.onSignUp}>Sign Up</button>
           </div>
                 <p className="forgot-password text-right">
                     Already registered <a href="./RecruiterLogin">sign in?</a>

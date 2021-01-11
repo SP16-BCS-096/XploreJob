@@ -24,8 +24,8 @@ const toolbar = (props) =>
                     <li><a href="/logout">Logout</a></li>
                     <li><a href="/PreviousJobs">Applied Jobs</a></li>
                     
-                    <a href="Questionnare" class="notification">
-              Notifications
+                    <a href="Questionnare">
+              Questionnare
           </a>
                 </ul>
             </div>

@@ -1,7 +1,7 @@
-.JobsList{
+.PreviousJobs{
 	height: 100%;
     width: 100%;
-    background-color:;
+    background-color: #F8F9F9;
     background-position: center;
     background-size: cover;
     position: ; 
@@ -10,13 +10,11 @@
 {
 	background-color: lightgrey; 
 	border-radius: 500px;
-	color: white;
 }
 .ap{
- border-radius: 200px;
- background-color: blue;
- color: white;
- 
+ border-radius: 500px;
+ background-color: #b4b4b4;
+ padding: 5px 10px;
 }
 .thead-light
 {
