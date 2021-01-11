@@ -16,7 +16,7 @@ const JobCreate = props => (
     <td> {props.JobCreate.CompanyWeb}</td>
     <td> {props.JobCreate.Phone}</td>
     <td></td>
-    <td> <button className = "ap">Apply for Job</button></td>
+     <td><Button variant="ap" onClick={() => this.onSubmit(candidate)}>Apply for Job</Button></td>
 </tr>
 
 )
@@ -30,7 +30,7 @@ export default class JobList extends Component {
     this.state = {JobCreates: []};
   }
   onClick(){
-    axios.post('http://localhost:5000/JobCv/add')
+    axios.post('http://localhost:5000/Cv/add')
       .then(response => {
         this.setState({ JobCreates: response.data })
       })
