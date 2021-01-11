@@ -4,10 +4,11 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-notifications/lib/notifications.css';
 import { NotificationContainer } from "react-notifications";
+import ReactNotification from 'react-notifications-component';
 
 
 import AdminDashboard from "./components/Admin/AdminDashboard";
-import Questionnare from "./components/Recruiter/Questionnare";
+import Questionnare from "./components/Candidate/Questionnare";
 
 import AdminLogin from "./components/Admin/AdminLogin";
 import CandidateLogin from "./components/Candidate/CandidateLogin";
@@ -36,6 +37,7 @@ class App extends Component {
      <div className="age-container">
      <div className="content-wrap">
          <Navbar /> 
+         <ReactNotification />
          
          <Router>
           <Route path="/" exact component={Dashboard} />
