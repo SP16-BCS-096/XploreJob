@@ -10,11 +10,11 @@
 
 
 }
-.CvList{
+.AdminviewCvList{
 	height: 100%;
     width: 100%;  
-    background: #20242f;
-    color: white;
+    background: #ffff;
+    color: black;
   
 }
 .thead{

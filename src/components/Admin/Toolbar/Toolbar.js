@@ -16,7 +16,7 @@ const toolbar = (props) =>
             <div className="toolbar_navigation-items">
                 <ul>
                     <li><a href="/logout">logout</a></li>
-                    <li><a href="/CvList">Cv List</a></li>
+                    <li><a href="/AdminViewCvList">Cv List</a></li>
                     <li><a href="/AdminViewJobs">JobsList</a></li>
                 </ul>
             </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
-import './CvList.css';
+import './AdminViewCvList.css';
 import Toolbar from "./Toolbar/Toolbar"; 
 
 const Cv = props => (
@@ -98,7 +98,7 @@ export default class CvList extends Component {
 
     render() {
     return (
-     <div className="CvList">
+     <div className="AdminViewCvList">
      <Toolbar />
       <Col sm="12">
         <h2>List of Candidates Data</h2>
