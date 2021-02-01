@@ -10,7 +10,11 @@ const recruiterSchema = new Schema({
  phone : {type:String, required: true},
  company : {type:String, required:true},
  isDeleted: {type: Boolean, default: false},
- timestamp: {type: Date, default: Date.now}
+ timestamp: {type: Date, default: Date.now},
+recruiter: {
+   type: mongoose.Types.ObjectId,
+   ref: 'Recruiter'
+ }
 });
 recruiterSchema.methods.generateHash = function(password)
 {

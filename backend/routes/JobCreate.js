@@ -21,9 +21,8 @@ router.route('/add').post((req, res) => {
   const Address = req.body.Address;
   const RequiredQualification = req.body.RequiredQualification;
   const RequiredExperience = req.body.RequiredExperience;
-  const CompanyWeb = req.body.CompanyWeb;
   const Phone =req.body.Phone;
-
+  const recruiter = req.body.recruiter_id;
   const newJobCreate = new JobCreate({
     JobTitle,
     CompanyName,
@@ -32,12 +31,12 @@ router.route('/add').post((req, res) => {
     Address,
     RequiredQualification,
     RequiredExperience,
-    CompanyWeb,
-    Phone
+    Phone,
+    recruiter
   });
 
   newJobCreate.save()
-  .then(() => res.json('JobCreate added!'))
+  .then(() => res.json('Job added!'))
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -63,9 +62,8 @@ router.route('/update/:id').post((req, res) => {
       JobCreate.Address = req.body.Address;
       JobCreate.RequiredQualification = req.body.RequiredQualification;
       JobCreate.RequiredExperience = req.body.RequiredExperience;
-      JobCreate.CompanyWeb = req.body.CompanyWeb;
       JobCreate.Phone = req.body.Phone;
-
+    
       JobCreate.save()
         .then(() => res.json('JobCreate updated!'))
         .catch(err => res.status(400).json('Error: ' + err));

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 var path = require('path');
+
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -11,6 +12,18 @@ router.route('/').get((req, res) => {
     .then(candidates => res.json(candidates))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+   
+
+
+
+router.route('/:id').delete((req, res) => {
+  Candidate.findByIdAndDelete(req.params.id)
+    .then(() => res.json('candidate deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
 router.route('/Signup').post((req, res ,next) => {
   const {body}= req;
   const{
@@ -97,7 +110,6 @@ const newCandidate = new Candidate();
 
 router.post("/Signin",(req,res) =>
 {
-    console.log(req.body);
     const {email, password} = req.body;
     let errors = [];
     var email2 = email.toLowerCase();
@@ -143,8 +155,7 @@ router.post("/Signin",(req,res) =>
                         {
                             return res.send({success: true,
                             msg: "valid sign in",
-                            token : result._id,
-                            candidate_id:  candidate._id})
+                        token : result._id})
                         })
                 .catch(err =>
                     {

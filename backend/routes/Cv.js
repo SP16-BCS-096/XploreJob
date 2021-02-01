@@ -56,7 +56,6 @@ router.route('/').get((req, res) => {
  
 
 router.route('/add').post((req , res) => {
-  console.log(req.body)
   const FirstName = req.body.FirstName;
   const LastName= req.body.LastName;
   const Email = req.body.Email;
@@ -71,7 +70,7 @@ router.route('/add').post((req , res) => {
   const Company =req.body.Company;
   const Address =req.body.Address;
   const PostStatus =req.body.PostStatus;
-  const candidate = req.body.candidate_id;
+  const candidate = req.body.usersession_id;
   const newCv = new Cv({
     FirstName,
     LastName,
@@ -136,6 +135,8 @@ router.route('/update/:id').post((req, res) => {
   const CompanyName =req.body.CompanyName;
   const Address =req.body.Address;
   const PostStatus =req.body.PostStatus;
+  const candidate = req.body.usersession_id;
+
       Cv.save()
         .then(() => res.json('Cv updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
