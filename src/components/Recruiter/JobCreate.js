@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Col } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
+import { Form} from 'react-bootstrap';
+import DatePicker from "react-date-picker";
 import './JobCreate.css';
 import Toolbar from './Toolbar/Toolbar';
 
@@ -28,7 +30,6 @@ class JobCreate extends Component {
     Address: '',
     RequiredQualification: '',
     RequiredExperience: '',
-    CompanyWeb: '',
     Phone:''
     }
   }
@@ -105,8 +106,7 @@ onChangeJobDescription(e) {
       Phone: this.state.Phone
     }
 
-    console.log(JobCreate);
-
+   
     axios.post('http://localhost:5000/JobCreate/add', JobCreate)
       .then(res => alert(res.data));
 
@@ -132,10 +132,10 @@ onChangeJobDescription(e) {
 <div className="col">
 <h4>Post A Job</h4>
 
-<ul className="list-unstyled"> 
+<ul className="list-unstyled">
               
                 <div className="form-group">
-                    <label>Job Title</label>
+                    <label>Job Title<span class="required">*</span></label>
                     <input  type="text"
                 required
                 className="form-control"
@@ -144,7 +144,7 @@ onChangeJobDescription(e) {
                 />
                 </div>
                 <div className="form-group">
-                    <label>Job Desrciption</label>
+                    <label>Job Desrciption<span class="required">*</span></label>
                 <textarea  type="textarea"
                 required
                 className="form-control"
@@ -153,7 +153,7 @@ onChangeJobDescription(e) {
                 />
                 </div>
                 <div className="form-group">
-                    <label>No of Post</label>
+                    <label>No of Post<span class="required">*</span></label>
                 <input  type="text"
                 required
                 className="form-control"
@@ -162,7 +162,7 @@ onChangeJobDescription(e) {
                 />
                 </div>
                 <div className="form-group">
-                    <label>Required Qualification</label>
+                    <label>Required Qualification<span class="required">*</span></label>
                      <input  type="text"
                 required
                 className="form-control"
@@ -170,15 +170,7 @@ onChangeJobDescription(e) {
                 onChange={this.onChangeRequiredQualification}
                 />
                 </div>
-                <div className="form-group">
-                    <label>Company web</label>
-                     <input  type="text"
-                required
-                className="form-control"
-                value={this.state.CompanyWeb}
-                onChange={this.onChangeCompanyWeb}
-                />
-                </div>
+                
   
 </ul>
 </div>
@@ -187,7 +179,7 @@ onChangeJobDescription(e) {
 
 <ul className="list-unstyled">
 <div className="form-group">
-                    <label>Company Name</label>
+                    <label>Company Name<span class="required">*</span></label>
                      <input  type="text"
                 required
                 className="form-control"
@@ -196,15 +188,15 @@ onChangeJobDescription(e) {
                 />
                 </div>
   <div className="form-group">
-                    <label> Address</label>
-                    <input  type="text"
+                    <label> Address<span class="required">*</span></label>
+                    <textarea  type="text"
                 required
                 className="form-control"
                 value={this.state.Address}
                 onChange={this.onChangeAddress}
                 />
                 </div><div className="form-group">
-                    <label>Required Experience</label>
+                    <label>Required Experience<span class="required">*</span></label>
                      <input  type="text"
                 required
                 className="form-control"
@@ -213,7 +205,7 @@ onChangeJobDescription(e) {
                 />
                 </div>
                 <div className="form-group">
-                    <label>Contact No</label>
+                    <label>Contact No<span class="required">*</span></label>
                      <input  type="text"
                 required
                 className="form-control"

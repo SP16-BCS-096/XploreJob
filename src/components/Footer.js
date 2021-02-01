@@ -8,7 +8,7 @@ return(
 <div className="col">
 <h4>Customer Support</h4>
 <ul className="list-unstyled">
-  <li>Help</li>
+<li><a className="fa-fa-about" href="./help">Help </a></li>
   
 </ul>
 </div>
@@ -16,10 +16,8 @@ return(
 <div className="col">
 <h4>The Company</h4>
 <ul className="list-unstyled">
-  <li>About Us</li>
-  <li>Careers</li>
-  <li>Legal</li>
-  <li>Privacy and Cookie Policy</li>
+  <li><a className="fa-fa-about" href="./About">About Us </a></li>
+  
   
 </ul>
 </div>
@@ -27,10 +25,10 @@ return(
 <div className="col">
 <h4>Find Us On</h4>
 <ul className="list-unstyled">
-  <li>Facebook</li>
-  <li>Google</li>
-  <li>Twitter</li>
-  <li>Instagram</li>
+  <li><a className="fa fa-facebook" href="www.Facebook.com">Facebook</a></li>
+  <li><a className="fa fa-google" href="www.google.com">Google</a></li>
+  <li><a className="fa fa-twitter" href="www.twitter.com">twitter</a></li>
+<li><a className="fa fa-instagram" href="www.Instagram.com">Instagram</a></li>
  
 </ul>
 </div>
@@ -38,7 +36,7 @@ return(
 <hr />
 <div className="row">
 <p className="col-sm">
-  &copy;{new Date().getFullYear()} XploreJob |All right reserved |Terms of services |Privacy |Contact Us
+  &copy;{new Date().getFullYear()} Career Club |All right reserved |Terms of services |Privacy |Contact Us
 </p>
 </div>
 	</div>

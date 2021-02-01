@@ -10,6 +10,8 @@ import ReactNotification from 'react-notifications-component';
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import Questionnare from "./components/Candidate/Questionnare";
 
+
+import AdminViewCvList from "./components/Admin/AdminViewCvList";
 import AdminLogin from "./components/Admin/AdminLogin";
 import CandidateLogin from "./components/Candidate/CandidateLogin";
 import RecruiterLogin from "./components/Recruiter/RecruiterLogin";
@@ -21,6 +23,7 @@ import Logout from"./components/Candidate/Logout";
 import PreviousJobs from"./components/Candidate/PreviousJobs";
 
 import Toolbar from"./components/Toolbar/Toolbar";
+import About from  "./components/About";
 
 import JobCreate from "./components/Recruiter/JobCreate";
 import CvList from "./components/Recruiter/CvList";
@@ -41,10 +44,13 @@ class App extends Component {
          
          <Router>
           <Route path="/" exact component={Dashboard} />
+          <Route path ="/About" component ={About} />
+
            <Route path="/Questionnare" exact component={Questionnare} />
           <Route path="/CandidateSignup" component={CandidateSignup} />
           <Route path="/RecruiterSignup" component={RecruiterSignup} />
           <Route path="/AdminDashboard" component={AdminDashboard} />
+          <Route path ="/AdminViewCvList" component ={AdminViewCvList}/>
          
           <Route path="/AdminViewJobs" component={AdminViewJobs} />
           <Route path="/AdminLogin" component={AdminLogin} />

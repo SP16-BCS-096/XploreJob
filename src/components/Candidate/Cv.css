@@ -13,9 +13,13 @@
 .footer-email-link {
     margin-left: 1rem; /* 4px */
     border-radius: 20px;
-    background-color: lightgrey;
+    background-color: #20BF73;
     color: black;
 }
-.slelect{
+.select{
    border-radius: 20px;
+}
+.h4
+{
+  border-radius: 20px;
 }

@@ -66,7 +66,7 @@ onChangeSignUpPassword(e) {
 
 
     axios.post('http://localhost:5000/candidates/Signup', candidate)
-      .then(res => console.log(res.data));
+      .then(res => alert(res.data));
 
     this.setState({
       username: '',
@@ -74,7 +74,7 @@ onChangeSignUpPassword(e) {
       password: '',
       phone: '' ,
     })
-    alert("SignUp Successfully ");
+    
   }
   
 
@@ -108,46 +108,46 @@ onChangeSignUpPassword(e) {
                 <h3>Sign Up</h3>
           
                 <div className="form-group">
-                    <label>User name</label>
+                    <label>User name<span class="required">*</span></label>
                     <input  type="text"
                 required
                 className="form-control"
                 value={signUpUsername}
                 onChange={this.onChangeSignUpUsername}
-                />
+                required/>
                 </div>
 
                 <div className="form-group">
-                    <label>Email</label>
+                    <label>Email<span class="required">*</span></label>
                      <input  type="text"
                 required
                 className="form-control"
                 value={signUpEmail}
                 onChange={this.onChangeSignUpEmail}
-                />
+                required/>
                 </div>
 
                 <div className="form-group">
-                    <label>Password</label>
+                    <label>Password<span class="required">*</span></label>
                      <input  type="password"
                 required
                 className="form-control"
                 value={signUpPassword}
                 onChange={this.onChangeSignUpPassword}
-                />
+               required/>
                 </div>
  
                 <div className="form-group">
-                    <label>Phone</label>
+                    <label>Phone<span class="required">*</span></label>
                      <input  type="text"
                 required
                 className="form-control"
                 value={signUpPhone}
                 onChange={this.onChangeSignUpPhone}
-                />
+                required/>
                 </div>
                  <div className="form-group">
-            <button className ="b" onClick={this.onSignUp}>Sign Up</button>
+            <button className ="b" onClick={this.onSignUp} >Sign Up</button>
           </div>
                 <p className="forgot-password text-right">
                   Already registered <a href="./CandidateLogin">sign in?</a>

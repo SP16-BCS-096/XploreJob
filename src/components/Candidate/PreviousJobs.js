@@ -12,7 +12,7 @@ const JobCreate = props => (
     <td>{props.JobCreate.Address}</td>
     <td> {props.JobCreate.RequiredQualification}</td>
     <td> {props.JobCreate.RequiredExperience}</td>
-    <td> {props.JobCreate.CompanyWeb}</td>
+
     <td> {props.JobCreate.Phone}</td>
     <td></td>
 </tr>
@@ -91,7 +91,6 @@ onPost(candidate)
               <th>Address</th>
               <th>MinimumQualification</th>
               <th>RequiredExperience</th>
-              <th>CompanyWeb</th>
               <th>Phone</th>
               <th></th>
               

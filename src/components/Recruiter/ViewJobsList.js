@@ -12,7 +12,6 @@ const JobCreate = props => (
     <td>{props.JobCreate.Address}</td>
     <td> {props.JobCreate.RequiredQualification}</td>
     <td> {props.JobCreate.RequiredExperience}</td>
-    <td> {props.JobCreate.CompanyWeb}</td>
     <td> {props.JobCreate.Phone}</td>
    <td><Button className="danger" onClick={() => this.deleteJobCreate(JobCreate.id)}>Delete</Button></td>
 </tr>
@@ -68,8 +67,8 @@ export default class ViewJobList extends Component {
               <th>Address</th>
               <th>MinimumQualification</th>
               <th>MinimumExperience</th>
-              <th>CompanyWeb</th>
               <th>Phone</th>
+              <th></th>
               <th></th>
             </tr>
           </thead> 

@@ -71,10 +71,9 @@ onChangeSignUpPassword(e) {
 
     }
 
-    console.log(recruiter);
 
     axios.post('http://localhost:5000/recruiters/Signup', recruiter)
-      .then(res => NotificationManager.log(res.data));
+     .then(res => alert(res.data));
       
 
     this.setState({
@@ -84,7 +83,7 @@ onChangeSignUpPassword(e) {
       phone: '' , 
       company:''
     })
-    alert("SignUp Successfully ");
+    
   }
   render() {
      const{
@@ -107,6 +106,7 @@ onChangeSignUpPassword(e) {
         (signUpError)? (
           <p> {signUpError}</p>
           ) : (null)
+
        }
       <div className ="RecruiterSignup" >
             <form>
@@ -114,52 +114,52 @@ onChangeSignUpPassword(e) {
                 <h3>Sign Up</h3>
           
                 <div className="form-group">
-                    <label>User name</label>
+                    <label>User name<span class="required">*</span></label>
                     <input  type="text"
                 required
                 className="form-control"
                 value={signUpUsername}
                 onChange={this.onChangeSignUpUsername}
-                />
+                required/>
                 </div>
 
                 <div className="form-group">
-                    <label>Email</label>
+                    <label>Email<span class="required">*</span></label>
                      <input  type="text"
                 required
                 className="form-control"
                 value={signUpEmail}
                 onChange={this.onChangeSignUpEmail}
-                />
+                required/>
                 </div>
 
                 <div className="form-group">
-                    <label>Password</label>
+                    <label>Password<span class="required">*</span></label>
                      <input  type="password"
                 required
                 className="form-control"
                 value={signUpPassword}
                 onChange={this.onChangeSignUpPassword}
-                />
+                required/>
                 </div>
  
                 <div className="form-group">
-                    <label>Phone</label>
+                    <label>Phone<span class="required">*</span></label>
                      <input  type="text"
                 required
                 className="form-control"
                 value={signUpPhone}
                 onChange={this.onChangeSignUpPhone}
-                />
+                required/>
                 </div>
  <div className="form-group">
-                    <label>Company</label>
+                    <label>Company<span class="required">*</span></label>
                      <input  type="text"
                 required
                 className="form-control"
                 value={signUpCompany}
                 onChange={this.onChangeSignUpCompany}
-                />
+                required/>
                 </div>
   
 

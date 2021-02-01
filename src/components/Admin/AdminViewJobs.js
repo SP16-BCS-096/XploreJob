@@ -6,15 +6,22 @@ import Toolbar from './Toolbar/Toolbar';
  
 const JobCreate = props => (
 <tr>
-    <td>{props.JobCreate.JobTitle}</td>
-    <td> {props.JobCreate.CompanyName}</td>
-    <td> {props.JobCreate.JobDescription}</td>
-    <td>{props.JobCreate.Address}</td>
-    <td> {props.JobCreate.RequiredQualification}</td>
-    <td> {props.JobCreate.RequiredExperience}</td>
-    <td> {props.JobCreate.CompanyWeb}</td>
-    <td> {props.JobCreate.Phone}</td>
+<div style={{marginLeft: 250, marginRight: 50}}>
+   <tr><b>JobTitle</b><th> </th><b>CompanyName</b></tr>
+   <tr>{props.JobCreate.JobTitle}<th></th>{props.JobCreate.CompanyName}</tr>
+
+   <tr><b>JobDescription</b><th></th><b>Phone</b> </tr>
+   <tr>{props.JobCreate.JobDescription}<th></th> {props.JobCreate.Phone}</tr>
+    
+    <tr><b>Address</b></tr>
+    <tr>{props.JobCreate.Address}</tr>
+
+   <tr><b>MinimumQualification</b><th></th><b>MinimumExperience</b></tr>
+    <tr> {props.JobCreate.RequiredQualification}<th></th> {props.JobCreate.RequiredExperience}</tr>
+    
    <td><Button variant="danger" onClick={() => this.deleteJobCreate(JobCreate.id)}>Delete</Button></td>
+</div>
+<tr></tr>
 </tr>
 
 )
@@ -55,24 +62,12 @@ export default class AdminViewJobs extends Component {
 
     render() {
     return (
+
      <div className = "AdminViewJobsList">
      <Toolbar />
       <Col sm="12">
         <h2>List of Jobs</h2>
         <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>JobTitle</th>
-              <th>CompanyName</th>
-              <th>JobDescription </th>
-              <th>Address</th>
-              <th>MinimumQualification</th>
-              <th>MinimumExperience</th>
-              <th>CompanyWeb</th>
-              <th>Phone</th>
-              <th></th>
-            </tr>
-          </thead> 
           <tbody>
             { this.JobCreateList() }
           </tbody>
@@ -83,10 +78,14 @@ export default class AdminViewJobs extends Component {
         <br/>
         <br/>
         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
+        
+         
       </div>
  
     )

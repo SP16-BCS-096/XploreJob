@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import './JobsList.css';
+import SearchField from "react-search-field";
 import { store } from 'react-notifications-component';
 import Toolbar from './Toolbar/Toolbar';
  
@@ -13,10 +14,9 @@ const JobCreate = props => (
     <td>{props.JobCreate.Address}</td>
     <td> {props.JobCreate.RequiredQualification}</td>
     <td> {props.JobCreate.RequiredExperience}</td>
-    <td> {props.JobCreate.CompanyWeb}</td>
     <td> {props.JobCreate.Phone}</td>
     <td></td>
-     <td><Button variant="ap" onClick={() => this.onSubmit(candidate)}>Apply for Job</Button></td>
+    <td> <button className = "ap">Apply for Job</button></td>
 </tr>
 
 )
@@ -30,7 +30,7 @@ export default class JobList extends Component {
     this.state = {JobCreates: []};
   }
   onClick(){
-    axios.post('http://localhost:5000/Cv/add')
+    axios.post('http://localhost:5000/JobCv/add')
       .then(response => {
         this.setState({ JobCreates: response.data })
       })
@@ -85,6 +85,7 @@ onSubmit(candidate)
       <Col sm="12">
         <h1>Jobs</h1>
         <table className="table">
+
           <thead className="thead-light">
             <tr>
               <th>JobTitle</th>
@@ -92,8 +93,7 @@ onSubmit(candidate)
               <th>JobDescription </th>
               <th>Address</th>
               <th>MinimumQualification</th>
-              <th>RequiredExperience</th>
-              <th>CompanyWeb</th>
+              <th>RequiredExperience</th>        
               <th>Phone</th>
               <th></th>
               <th><Button className ="a"><a href="./Cv">Upload Information</a></Button></th>

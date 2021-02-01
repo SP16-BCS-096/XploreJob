@@ -9,6 +9,22 @@ const ref = React.createRef();
 class Cv extends Component{
   constructor(props) {
     super(props);
+     this.state = {
+    FirstName : '',
+    LastName :'',
+    Email : '',
+    ContactNo: '',
+    PresentAddress: '',
+    PermanentAddress : '',
+    DegreeTitle: '',
+    CGPA :  '',
+    Year : '',
+    Institute : '',
+    JobPost: '',
+    Company: '',
+    Address: '',
+    PostStatus:''
+    }
 
    
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -29,22 +45,7 @@ class Cv extends Component{
     this.onSubmit = this.onSubmit.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
 
-    this.state = {
-    FirstName : '',
-    LastName :'',
-    Email : '',
-    ContactNo: '',
-    PresentAddress: '',
-    PermanentAddress : '',
-    DegreeTitle: '',
-    CGPA :  '',
-    Year : '',
-    Institute : '',
-    JobPost: '',
-    Company: '',
-    Address: '',
-    PostStatus:''
-    }
+   
   }
 
   
@@ -137,6 +138,7 @@ onChangeLastName(e) {
 
   onSubmit(e) {
     e.preventDefault();
+    var candidate =localStorage.getItem('candidate')
     const Cv = {
 
       FirstName:this.state.FirstName,
@@ -275,7 +277,7 @@ onChangeLastName(e) {
                 </div>
   <div className="form-group">
                     <label>Present Address</label>
-                    <input  type="textBox"
+                    <textarea  type="textBox"
                 required
                 className="form-control"
                 value={this.state.PresentAddress}
@@ -283,7 +285,7 @@ onChangeLastName(e) {
                 />
                 </div><div className="form-group">
                     <label>Permant Address</label>
-                    <input  type="textBox"
+                    <textarea  type="textBox"
                 required
                 className="form-control"
                 value={this.state.PermanentAddress}
@@ -293,7 +295,7 @@ onChangeLastName(e) {
 </ul>
 </div>
 </div>
-<hr />
+<b><hr /></b>
 <h4>Recent Degree</h4>
   <div class="row">
     <div  className="select" style ={{marginTop: 60 ,marginRight: 100}} >
@@ -310,7 +312,7 @@ onChangeLastName(e) {
     </div>
 
     <div >
-     <label>CGPA</label>
+     <label>CGPA/Marks</label>
                     <input  type="textBox"
                 required
                 className="form-control"
@@ -363,7 +365,7 @@ onChangeLastName(e) {
     </div>
     <div >
      <label>Address</label>
-                    <input  type="textBox"
+                    <textarea  type="textBox"
                 required
                 className="form-control"
                 value={this.state.Address}
@@ -371,16 +373,7 @@ onChangeLastName(e) {
                 />
   
   </div>
-  <div >
-     <label>JobStatus</label>
-                    <input  type="textBox"
-                required
-                className="form-control"
-                value={this.state.PostStatus}
-                onChange={this.onChangePostStatus}
-                />
   
-  </div>
 </div>
  
 
@@ -392,7 +385,7 @@ onChangeLastName(e) {
              <button className="footer-email-link"  onClick={this.onSubmit}>Upload Info </button>
          {"                      "}
 
-             <button className="footer-email-link"  onClick={this.onUpdate}>Update Cv </button>
+             <button className="footer-email-link"  onClick={this.onUpdate}>Update Info </button>
               {"                      "}
            {"                      "}
           
