@@ -10,14 +10,14 @@ class Dashboard extends Component {
      
     <Row>
       <Col sm="4">
-        <Card body>
+        <Card body className ="Card">
           <img width="100%" src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
           <h2><CardText>Post a Job</CardText></h2>
           <Button><a href="./RecruiterSignup"> Recruiter Signup</a></Button>
         </Card>
       </Col>
       <Col sm="4">
-        <Card body >
+        <Card body className ="Card" >
         <img width="100%" src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
           <h2><CardText>Search a Job</CardText></h2>
           <Button><a href="./CandidateSignup"> Candidate Signup</a></Button>

@@ -9,11 +9,13 @@ const JobCreate = props => (
     <td>{props.JobCreate.JobTitle}</td>
     <td> {props.JobCreate.CompanyName}</td>
     <td> {props.JobCreate.JobDescription}</td>
-    <td>{props.JobCreate.Address}</td>
-    <td> {props.JobCreate.RequiredQualification}</td>
-    <td> {props.JobCreate.RequiredExperience}</td>
-
-    <td> {props.JobCreate.Phone}</td>
+    <td> {props.JobCreate.Category}</td>
+    <td> {props.JobCreate. Address}</td>
+    <td> {props.JobCreate.WorkType}</td>
+    <td>{props.JobCreate.Salary}</td>
+    <td>{props.JobCreate.Phone}</td>
+    <td>{props.JobCreate.StartDate}</td>
+    <td>{props.JobCreate.EndDate}</td>
     <td></td>
 </tr>
 
@@ -75,8 +77,7 @@ onPost(candidate)
       return <JobCreate JobCreate={currentJobCreate} deleteJobCreate={this.deleteJobCreate} key={currentJobCreate._id}/>;
     })
   }
-
-    render() {
+render() {
     return (
      <div className = "PreviousJobs">
       <Toolbar />
@@ -84,16 +85,18 @@ onPost(candidate)
         <h1> My Jobs</h1>
         <table className="table">
           <thead className="thead-light">
-            <tr>
+             <tr>
               <th>JobTitle</th>
               <th>CompanyName</th>
               <th>JobDescription </th>
+              <th>Category</th>
               <th>Address</th>
-              <th>MinimumQualification</th>
-              <th>RequiredExperience</th>
+              <th>WorkType</th>
+              <th>Salary</th>
               <th>Phone</th>
+              <th>StartDate</th>
+              <th>EndDate</th>
               <th></th>
-              
             </tr>
           </thead> 
           <tbody>

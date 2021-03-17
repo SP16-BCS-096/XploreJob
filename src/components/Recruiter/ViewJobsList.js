@@ -1,93 +1,133 @@
 import React, { Component } from 'react';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
+import {ButtonGroup, Container, Table } from 'reactstrap'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './ViewJobsList.css';
 import Toolbar from './Toolbar/Toolbar';
  
-const JobCreate = props => (
-<tr>
-    <td>{props.JobCreate.JobTitle}</td>
-    <td> {props.JobCreate.CompanyName}</td>
-    <td> {props.JobCreate.JobDescription}</td>
-    <td>{props.JobCreate.Address}</td>
-    <td> {props.JobCreate.RequiredQualification}</td>
-    <td> {props.JobCreate.RequiredExperience}</td>
-    <td> {props.JobCreate.Phone}</td>
-   <td><Button className="danger" onClick={() => this.deleteJobCreate(JobCreate.id)}>Delete</Button></td>
-</tr>
-
-)
-
-export default class ViewJobList extends Component {
-  constructor(props) {
+export default class JobCreate extends Component{
+constructor(props) {
     super(props);
-
-    this.deleteJobCreate = this.deleteJobCreate.bind(this)
-
-    this.state = {JobCreates: []};
+    this.state = {JobCreates: [], isLoading: true};
+    this.remove = this.remove.bind(this);
   }
-
   componentDidMount() {
+    this.setState({isLoading: true});
+
     axios.get('http://localhost:5000/JobCreate/')
       .then(response => {
-        this.setState({ JobCreates: response.data })
+        this.setState({ JobCreates: response.data , isLoading: false })
       })
       .catch((error) => {
         console.log(error);
       })
   }
 
-  deleteJobCreate(id) {
-    axios.delete('http://localhost:5000/JobCreates/'+id)
-      .then(response => { console.log(response.data)});
-
-    this.setState({
-      JobCreates: this.state.JobCreates.filter(el => el._id !== id)
-    })
+  async remove(id) {
+   await fetch(`http://localhost:5000/JobCreates/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(() => {
+      let updatedJobCreates = [...this.state.JobCreates].filter(i => i.id !== id);
+      this.setState({JobCreates: updatedJobCreates});
+    });
   }
 
-  JobCreateList() {
-    return this.state.JobCreates.map(currentJobCreate => {
-      return <JobCreate JobCreate={currentJobCreate} deleteJobCreate={this.deleteJobCreate} key={currentJobCreate._id}/>;
-    })
-  }
+ render() {
+    const {JobCreates, isLoading} = this.state;
 
-    render() {
-    return (
-     <div className = "ViewJobsList">
-     <Toolbar />
-      <Col sm="12">
-        <h1>Previous Jobs</h1>
-        <table className="table">
-          <thead className="thead-light">
+  
+
+    const JobCreateList = JobCreates.map(JobCreate => {
+      return <tr key={JobCreate.id}>
+        <td>{JobCreate.JobTitle}</td>
+    <td> {JobCreate.CompanyName}</td>
+    <td> {JobCreate.JobDescription}</td>
+    <td> {JobCreate.Category}</td>
+    <td> {JobCreate. Address}</td>
+    <td> {JobCreate.WorkType}</td>
+    <td>{JobCreate.Salary}</td>
+    <td>{JobCreate.Phone}</td>
+    <td>{JobCreate.StartDate}</td>
+    <td>{JobCreate.EndDate}</td>
+        <td>
+          <ButtonGroup>
+            
+            <Button size="sm" color="danger" onClick={() => this.remove(JobCreate.id)}>Delete</Button>
+          </ButtonGroup>
+        </td>
+      </tr>
+    });
+
+  return (
+    <div>
+    <Toolbar/>
+       <div className = "ViewJobsList">
+      
+        <Container fluid>
+          <div className="float-right">
+          </div>
+          <h3>Job List</h3>
+          <Table className="mt-4">
+            <thead>
             <tr>
               <th>JobTitle</th>
               <th>CompanyName</th>
               <th>JobDescription </th>
+              <th>Category</th>
               <th>Address</th>
-              <th>MinimumQualification</th>
-              <th>MinimumExperience</th>
+              <th>WorkType</th>
+              <th>Salary</th>
               <th>Phone</th>
-              <th></th>
+              <th>StartDate</th>
+              <th>EndDate</th>
               <th></th>
             </tr>
-          </thead> 
-          <tbody>
-            { this.JobCreateList() }
-          </tbody>
-        
-        </table>
-        
-        </Col>
+            </thead>
+            <tbody>
+            {JobCreateList}
+            </tbody>
+          </Table>
+        </Container>
         <br/>
         <br/>
         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
+        <br/>
+        <br/><br/>
       </div>
- 
-    )
+      </div>
+    );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

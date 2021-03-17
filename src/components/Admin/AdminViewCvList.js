@@ -48,8 +48,6 @@ const Cv = props => (
     <tr><b>Address:</b></tr>
     <tr> {props.Cv.Address}</tr>
 
-    <tr><b>PostStatus:</b></tr>
-    <tr>{props.Cv.PostStatus}</tr>
  
 </div>
     </div>

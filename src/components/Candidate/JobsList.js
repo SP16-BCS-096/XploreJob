@@ -11,11 +11,14 @@ const JobCreate = props => (
     <td>{props.JobCreate.JobTitle}</td>
     <td> {props.JobCreate.CompanyName}</td>
     <td> {props.JobCreate.JobDescription}</td>
-    <td>{props.JobCreate.Address}</td>
-    <td> {props.JobCreate.RequiredQualification}</td>
-    <td> {props.JobCreate.RequiredExperience}</td>
-    <td> {props.JobCreate.Phone}</td>
-    <td></td>
+    <td> {props.JobCreate.Category}</td>
+    <td> {props.JobCreate. Address}</td>
+    <td> {props.JobCreate.WorkType}</td>
+    <td>{props.JobCreate.Salary}</td>
+    <td>{props.JobCreate.Phone}</td>
+    <td>{props.JobCreate.StartDate}</td>
+    <td>{props.JobCreate.EndDate}</td>
+    
     <td> <button className = "ap">Apply for Job</button></td>
 </tr>
 
@@ -80,23 +83,26 @@ onSubmit(candidate)
 
     render() {
     return (
-     <div className = "JobsList">
-      <Toolbar />
+      <div>
+       <Toolbar />
+       <div className = "JobsList">
+    
       <Col sm="12">
-        <h1>Jobs</h1>
+        <h1>Jobs List</h1>
         <table className="table">
-
           <thead className="thead-light">
             <tr>
               <th>JobTitle</th>
               <th>CompanyName</th>
               <th>JobDescription </th>
+              <th>Category</th>
               <th>Address</th>
-              <th>MinimumQualification</th>
-              <th>RequiredExperience</th>        
+              <th>WorkType</th>
+              <th>Salary</th>
               <th>Phone</th>
-              <th></th>
-              <th><Button className ="a"><a href="./Cv">Upload Information</a></Button></th>
+              <th>StartDate</th>
+              <th>EndDate</th>
+            <th><Button className ="a"><a href="./Cv">Upload Information</a></Button></th>
 
             </tr>
           </thead> 
@@ -110,11 +116,11 @@ onSubmit(candidate)
         <br/>
         <br/>
         <br/>
-        <br/>
-        <br/>
          <br/>
          <br/>
-           <br/>
+         <br/>
+         <br/>
+      </div>
       </div>
  
     )

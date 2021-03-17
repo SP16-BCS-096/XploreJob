@@ -8,16 +8,16 @@ return(
     <span className="navbar-toggler-icon"></span>
   </button>
 
-  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+  <div className="collapse navbar-collapse">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item active">
-        <a className="nav-link" href="./">Home </a>
+        <a className="btn btn-outline-success my-2 my-sm-0" href="./">Home </a>
+      </li>
+      <li className="form-inline my-2 my-lg-0">
+        <a className="btn btn-outline-success my-2 my-sm-0" href="./CandidateLogin">Candidate Portal </a>
       </li>
       <li className="nav-item active">
-        <a className="nav-link" href="./CandidateLogin">Candidate Portal </a>
-      </li>
-      <li className="nav-item active">
-        <a className="nav-link" href="./RecruiterLogin">Recruiter Portal </a>
+        <a className="btn btn-outline-success my-2 my-sm-0" href="./RecruiterLogin">Recruiter Portal </a>
       </li>
     </ul>
     <form className="form-inline my-2 my-lg-0">

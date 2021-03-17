@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RecruiterList from './RecruiterList';
-import { Card, Button, CardText, Row, Col } from 'reactstrap';
+import { Card, Button, ButtonGroup, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import './AdminDashboard.css';
 import Toolbar from './Toolbar/Toolbar';
@@ -25,14 +25,17 @@ import { Table, Alert } from 'react-bootstrap';
         console.log(error);
       })
   }
-
-deleteCandidate(id) {
-    axios.delete('http://localhost:5000/Candidates/:id')
-      .then(response => { console.log(response.data)});
-
-    this.setState({
-      candidates: this.state.candidates.filter(el => el._id !== id)
-    })
+  async remove(id) {
+ await fetch(`http://localhost:5000/Candidates/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(() => {
+      let updatedCandidates = [...this.state.Candidates].filter(i => i.id !== id);
+      this.setState({Candidates: updatedCandidates});
+    });
   }
 render() {
     const { error, candidates} = this.state;
@@ -64,7 +67,10 @@ render() {
                   <td>{candidate.email}</td>
                   <td>{candidate.phone}</td>
                   <td>     
-                <Button variant="danger" onClick={() => this.deleteCandidate(candidate.id)}>Delete</Button>
+                <ButtonGroup>
+            
+            <Button size="sm" color="danger" onClick={() => this.remove(candidate.id)}>Delete</Button>
+          </ButtonGroup>
                   </td>
                 </tr>
               ))}

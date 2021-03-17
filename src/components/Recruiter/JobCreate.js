@@ -14,23 +14,28 @@ class JobCreate extends Component {
     this.onChangeJobTitle = this.onChangeJobTitle.bind(this);
     this.onChangeCompanyName = this.onChangeCompanyName.bind(this);
     this.onChangeJobDescription = this.onChangeJobDescription.bind(this);
-    this.onChangeNoofPosts = this.onChangeNoofPosts.bind(this);
+    this.onChangeCategory = this.onChangeCategory.bind(this);
     this.onChangeAddress = this.onChangeAddress.bind(this);
-    this.onChangeRequiredQualification = this.onChangeRequiredQualification.bind(this);
-    this.onChangeRequiredExperience = this.onChangeRequiredExperience.bind(this);
-    this.onChangeCompanyWeb = this.onChangeCompanyWeb.bind(this);
+    this.onChangeWorkType = this.onChangeWorkType.bind(this);
+    this.onChangeSalary = this.onChangeSalary.bind(this);
     this.onChangePhone = this.onChangePhone.bind(this);
+    this.onChangeStartDate = this.onChangeStartDate.bind(this);
+    this.onChangeEndDate = this.onChangeEndDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-    JobTitle: '' ,
-    CompanyName: '' ,
-    JobDescription: '',
-    NoofPosts : '',
-    Address: '',
-    RequiredQualification: '',
-    RequiredExperience: '',
-    Phone:''
+    JobTitle:'',
+    CompanyName :'',
+    JobDescription :'',
+    Category :'',
+    Address : '',
+    WorkType: '',
+    Salary: '',
+    Phone: '',
+    StartDate :'',
+    EndDate:''
+
+
     }
   }
 
@@ -52,10 +57,10 @@ onChangeJobDescription(e) {
       JobDescription: e.target.value
     })
   }
-  onChangeNoofPosts(e) {
+  onChangeCategory(e) {
     this.setState({
       
-      NoofPosts: e.target.value
+      Category: e.target.value
     })
   }
    onChangeAddress(e) {
@@ -64,46 +69,53 @@ onChangeJobDescription(e) {
       
     })
   }
-  onChangeRequiredQualification(e) {
+  onChangeWorkType(e) {
     this.setState({
       
-      RequiredQualification: e.target.value
+      WorkType: e.target.value
     })
   }
 
-  onChangeRequiredExperience(e) {
+  onChangeSalary(e) {
     this.setState({
       
-      RequiredExperience: e.target.value
+      Salary: e.target.value
     })
   }
-
-  onChangeCompanyWeb(e) {
-    this.setState({
-      
-      CompanyWeb: e.target.value
-    })
-  }onChangePhone(e) {
+ onChangePhone(e) {
     this.setState({
       
       Phone: e.target.value
     })
   }
 
+ onChangeStartDate(e) {
+    this.setState({
+      
+      StartDate: e.target.value
+    })
+  }
+   onChangeEndDate(e) {
+    this.setState({
+      
+      EndDate: e.target.value
+    })
+  }
   onSubmit(e) {
     e.preventDefault();
 
-
+   var recruiter=localStorage.getItem('recruiter')
     const JobCreate = {
       JobTitle: this.state.JobTitle,
       CompanyName: this.state.CompanyName,
       JobDescription: this.state.JobDescription,
-      NoofPosts : this.state.NoofPosts,
+      Category : this.state.Category,
       Address: this.state.Address,
-      RequiredQualification: this.state.RequiredQualification,
-      RequiredExperience: this.state.RequiredExperience,
-      CompanyWeb: this.state.CompanyWeb,
-      Phone: this.state.Phone
+      WorkType: this.state.WorkType,
+      Salary  : this.state.Salary,
+      Phone: this.state.Phone,
+      StartDate : this.state.StartDate,
+      EndDate : this.state.EndDate
     }
 
    
@@ -114,12 +126,13 @@ onChangeJobDescription(e) {
     JobTitle: '' ,
     CompanyName: '' ,
     JobDescription: '',
-    NoofPosts : '',
-    Address: '',
-    RequiredQualification: '',
-    RequiredExperience: '',
-    CompanyWeb: '',
-    Phone:''
+    Category : '',
+    Address : '',
+    WorkType: '',
+    Salary: '',
+    Phone:'',
+    StartDate :'',
+    EndDate :''
     })
     
   }
@@ -132,10 +145,11 @@ onChangeJobDescription(e) {
 <div className="col">
 <h4>Post A Job</h4>
 
-<ul className="list-unstyled">
+<ul className="list-unstyled"> 
+
               
                 <div className="form-group">
-                    <label>Job Title<span class="required">*</span></label>
+                    <label>Job Title</label>
                     <input  type="text"
                 required
                 className="form-control"
@@ -144,7 +158,7 @@ onChangeJobDescription(e) {
                 />
                 </div>
                 <div className="form-group">
-                    <label>Job Desrciption<span class="required">*</span></label>
+                    <label>Job Desrciption</label>
                 <textarea  type="textarea"
                 required
                 className="form-control"
@@ -152,25 +166,36 @@ onChangeJobDescription(e) {
                 onChange={this.onChangeJobDescription}
                 />
                 </div>
-                <div className="form-group">
-                    <label>No of Post<span class="required">*</span></label>
+
+                    <div className="form-group">
+                              
+<select className ="form-control" value={this.state.Category}
+                onChange={this.onChangeCategory}>
+  <option >Category</option>
+  <option >Administration</option>
+  <option >Computer Science</option>
+ <option >Accounts</option> 
+  
+ </select>
+</div>
+                 <div className="form-group">
+                    <label>Salary</label>
                 <input  type="text"
                 required
                 className="form-control"
-                value={this.state.NoofPosts}
-                onChange={this.onChangeNoofPosts}
+                value={this.state.Salary}
+                onChange={this.onChangeSalary}
                 />
                 </div>
-                <div className="form-group">
-                    <label>Required Qualification<span class="required">*</span></label>
-                     <input  type="text"
-                required
-                className="form-control"
-                value={this.state.RequiredQualification}
-                onChange={this.onChangeRequiredQualification}
-                />
-                </div>
-                
+                 <div className ="form-group">
+                 <label>Start Date</label>
+                 <DatePicker className ="form-control"
+          value={this.state.StartDate}
+          format={"MM/dd/yyyy"}
+          onChange={(value) => this.setState({StartDate:value})}
+        />   
+        
+        </div>
   
 </ul>
 </div>
@@ -179,7 +204,7 @@ onChangeJobDescription(e) {
 
 <ul className="list-unstyled">
 <div className="form-group">
-                    <label>Company Name<span class="required">*</span></label>
+                    <label>Company Name</label>
                      <input  type="text"
                 required
                 className="form-control"
@@ -188,24 +213,26 @@ onChangeJobDescription(e) {
                 />
                 </div>
   <div className="form-group">
-                    <label> Address<span class="required">*</span></label>
+                    <label> Address</label>
                     <textarea  type="text"
                 required
                 className="form-control"
                 value={this.state.Address}
                 onChange={this.onChangeAddress}
                 />
-                </div><div className="form-group">
-                    <label>Required Experience<span class="required">*</span></label>
-                     <input  type="text"
-                required
-                className="form-control"
-                value={this.state.RequiredExperience}
-                onChange={this.onChangeRequiredExperience}
-                />
                 </div>
                 <div className="form-group">
-                    <label>Contact No<span class="required">*</span></label>
+                              
+<select className ="form-control" value={this.state.WorkType}
+                onChange={this.onChangeWorkType}>
+  <option >WorkType</option>
+  <option >Full Time</option>
+  <option >Part Time</option>
+ </select>
+</div>
+
+                <div className="form-group">
+                    <label>Contact No</label>
                      <input  type="text"
                 required
                 className="form-control"
@@ -213,6 +240,15 @@ onChangeJobDescription(e) {
                 onChange={this.onChangePhone}
                 />
                 </div>
+                <div className ="form-group">
+              <label>End Date</label>
+                 <DatePicker className ="form-control"
+          value={this.state.EndDate}
+          format={"MM/dd/yyyy"}
+          onChange={(value) => this.setState({EndDate:value})}
+        />   
+        
+        </div>
                  <div className="form-group">
             <button className ="JobPost" onClick={this.onSubmit}>Post Job</button>
           </div>

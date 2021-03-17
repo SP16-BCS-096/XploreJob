@@ -9,22 +9,6 @@ const ref = React.createRef();
 class Cv extends Component{
   constructor(props) {
     super(props);
-     this.state = {
-    FirstName : '',
-    LastName :'',
-    Email : '',
-    ContactNo: '',
-    PresentAddress: '',
-    PermanentAddress : '',
-    DegreeTitle: '',
-    CGPA :  '',
-    Year : '',
-    Institute : '',
-    JobPost: '',
-    Company: '',
-    Address: '',
-    PostStatus:''
-    }
 
    
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -45,7 +29,22 @@ class Cv extends Component{
     this.onSubmit = this.onSubmit.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
 
-   
+    this.state = {
+    FirstName : '',
+    LastName :'',
+    Email : '',
+    ContactNo: '',
+    PresentAddress: '',
+    PermanentAddress : '',
+    DegreeTitle: '',
+    CGPA :  '',
+    Year : '',
+    Institute : '',
+    JobPost: '',
+    Company: '',
+    Address: '',
+    PostStatus:''
+    }
   }
 
   
@@ -138,9 +137,9 @@ onChangeLastName(e) {
 
   onSubmit(e) {
     e.preventDefault();
-    var candidate =localStorage.getItem('candidate')
+   const candidate =localStorage.getItem('candidate_id')
     const Cv = {
-
+      
       FirstName:this.state.FirstName,
       LastName : this.state.LastName,
       Email :this.state.Email,
@@ -298,9 +297,9 @@ onChangeLastName(e) {
 <b><hr /></b>
 <h4>Recent Degree</h4>
   <div class="row">
-    <div  className="select" style ={{marginTop: 60 ,marginRight: 100}} >
+    <div  className="select"  style ={{marginTop: 35 ,marginRight: 100}} >
         
-  <select name="form-control" value={this.state.DegreeTitle}
+  <select className ="form-control" value={this.state.DegreeTitle}
                 onChange={this.onChangeDegreeTitle}>
   <option >DegreeTitle</option>
   <option >Matric</option>

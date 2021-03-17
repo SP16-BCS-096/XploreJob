@@ -3,12 +3,15 @@ import { Card, Button, CardText, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import './CvList.css';
 import Toolbar from "./Toolbar/Toolbar"; 
-
+import AwesomeSlider from 'react-awesome-slider';
+import 'react-awesome-slider/dist/styles.css';
 const Cv = props => (
 <tr>
 <div className="thead-dark">
 <div style={{marginLeft: 90, marginRight: 50}}>
 <hr/>
+
+  
     <h3>Personal Information</h3>
     <hr/>
     <tr><b>FirstName: </b><th></th><b>LastName: </b></tr>
@@ -50,7 +53,8 @@ const Cv = props => (
 
     <tr><b>PostStatus:</b></tr>
     <tr>{props.Cv.PostStatus}</tr>
- 
+  
+
 </div>
     </div>
     <br/>
@@ -104,6 +108,7 @@ export default class CvList extends Component {
         <h2>List of Candidates Data</h2>
         <div >
           <tbody>
+        
             { this.CvList() }
           </tbody>
         
