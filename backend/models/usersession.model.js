@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const usersessionSchema = new Schema(
     {
-        userId: 
+        adminId: 
         {
             type:  String,
             default: ''
