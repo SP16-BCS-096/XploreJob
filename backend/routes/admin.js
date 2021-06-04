@@ -12,6 +12,7 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
 router.route('/Signup').post((req, res ,next) => {
   const {body}= req;
   const{
@@ -117,7 +118,7 @@ router.post("/Signin",(req,res) =>
                 {
                     // User session
                     const user_session = new UserSession();
-                    user_session.userId = admin._id;
+                    user_session.userId = user._id;
                     user_session.save()
                     .then(result =>
                         {
@@ -204,5 +205,40 @@ router.get("/logout",(req,res) =>
 
 
 });
+router.post("/getAdminFromSession", (req,res) =>
+{
+    
+    const {AdminSessionToken} = req.body;
+    
+
+    UserSession.findById(AdminSessionToken)
+    .then(user =>res.send(user.userId)
+        )
+    .catch(err =>
+        {
+            res.status(400).json(`Failed to get Admin session : ${err}`);
+        })
+
+
+})
+
+// For getting Admin email from Admin id
+router.post("/getAdminEmailFromId" , (req,res) =>
+{
+    
+    const {AdminIDToken} = req.body;
+
+    
+
+    Admin.findById(AdminIDToken)
+    .then(user =>res.send(user.email)
+        )
+    .catch(err =>
+        {
+            res.status(400).json(`Failed to get Admin Email : ${err}`);
+        })
+
+});
+
 
 module.exports = router;

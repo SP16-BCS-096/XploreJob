@@ -150,7 +150,7 @@ router.post("/Signin",(req,res) =>
                 {
                     // User session
                     const user_session = new UserSession();
-                    user_session.userId = recruiter._id;
+                    user_session.userId = user._id;
                     user_session.save()
                     .then(result =>
                         {

@@ -148,6 +148,7 @@ router.post("/Signin",(req,res) =>
                 else
                 {
                     // User session
+
                     const user_session = new UserSession();
                     user_session.userId = candidate._id;
                     user_session.save()
@@ -156,6 +157,7 @@ router.post("/Signin",(req,res) =>
                             return res.send({success: true,
                             msg: "valid sign in",
                         token : result._id})
+                        localStorage.setItem('token' , action.payload.token);    
                         })
                 .catch(err =>
                     {
