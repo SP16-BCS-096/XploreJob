@@ -1,25 +1,136 @@
-.{
-	margin:0;
-	padding: 0;
+@import url(https://fonts.googleapis.com/css?family=Exo+2:400,700,500,300);
+
+body {
+  background: #ebeff2;
+  font-family: "Exo 2";
+}
+.zone1{
+ margin-bottom:100px;
+ margin-top: 100px; 
+}
+.zone {      
+  margin-left:110px;
+  margin-top: 50px;
+  margin-bottom:100px;
+  position: relative;
+  top: 0; left: 0; bottom: 50; right: 0;
+  background: radial-gradient(ellipse at center,#4d4d4d 0,#4d4d4d 100%);
+  width:80%;
+  height:100%;  
+  border:10px dashed lightgrey;
+  text-align:center;
+  color: white;
+  z-index: 20;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.05),inset 0 0 .25em 0 rgba(0,0,0,.25);
+  .btnCompression {
+    .btn {
+
+    } 
+    .active {
+      background: #EB6A5A;
+      color:white;
+    }
+  }
+  i {
+    text-align: center;
+    font-size: 10em;  
+    color:#fff;
+    margin-top: 50px;
+  }
+  .selectFile {
+    height: 50px;
+    margin: 20px auto;
+    position: relative;
+    width: 200px;          
+  }
+
+  label, input {
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    border-radius: 5px;          
+  }
+
+  label {
+    background: #fff;
+    color:#EB6A5A;
+    display: inline-block;
+    font-size: 1.2em;
+    line-height: 50px;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 400;   
+    box-shadow: 0 1px 1px gray;
+  }
+
+  input[type=file] {
+    opacity: 0;
+  }
 
 }
-.Cvcontainer{
-	height: 100%;
-	width: 100%;
-	background-position: center;
-	background-size: cover;
-	position: fixed; 
+.zone.in {
+  color:white;
+  border-color:white;
+  background: radial-gradient(ellipse at center,#EB6A5A 0,#c9402f 100%);
+  i {          
+    color:#fff;
+  }
+  label {
+    background: #fff;
+    color:#EB6A5A;
+  }
 }
-.footer-email-link {
-    margin-left: 1rem; /* 4px */
-    border-radius: 20px;
-    background-color: #20BF73;
-    color: black;
+.zone.hover {
+  color:gray;
+  border-color:white;
+  background:#fff;
+  border:5px dashed gray;
+  i {          
+    color:#EB6A5A;
+  }
+  label {
+    background: #fff;
+    color:#EB6A5A;
+  }
 }
-.select{
-   border-radius: 20px;
+.zone.fade {
+  transition: all 0.3s ease-out;
+  opacity: 1;
 }
-.h4
+.form-input1
 {
-  border-radius: 20px;
+  margin-left: 350px;
+  margin-bottom: 30px;
+}
+.form-input2
+{
+  margin-left: 350px;
+  margin-bottom:30px;  
+}
+.A
+{
+  margin-left: 300px;
+  margin-bottom:30px;  
+}
+.CvPost{
+  width: 50%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 176, 255) 0%,
+    rgb(0, 232, 236) 100%
+  );
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
 }

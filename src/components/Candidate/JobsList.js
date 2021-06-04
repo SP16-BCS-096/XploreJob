@@ -1,128 +1,143 @@
 import React, { Component } from 'react';
 import { Card, Button, CardText, Row, Col } from 'reactstrap';
+import {ButtonGroup, Container, Table } from 'reactstrap'
 import axios from 'axios';
-import './JobsList.css';
-import SearchField from "react-search-field";
-import { store } from 'react-notifications-component';
+import { Link } from 'react-router-dom';
+
 import Toolbar from './Toolbar/Toolbar';
  
+
+import AwesomeSlider from 'react-awesome-slider';
+import 'react-awesome-slider/dist/styles.css';
+
 const JobCreate = props => (
 <tr>
-    <td>{props.JobCreate.JobTitle}</td>
-    <td> {props.JobCreate.CompanyName}</td>
-    <td> {props.JobCreate.JobDescription}</td>
-    <td> {props.JobCreate.Category}</td>
-    <td> {props.JobCreate. Address}</td>
-    <td> {props.JobCreate.WorkType}</td>
-    <td>{props.JobCreate.Salary}</td>
-    <td>{props.JobCreate.Phone}</td>
-    <td>{props.JobCreate.StartDate}</td>
-    <td>{props.JobCreate.EndDate}</td>
-    
-    <td> <button className = "ap">Apply for Job</button></td>
-</tr>
+<div className="thead-dark">
+<div style={{marginLeft: 90, marginRight: 50}}>
+<hr/>
 
+
+    <tr><b>JobTitle: </b><th></th><b>Company: </b></tr>
+    <tr>{props.JobCreate.JobTitle}<th></th> {props.JobCreate.CompanyName}</tr>
+
+    <tr><b>JobDescription:</b></tr>
+    <tr>{props.JobCreate.JobDescription}</tr>
+  
+    <tr><b>Category:</b><th></th><b>Phone:</b></tr> 
+    <tr> {props.JobCreate.Category}<th></th> {props.JobCreate.Phone}</tr>
+
+    <tr><b>Address: </b></tr>
+    <tr> {props.JobCreate.Address}</tr>
+
+    <tr><b>WorkType: </b><th></th><b>Salary: </b></tr>
+    <tr>{props.JobCreate.WorkType}<th></th> {props.JobCreate.Salary}</tr>
+
+    <tr><b>StartDate: </b><th></th><b>EndDate: </b></tr>
+    <tr>{props.JobCreate.StartDate}<th></th> {props.JobCreate.EndDate}</tr>
+
+<hr/>
+  
+
+</div>
+    </div>
+  
+</tr>
 )
 
-export default class JobList extends Component {
+export default class JobsList extends Component {
   constructor(props) {
     super(props);
 
-    this.deleteJobCreate = this.deleteJobCreate.bind(this)
+    this.deleteJobCreate= this.deleteJobCreate.bind(this)
 
-    this.state = {JobCreates: []};
-  }
-  onClick(){
-    axios.post('http://localhost:5000/JobCv/add')
-      .then(response => {
-        this.setState({ JobCreates: response.data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    this.state = {JobCreate: []};
   }
 
-  componentDidMount() {
+   componentDidMount() {
     axios.get('http://localhost:5000/JobCreate/')
       .then(response => {
-        this.setState({ JobCreates: response.data })
+        this.setState({ JobCreate: response.data })
       })
       .catch((error) => {
         console.log(error);
       })
   }
-onSubmit(candidate)
-{
- axios.get('http://localhost:5000/Cv/candidate')
-      .then(response => { console.log(response.data)});
 
-    this.setState({
-      JobCreates: this.state.JobCreates.filter(el => el.candidate !== candidate)   
+   JobCreateList() {
+    return this.state.JobCreate.map(currentJobCreate => {
+      return <JobCreate JobCreate={currentJobCreate} deleteCv={this.deleteJobCreate} key={currentJobCreate._id}/>;
     })
-       axios.post('http://localhost:5000/Cv/add') 
-       .then(response => { console.log(response.data)});
-
-    this.setState({
-      JobCreates: this.state.JobCreates.filter(el => el.candidate !== candidate)   
-    })
-}
-  deleteJobCreate(id) {
+  }
+   deleteJobCreate(id) {
     axios.delete('http://localhost:5000/JobCreates/'+id)
       .then(response => { console.log(response.data)});
 
     this.setState({
-      JobCreates: this.state.JobCreates.filter(el => el._id !== id)
+      JobCreate: this.state.JobCreate.filter(el => el._id !== id)
     })
   }
 
-  JobCreateList() {
-    return this.state.JobCreates.map(currentJobCreate => {
-      return <JobCreate JobCreate={currentJobCreate} deleteJobCreate={this.deleteJobCreate} key={currentJobCreate._id}/>;
-    })
+
+  async remove(id) {
+   await fetch(`http://localhost:5000/JobCreates/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(() => {
+      let updatedJobCreates = [...this.state.JobCreates].filter(i => i.id !== id);
+      this.setState({JobCreates: updatedJobCreates});
+    });
   }
 
     render() {
+      const {JobCreate, isLoading} = this.state;
     return (
-      <div>
-       <Toolbar />
-       <div className = "JobsList">
-    
+     <div className= "CvList" >
+     <Toolbar />
       <Col sm="12">
-        <h1>Jobs List</h1>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>JobTitle</th>
-              <th>CompanyName</th>
-              <th>JobDescription </th>
-              <th>Category</th>
-              <th>Address</th>
-              <th>WorkType</th>
-              <th>Salary</th>
-              <th>Phone</th>
-              <th>StartDate</th>
-              <th>EndDate</th>
-            <th><Button className ="a"><a href="./Cv">Upload Information</a></Button></th>
-
-            </tr>
-          </thead> 
+        <h2>List of Jobs</h2>
+        <div >
           <tbody>
             { this.JobCreateList() }
           </tbody>
         
-        </table>
+        </div>
         
         </Col>
         <br/>
         <br/>
         <br/>
          <br/>
+                 <br/>
+        <br/>
+        <br/>
          <br/>
          <br/>
-         <br/>
-      </div>
+         
       </div>
  
     )
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

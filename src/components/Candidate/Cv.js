@@ -1,74 +1,135 @@
-import React, { Component } from "react";
+import React, { useState, useRef } from 'react';
+import { Form, Row, Col, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import Toolbar from './Toolbar/Toolbar';
 import './Cv.css';
 
-import { Box, Typography, Button, ListItem, withStyles } from '@material-ui/core';
-import Toolbar from "./Toolbar/Toolbar";
-import Pdf from "react-to-pdf";
-import { store } from 'react-notifications-component';
-const ref = React.createRef();
+const Cv = (props) => {
+  const [file, setFile] = useState(null); // state for storing actual image
+  const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
+  const [state, setState] = useState({
+    title: '',
+    description: ''
+  });
+  const [errorMsg, setErrorMsg] = useState('');
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false); // state to show preview only for images
+  const dropRef = useRef(); // React ref for managing the hover state of droppable area
 
-class Cv extends Component{
-  constructor(props) {
-    super(props);
+  const handleInputChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value
+    });
+  };
 
-   
-    this.onChangeFile = this.onChangeFile.bind(this);
+const onDrop = (files) => {
+  const [uploadedFile] = files;
+  setFile(uploadedFile);
 
-    this.onSubmit = this.onSubmit.bind(this);
-    
+  const fileReader = new FileReader();
+  fileReader.onload = () => {
+    setPreviewSrc(fileReader.result);
+  };
+  fileReader.readAsDataURL(uploadedFile);
+  setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|pdf|png)$/));
+};
 
-this.state = { 
-      File: null
+ const handleOnSubmit = async (event) => {
+  event.preventDefault();
+
+  try {
+    const { title, description } = state;
+    if (title.trim() !== '' && description.trim() !== '') {
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('title', title);
+        formData.append('description', description);
+
+        setErrorMsg('');
+        await axios.post('http://localhost:5000/Cv/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+      } else {
+        setErrorMsg('Please select a file to add.');
+      }
+    } else {
+      setErrorMsg('Please enter all the field values.');
     }
-
+  } catch (error) {
+    error.response && setErrorMsg(error.response.data);
   }
-
-  onChangeFile(e){
-  this.setState({
-     File: e.target.Files[0]  
-
-    })
-
-  }
-
- 
-  onSubmit(e) {
-    
-    const Cv = {
-      File : this.state.File
-    }
-  
-  axios.post('http://localhost:5000/Cv/add', Cv)
-      .then(res => alert(res.data));
-
-    this.setState({
-   selectedFile:  null
-    })
-  }
-    
-   render() {
+};
     return(
-<div class="zone">
+<div>
+<Toolbar/>
+<div className="zone">
+
 <div className ="zone1">
 
   <div id="dropZ">
-    <i class="fa fa-cloud-upload"></i>
-    <div>Drag and drop your file here</div>                    
-    <span>OR</span>
-    <div class="selectFile">       
-      <label for="file"></label>                   
-      <input type="file" name="files[]" id="file"  value={this.state.File}
-                onChange={this.onChangeFile} />
-         <button className ="CvPost" onClick={this.onSubmit}>Post CV</button>
+    <i className="fa fa-cloud-upload"></i>
+    <div className ="A"><Dropzone onDrop={onDrop}>
+    {({ getRootProps, getInputProps }) => (
+      <div {...getRootProps({ className: 'drop-zone' })} ref={dropRef}>
+        <input {...getInputProps()} />
+        <p>Drag and drop a file OR click here to select a file</p>
+        {file && (
+          <div>
+            <strong>Selected file:</strong> {file.name}
+          </div>
+        )}
+      </div>
+    )}
+  </Dropzone></div>                    
+   
+    <div className="selectFile">       
+      <label className="file"></label> 
+       <Row>
+          <Col>
+       <input
+              type="text"
+                name="title"
+                className="form-input1"
+                value={state.title || ''}
+                placeholder="Enter title"
+                onChange={handleInputChange}
+              />                  
+               </Col>
+          </Row>
+          <Row>
+          <Col>
+            
+              <input
+                type="text"
+                 name="description"
+                className="form-input2"
+                value={state.description || ''}
+                placeholder="Enter description"
+                onChange={handleInputChange}
+              />
+            
+          </Col>
+          </Row>
+          <div className="upload-section">
+  
+ 
+</div>
+     <Button variant="primary" className="CvPost" type="submit" onClick={handleOnSubmit}>
+          Submit
+        </Button>
 
     </div>
-    <p>File size limit : 10 MB</p>
+   
   </div>
 </div>
 </div>
-
+</div>
       )
 }
-}
+
 export default Cv;
