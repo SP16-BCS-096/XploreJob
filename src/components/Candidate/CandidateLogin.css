@@ -6,6 +6,14 @@
     background-size: cover;
     position: ; 
 }
+.Candidatecontainer{
+    height: 100%;
+    width: 100%;
+    background-image:url("Candidate.jpg");
+    background-position: center;
+    background-size: cover;
+    position: ; 
+}
 .CandidateLogin { 
     position: relative;
     left: 30%;
@@ -28,6 +36,7 @@ h3 {
   left: 4px;
   top: 2px;
 }
+
 label {
 position: relative;
   left: 10px;

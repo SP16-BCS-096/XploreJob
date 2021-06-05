@@ -48,7 +48,7 @@ const onDrop = (files) => {
         formData.append('title', title);
         formData.append('description', description);
 
-        setErrorMsg('');
+        setErrorMsg('Cv Added');
         await axios.post('http://localhost:5000/Cv/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'

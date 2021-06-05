@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import Toolbar from './Toolbar/Toolbar';
- 
+ import './JobsList.css';
 
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
@@ -34,6 +34,7 @@ const JobCreate = props => (
 
     <tr><b>StartDate: </b><th></th><b>EndDate: </b></tr>
     <tr>{props.JobCreate.StartDate}<th></th> {props.JobCreate.EndDate}</tr>
+    <tr><th></th><Button  className ="ap"><a href="./Cv"> Apply</a></Button></tr>
 
 <hr/>
   
@@ -94,7 +95,7 @@ export default class JobsList extends Component {
     render() {
       const {JobCreate, isLoading} = this.state;
     return (
-     <div className= "CvList" >
+     <div className= "JobsList" >
      <Toolbar />
       <Col sm="12">
         <h2>List of Jobs</h2>

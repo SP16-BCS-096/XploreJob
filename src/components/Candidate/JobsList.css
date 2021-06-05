@@ -1,7 +1,7 @@
 .JobsList{
 	height: 100%;
     width: 100%;
-    background-color:#436F5A;
+    background: #20242f;
     background-position: center;
     background-size: cover;
     position: ; 
@@ -14,11 +14,36 @@
 }
 .ap{
  border-radius: 200px;
- background-color: blue;
+ background-color: #20242f;
  color: white;
+ width: 190%;
+ height: 50px;
+  margin-top: 10px;
  
 }
 .thead-light
 {
 	 border-radius: 5000px;
+}
+.thead-dark{
+	height: 100%;
+    width: 70%;
+    margin-left: 200px;
+    background-color: white;
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px; 
+    color: black;
+
+
+}
+.CvList{
+	height: 100%;
+    width: 100%;  
+   
+    color: white;
+  
+}
+.thead{
+	margin-left: 20px;
 }
