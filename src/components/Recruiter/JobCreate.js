@@ -138,130 +138,245 @@ onChangeJobDescription(e) {
   }
   render() {
         return (
-        <div className="container">
-        <Toolbar />
-  <div>
-<div className="row">
-<div className="col">
-<h4>Post A Job</h4>
-
-<ul className="list-unstyled"> 
-
-              
-                <div className="form-group">
-                    <label>Job Title</label>
-                    <input  type="text"
-                required
-                className="form-control"
+          <div className ="JobCreate">
+          <Toolbar/>
+          <h1>Post A Job</h1>
+           <div className = "form-container">
+            <div className = "form-content-left">   
+            </div>
+          <div className = "form-content-right">
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+            <form className = "form">
+            
+            <div className = "form-inputs">
+            <label className = "form-label" htmlFor = "jobtitle">
+            Job Title :
+            </label>
+            <input type = "text" 
+              required
+              id = "jobtitle"
+              name = "jobtitle"
+              className = "form-input" 
+                placeholder = "Enter The Job Title"
                 value={this.state.JobTitle}
                 onChange={this.onChangeJobTitle}
-                />
-                </div>
-                <div className="form-group">
-                    <label>Job Desrciption</label>
-                <textarea  type="textarea"
+              />
+
+
+            </div>
+
+            <div className = "form-inputs">
+            <label className = "form-label" htmlFor = "JobDescription">
+            Job Desrciption :
+            </label>
+            <textarea type="textarea"
                 required
-                className="form-control"
+              id = "JobDescription"
+              name = "JobDescription"
+              className = "form-input" 
+                placeholder = "Enter your Job Description"
                 value={this.state.JobDescription}
                 onChange={this.onChangeJobDescription}
-                />
-                </div>
+                
+              />
+              </div>
+          
+            <div className = "form-inputs">
+            
+            <label className = "form-label" htmlFor = "category">
+            Job Category :
+            </label>
 
-                    <div className="form-group">
-                              
-<select className ="form-control" value={this.state.Category}
-                onChange={this.onChangeCategory}>
-  <option >Category</option>
-  <option >Administration</option>
-  <option >Computer Science</option>
- <option >Accounts</option> 
-  
- </select>
-</div>
-                 <div className="form-group">
-                    <label>Salary</label>
-                <input  type="text"
+            <select className = "form-input"  
+            name = "category"
+            id = "category"
+            value={this.state.Category}
+                                  onChange={this.onChangeCategory}>
+                    <option >Category</option>
+                    <option >Administration</option>
+                    <option >Computer Science</option>
+                  <option >Accounts</option> 
+                    
+                  </select>
+              </div>
+            
+            <div className = "form-inputs">
+            
+            <label className = "form-label" htmlFor = "salary">
+            Salary :
+            </label>
+
+
+                    <input type = "text" 
+                                  required
+                                  id = "salary"
+                                  name = "salary"
+                                  className = "form-input" 
+                                    placeholder = "Enter The Salary"
+                                    value={this.state.Salary}
+                                    onChange={this.onChangeSalary}
+                                  />
+              </div>
+
+            
+            <div className = "form-inputs">
+            
+            <label className = "form-label" htmlFor = "startdate">
+            Start Date :
+            </label>
+
+
+            <DatePicker className = "form-input" 
                 required
-                className="form-control"
-                value={this.state.Salary}
-                onChange={this.onChangeSalary}
-                />
-                </div>
-                 <div className ="form-group">
-                 <label>Start Date</label>
-                 <DatePicker className ="form-control"
-          value={this.state.StartDate}
-          format={"MM/dd/yyyy"}
-          onChange={(value) => this.setState({StartDate:value})}
-        />   
+                id = "startdate"
+                name = "startdate"
+                value={this.state.StartDate}
+                format={"MM/dd/yyyy"}
+                onChange={(value) => this.setState({StartDate:value})}
+              />   
+              </div>
+            
+            <div className = "form-inputs">
+            
+            <label className = "form-label" htmlFor = "company">
+            Company Name :
+            </label>
+
+            <input type = "text" 
+                                  required
+                                  id = "company"
+                                  name = "company"
+                                  className = "form-input" 
+                                    placeholder = "Enter The Company Name"
+                                    value={this.state.CompanyName}
+                      onChange={this.onChangeCompanyName}
+                                  />
+
+              </div>
         
-        </div>
+            <div className = "form-inputs">
+            
+            <label className = "form-label" htmlFor = "address">
+            Address :
+            </label>
+
+            <textarea type = "textarea" 
+                                  required
+                                  id = "address"
+                                  name = "address"
+                                  className = "form-input" 
+                                    placeholder = "Enter Your Address"
+                                    value={this.state.Address}
+                                    onChange={this.onChangeAddress}
+                                  />
+              
+
+              </div>
+            
+            <div className = "form-inputs">
+            
+            <label className = "form-label" htmlFor = "worktype">
+            Work Type :
+            </label>
+                    <select 
+                    required
+                    id = "worktype"
+                    name = "worktype"
+                    className = "form-input"  value={this.state.WorkType}
+                      onChange={this.onChangeWorkType}>
+        <option >WorkType</option>
+        <option >Full Time</option>
+        <option >Part Time</option>
+       </select>
   
-</ul>
-</div>
 
-<div className="col" style = {{marginTop: 33}}>
+              </div>
+            
+            <div className = "form-inputs">
+            
+            <label className = "form-label" htmlFor = "phone">
+            Contact No :
+            </label>
+            
+            <input type = "text" 
+                                  required
+                                  id = "phone"
+                                  name = "phone"
+                                  className = "form-input" 
+                                    placeholder = "Enter The phone number"
+                                    value={this.state.Phone}
+                                    onChange={this.onChangePhone}
+                                  />
+                        
 
-<ul className="list-unstyled">
-<div className="form-group">
-                    <label>Company Name</label>
-                     <input  type="text"
+              </div>
+            
+            <div className = "form-inputs">
+            
+            <label className = "form-label" htmlFor = "enddate">
+            End Date :
+            </label>
+            
+                
+                   
+                   <DatePicker className = "form-input" 
                 required
-                className="form-control"
-                value={this.state.CompanyName}
-                onChange={this.onChangeCompanyName}
-                />
-                </div>
-  <div className="form-group">
-                    <label> Address</label>
-                    <textarea  type="text"
-                required
-                className="form-control"
-                value={this.state.Address}
-                onChange={this.onChangeAddress}
-                />
-                </div>
-                <div className="form-group">
-                              
-<select className ="form-control" value={this.state.WorkType}
-                onChange={this.onChangeWorkType}>
-  <option >WorkType</option>
-  <option >Full Time</option>
-  <option >Part Time</option>
- </select>
-</div>
+                id = "enddate"
+                name = "enddate"
+                value={this.state.EndDate}
+                format={"MM/dd/yyyy"}
+                onChange={(value) => this.setState({EndDate:value})}
+              />          
 
-                <div className="form-group">
-                    <label>Contact No</label>
-                     <input  type="text"
-                required
-                className="form-control"
-                value={this.state.Phone}
-                onChange={this.onChangePhone}
-                />
-                </div>
-                <div className ="form-group">
-              <label>End Date</label>
-                 <DatePicker className ="form-control"
-          value={this.state.EndDate}
-          format={"MM/dd/yyyy"}
-          onChange={(value) => this.setState({EndDate:value})}
-        />   
-        
-        </div>
-                 <div className="form-group">
-            <button className ="JobPost" onClick={this.onSubmit}>Post Job</button>
+              </div>
+
+              
+              <div className = "form-inputs">         
+
+            <button className = "form-input-btn" onClick={this.onSubmit}>Post Job</button>
+            </div>
+            </form>
+          
           </div>
-</ul>
-</div>
-</div>
-
- 
-
-  </div>
-  </div>
-
-        );
+          </div>
+          <br/>
+          <br/>
+          </div>
+        )    
     }
 }
 export default JobCreate;
+
+
+

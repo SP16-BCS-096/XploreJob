@@ -92,8 +92,7 @@ const RecruiterLogin = () =>
       <div className ="Recruiterlogin" >
         <h3>Sign In</h3>
         <form onSubmit={LoginHandler}>
-          <div className="form-group"> 
-            <label>Username: </label>
+          <div className="form-label"> 
             <input  type="text"
                 required
                 className="form-control"
@@ -103,7 +102,7 @@ const RecruiterLogin = () =>
                                                     placeholder = "Enter your valid Email"
                                                     onChange={changeEmail}
                                                      required={true}/>
-                <label>Password: </label>
+               
             <input  type="Password"
                 required
                 className="form-control"
