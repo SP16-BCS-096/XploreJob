@@ -63,8 +63,7 @@ def extract_email_addresses(string):
 
 
 def extractPersonName(resumeTitle):
-        #a = 'Cv_saurabh+keshari_1234_Resume'
-        #a = "1234"
+        
         titleSplit = re.split(r'[`\-=~!@#$%^&*()_+\[\]{};\'\\:"|<,./<>?]', resumeTitle)
         title_isNotDigit = []
         for word in titleSplit:
@@ -229,8 +228,7 @@ def NonTechnicalSkillScore(resume, jd_txt, progWords = None):
     else:
         NonTechnicalSkill = progWords
     programmingTotal = 0
-    
-    # ADDED BY SAURABH for extracting JD skills is *WORKING* 
+     
     jdSkillCount = 0
     jdSkillMatched = []
     for i in range(len(NonTechnicalSkill)):
@@ -256,7 +254,7 @@ def NonTechnicalSkillScore(resume, jd_txt, progWords = None):
     #print("Resume skills matched with JD are ", ResumeProgrammingSkillsMatchedWithJD)
     #print("Non Technical skill total is ", programmingTotal)
     
-   # My Code 
+ 
     resumeCorpus = resume.split()
     """ Modify below """
     resumeCorpus = resumeCorpus + ResumeProgrammingSkillsMatchedWithJD
