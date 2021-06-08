@@ -26,7 +26,7 @@ from nltk.corpus import wordnet
 
 
 
-resume1=sys.argv
+resume1='uploads/MuhammadAsadZaman.pdf'
 doc = fitz.open(resume1)
 text=""
 for page in doc:
@@ -62,7 +62,6 @@ def extract_email_addresses(string):
 
 
 def extractPersonName(resumeTitle):
-       
         titleSplit = re.split(r'[`\-=~!@#$%^&*()_+\[\]{};\'\\:"|<,./<>?]', resumeTitle)
         title_isNotDigit = []
         for word in titleSplit:
@@ -70,7 +69,7 @@ def extractPersonName(resumeTitle):
                 title_isNotDigit.append(word)
         strr = " ".join(title_isNotDigit)
         strr_list = strr.split(" ")
-        #titleSplit = re.findall(r"[\w']+", strr)
+        
         
         Names = []
         for Nouns in strr_list:
@@ -135,7 +134,7 @@ def extractPersonName(resumeTitle):
 
  
     
-def programmingScore(resume, jdTxt, progWords = None):
+def programmingScore(resume, Txt, progWords = None):
     skill_weightage = 40
     skill_threshold = 5
     fout = open("results.tex", "a")
@@ -152,48 +151,46 @@ def programmingScore(resume, jdTxt, progWords = None):
         programming = progWords
     programmingTotal = 0
     
-    jdSkillCount = 0
-    jdSkillMatched = []
+    SkillCount = 0
+    SkillMatched = []
     for i in range(len(programming)):
-        if programming[i].lower() in jdTxt.lower() != -1:
-            jdSkillCount += 1
-            jdSkillMatched.append(programming[i].lower())
+        if programming[i].lower() in Txt.lower() != -1:
+            SkillCount += 1
+            SkillMatched.append(programming[i].lower())
    
     
     individualSkillWeightage = 0
     
-    if( jdSkillCount > 0):
-        individualSkillWeightage = skill_weightage/jdSkillCount
-        #print("jd Skills matched are ",individualSkillWeightage)
+    if( SkillCount > 0):
+        individualSkillWeightage = skill_weightage/SkillCount
     
     ResumeProgrammingSkillsMatchedWithJD = []
-    for i in range(len(jdSkillMatched)):
-        if jdSkillMatched[i].lower() in resume.lower() != -1:
+    for i in range(len(SkillMatched)):
+        if SkillMatched[i].lower() in resume.lower() != -1:
             programmingTotal += 1
-            ResumeProgrammingSkillsMatchedWithJD.append(jdSkillMatched[i].lower())
-            if not("#" in jdSkillMatched[i]):
-                fout.write(jdSkillMatched[i]+", ")
+            ResumeProgrammingSkillsMatchedWithJD.append(SkillMatched[i].lower())
+            if not("#" in SkillMatched[i]):
+                fout.write(SkillMatched[i]+", ")
    
     
     
     resumeCorpus = resume.split()
     resumeCorpus = [x.lower() for x in resumeCorpus if isinstance(x, str)]
-    jdSkillMatched = [x.lower() for x in jdSkillMatched if isinstance(x, str)]
-    list1 = jdSkillMatched
+    jdSkillMatched = [x.lower() for x in SkillMatched if isinstance(x, str)]
+    list1 = SkillMatched
     list2 = resumeCorpus
     results = {}
     for i in list1:
         results[i] = list2.count(i) 
     
-    #print("Dictionary is ",results)
+    
     
   
    
     constantValue = (individualSkillWeightage/skill_threshold)
-    # Updating Dictionary
+   
     results.update({n: constantValue * results[n] for n in results.keys()})
-    #print("updated dict is ", results)
-
+    
     TotalScore = sum(results.values())
     #print("Score is ", TotalScore)
 
@@ -209,7 +206,7 @@ def programmingScore(resume, jdTxt, progWords = None):
 
 
 
-def NonTechnicalSkillScore(resume, jd_txt, progWords = None):
+def NonTechnicalSkillScore(resume, txt, progWords = None):
     skill_weightage = 20
     skill_threshold = 5
     fout = open("results.tex", "a")
@@ -226,34 +223,34 @@ def NonTechnicalSkillScore(resume, jd_txt, progWords = None):
     programmingTotal = 0
     
 
-    jdSkillCount = 0
-    jdSkillMatched = []
+    SkillCount = 0
+    SkillMatched = []
     for i in range(len(NonTechnicalSkill)):
-        if NonTechnicalSkill[i].lower() in jd_txt.lower() != -1:
-            jdSkillCount += 1
-            jdSkillMatched.append(NonTechnicalSkill[i].lower())
+        if NonTechnicalSkill[i].lower() in txt.lower() != -1:
+            SkillCount += 1
+            SkillMatched.append(NonTechnicalSkill[i].lower())
  
-    if (jdSkillCount > 0):
-        individualSkillWeightage = skill_weightage/jdSkillCount
+    if (SkillCount > 0):
+        individualSkillWeightage = skill_weightage/SkillCount
     else :
         individualSkillWeightage = 0
 
-    ResumeProgrammingSkillsMatchedWithJD = []
-    for i in range(len(jdSkillMatched)):
-        if jdSkillMatched[i].lower() in resume.lower() != -1:
+    ResumeProgrammingSkillsMatched = []
+    for i in range(len(SkillMatched)):
+        if SkillMatched[i].lower() in resume.lower() != -1:
             programmingTotal += 1
-            ResumeProgrammingSkillsMatchedWithJD.append(jdSkillMatched[i].lower())
-            if not("#" in jdSkillMatched[i]):
-                fout.write(jdSkillMatched[i]+", ")
+            ResumeProgrammingSkillsMatched.append(SkillMatched[i].lower())
+            if not("#" in SkillMatched[i]):
+                fout.write(SkillMatched[i]+", ")
    
      
     resumeCorpus = resume.split()
     """ Modify below """
-    resumeCorpus = resumeCorpus + ResumeProgrammingSkillsMatchedWithJD
+    resumeCorpus = resumeCorpus + ResumeProgrammingSkillsMatched
     resumeCorpus = [x.lower() for x in resumeCorpus if isinstance(x, str)]
-    jdSkillMatched = [x.lower() for x in jdSkillMatched if isinstance(x, str)]
+    SkillMatched = [x.lower() for x in SkillMatched if isinstance(x, str)]
     
-    list1 = jdSkillMatched
+    list1 = SkillMatched
     list2 = resumeCorpus
     results = {}
     for i in list1:
@@ -353,27 +350,27 @@ class ExtractExp:
             
         return experience
 
-    def get_exp_weightage(self,jd_exp,resume_exp):
+    def get_exp_weightage(self,exp,resume_exp):
         
         score = 0
         resume_exp = int(round(resume_exp))
         print(resume_exp)
-        if jd_exp.find("-") == -1:
-            jd_exp = "0-"+jd_exp[:]
+        if exp.find("-") == -1:
+            exp = "0-"+exp[:]
             
        
         
         if resume_exp == 0:
             score = 0
             
-        elif resume_exp > min_jd_exp:
-            if resume_exp > max_jd_exp:
-                score = self.max_weightage - (self.min_variance*(resume_exp-max_jd_exp))
+        elif resume_exp > min_exp:
+            if resume_exp > max_exp:
+                score = self.max_weightage - (self.min_variance*(resume_exp-max_exp))
             else:
                 score = self.max_weightage
                 
         else:
-            score = self.max_weightage - (self.min_variance*(min_jd_exp-resume_exp))
+            score = self.max_weightage - (self.min_variance*(min_exp-resume_exp))
         
         if score < 0:
             score = 0
