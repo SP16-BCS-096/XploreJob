@@ -3,9 +3,15 @@ import pickle
 import random
 import en_core_web_sm
 import re, string, unicodedata
+import spacy
+import pickle
+import random
+import en_core_web_sm
+import re, string, unicodedata
 import nltk
 import contractions
 import inflect
+from bs4 import BeautifulSoup
 from nltk import word_tokenize, sent_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import LancasterStemmer, WordNetLemmatizer
@@ -14,7 +20,21 @@ import glob
 import io
 import sys
 import pandas as pd
-file_name = 'uploads/1622835252620_MuhammadAsadZaman.pdf'
+
+from nltk.corpus import wordnet
+
+
+
+
+resume1=sys.argv
+doc = fitz.open(resume1)
+text=""
+for page in doc:
+    text = text + str(page.getText())
+Cv1 = "".join(text.split('\n')) 
+
+
+file_name ='train_data.pdf'
 # resume ='cv.pdf'
 resume =file_name
 doc = fitz.open(resume)
@@ -23,33 +43,13 @@ for page in doc:
     text = text + str(page.getText())
     
 Cv = "".join(text.split('\n'))    
-# print(Cv)
+#print(Cv)
 
-
-file = glob.glob('Data.xlsx', recursive=False)
-data_set = pd.read_excel(file[0])
-skills = data_set['High Level Job Description'][0]+data_set['Technology'][0] + data_set['Primary Skill'][0]
-jd_exp = data_set['Yrs Of Exp '][0]
-
-
-
-def normalize(Cv):
- Phone_number =extract_phone_numbers(Cv);
- Email_address =extract_email_addresses(Cv);
- Person_Name =extractPersonName(Cv);
- Programming_Score=programmingScore(Cv,skills);
- NonTechnicalSkillScore(Cv, skills);
- Exp = ExtractExp()
- E1=Exp.get_exp(Cv);
- E2=Exp.get_exp_weightage(jd_exp,E1);
- print("Dictionary from resume is ",Person_Name);
- print(type(Person_Name));
- return Person_Name;
 
 def extract_phone_numbers(string):
     r = re.compile(r'(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})')
     phone_numbers = r.findall(string)
-    return [re.sub(r'\D', '', number) for number in phone_numbers if len(number) >0]
+    return [re.sub(r'\D', '', number) for number in phone_numbers if len(number) >5]
 
 
 
@@ -58,11 +58,12 @@ def extract_phone_numbers(string):
 def extract_email_addresses(string):
     r = re.compile(r'[\w\.-]+@[\w\.-]+')
     return r.findall(string)
-	
+    
 
 
 def extractPersonName(resumeTitle):
-        
+        #a = 'Cv_saurabh+keshari_1234_Resume'
+        #a = "1234"
         titleSplit = re.split(r'[`\-=~!@#$%^&*()_+\[\]{};\'\\:"|<,./<>?]', resumeTitle)
         title_isNotDigit = []
         for word in titleSplit:
@@ -135,7 +136,6 @@ def extractPersonName(resumeTitle):
 
  
     
-  
 def programmingScore(resume, jdTxt, progWords = None):
     skill_weightage = 40
     skill_threshold = 5
@@ -159,15 +159,13 @@ def programmingScore(resume, jdTxt, progWords = None):
         if programming[i].lower() in jdTxt.lower() != -1:
             jdSkillCount += 1
             jdSkillMatched.append(programming[i].lower())
-    #print("jdSkillCount", jdSkillCount)
-    #for x in range(len(jdSkillMatched)): 
-    #print("jd Skills matched are ",jdSkillMatched)
-    #END 
+   
     
     individualSkillWeightage = 0
     
     if( jdSkillCount > 0):
         individualSkillWeightage = skill_weightage/jdSkillCount
+        #print("jd Skills matched are ",individualSkillWeightage)
     
     ResumeProgrammingSkillsMatchedWithJD = []
     for i in range(len(jdSkillMatched)):
@@ -176,10 +174,9 @@ def programmingScore(resume, jdTxt, progWords = None):
             ResumeProgrammingSkillsMatchedWithJD.append(jdSkillMatched[i].lower())
             if not("#" in jdSkillMatched[i]):
                 fout.write(jdSkillMatched[i]+", ")
-    #print("Resume skills matched with JD are ", ResumeProgrammingSkillsMatchedWithJD)
-    #print("programming total is ", programmingTotal)
+   
     
-   # My Code 
+    
     resumeCorpus = resume.split()
     resumeCorpus = [x.lower() for x in resumeCorpus if isinstance(x, str)]
     jdSkillMatched = [x.lower() for x in jdSkillMatched if isinstance(x, str)]
@@ -191,7 +188,7 @@ def programmingScore(resume, jdTxt, progWords = None):
     
     #print("Dictionary is ",results)
     
-   #end of code
+  
    
     constantValue = (individualSkillWeightage/skill_threshold)
     # Updating Dictionary
@@ -203,7 +200,7 @@ def programmingScore(resume, jdTxt, progWords = None):
 
     fout.close()
 
-    progScore = min(programmingTotal/10.0, 1) * 5.0
+    #progScore = min(programmingTotal/10.0, 1) * 5.0
 
 
     return TotalScore
@@ -212,8 +209,9 @@ def programmingScore(resume, jdTxt, progWords = None):
 
 
 
+
 def NonTechnicalSkillScore(resume, jd_txt, progWords = None):
-    skill_weightage = 5
+    skill_weightage = 20
     skill_threshold = 5
     fout = open("results.tex", "a")
     fout.write("\\textbf{Programming Languages:} \\\\\n")
@@ -227,17 +225,15 @@ def NonTechnicalSkillScore(resume, jd_txt, progWords = None):
     else:
         NonTechnicalSkill = progWords
     programmingTotal = 0
-     
+    
+
     jdSkillCount = 0
     jdSkillMatched = []
     for i in range(len(NonTechnicalSkill)):
         if NonTechnicalSkill[i].lower() in jd_txt.lower() != -1:
             jdSkillCount += 1
             jdSkillMatched.append(NonTechnicalSkill[i].lower())
-    #print("jdSkillCount", jdSkillCount)
-    #for x in range(len(jdSkillMatched)): 
-    #print("jd Skills matched are ",jdSkillMatched)
-    #END 
+ 
     if (jdSkillCount > 0):
         individualSkillWeightage = skill_weightage/jdSkillCount
     else :
@@ -250,17 +246,14 @@ def NonTechnicalSkillScore(resume, jd_txt, progWords = None):
             ResumeProgrammingSkillsMatchedWithJD.append(jdSkillMatched[i].lower())
             if not("#" in jdSkillMatched[i]):
                 fout.write(jdSkillMatched[i]+", ")
-    #print("Resume skills matched with JD are ", ResumeProgrammingSkillsMatchedWithJD)
-    #print("Non Technical skill total is ", programmingTotal)
-    
- 
+   
+     
     resumeCorpus = resume.split()
     """ Modify below """
     resumeCorpus = resumeCorpus + ResumeProgrammingSkillsMatchedWithJD
     resumeCorpus = [x.lower() for x in resumeCorpus if isinstance(x, str)]
     jdSkillMatched = [x.lower() for x in jdSkillMatched if isinstance(x, str)]
-    #print(type(resumeCorpus))
-    print("jd skills matched in lower case",jdSkillMatched)
+    
     list1 = jdSkillMatched
     list2 = resumeCorpus
     results = {}
@@ -269,19 +262,16 @@ def NonTechnicalSkillScore(resume, jd_txt, progWords = None):
            results[i] = skill_threshold
         else:
            results[i] = list2.count(i)
-		
-    #print("Relevant non-technical skills and their count in resume as per the JD are below")
-    print("Dictionary from resume is ",results)
-    #print(type(results))
-   #end of code
+        
+
    
     constantValue = (individualSkillWeightage/skill_threshold)
     # Updating Dictionary
     results.update({n: constantValue * results[n] for n in results.keys()})
-    print("updated dict is ", results)
+    #print("updated dict is ", results)
 
     TotalScore = sum(results.values())
-    print("Score is ", TotalScore)
+    #print("Score is ", TotalScore)
 
     fout.close()
 
@@ -289,7 +279,6 @@ def NonTechnicalSkillScore(resume, jd_txt, progWords = None):
 
 
     return TotalScore   
-
 
 class ExtractExp:
     
@@ -373,8 +362,7 @@ class ExtractExp:
         if jd_exp.find("-") == -1:
             jd_exp = "0-"+jd_exp[:]
             
-        min_jd_exp =  int(jd_exp[0])
-        max_jd_exp = int(jd_exp[2])
+       
         
         if resume_exp == 0:
             score = 0
@@ -390,4 +378,20 @@ class ExtractExp:
         
         if score < 0:
             score = 0
-        return score     
+        return score
+
+
+def normalize(Cv1,Cv):
+ Exp = ExtractExp()
+ print(extract_phone_numbers(Cv1))
+ print(extract_email_addresses(Cv1))
+#print(extractPersonName(Cv))
+ print('Progarmming Score are',programmingScore(Cv1,Cv));
+ print('Non Technical Score are',NonTechnicalSkillScore(Cv1, Cv));
+ E1=Exp.get_exp(Cv);
+ E2=Exp.get_exp_weightage(Cv1,E1);
+ print('Exp Score is',NonTechnicalSkillScore(Cv1, Cv));
+ TotalScore= programmingScore(Cv1,Cv)+E2+NonTechnicalSkillScore(Cv1, Cv)
+ return TotalScore
+print(normalize(Cv1, Cv));
+sys.stdout.flush()
