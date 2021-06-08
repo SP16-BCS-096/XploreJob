@@ -2,7 +2,7 @@
 	height: 100%;
     width: 100%;
     margin-left: 250px;
-    background-color: #F2F3F4;
+   
     background-position: center;
     background-size: cover;
     border-radius: 20px; 
@@ -10,7 +10,7 @@
 
 
 }
-.AdminviewCvList{
+.AdminViewCvList{
 	height: 100%;
     width: 100%;  
     background: #ffff;

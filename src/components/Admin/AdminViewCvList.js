@@ -3,15 +3,20 @@
 import React, { useState, useEffect } from 'react';
 import download from 'downloadjs';
 import axios from 'axios';
-import './AdminViewCvList';
 import Toolbar from "./Toolbar/Toolbar"; 
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
+import './AdminViewCvList.css';
 
 const AdminViewCvList = () => {
 
   const [filesList, setFilesList] = useState([]);
+  const [file, setFile] = useState(null); 
   const [errorMsg, setErrorMsg] = useState('');
+  const [state, setState] = useState({
+    title: '',
+    description: ''
+  });
 
   useEffect(() => {
     const getFilesList = async () => {
@@ -23,6 +28,7 @@ const AdminViewCvList = () => {
         error.response && setErrorMsg(error.response.data);
       }
     };
+
 
     getFilesList();
   }, []);
@@ -42,10 +48,40 @@ const AdminViewCvList = () => {
       }
     }
   };
+  const Score = async (event) => {
+  event.preventDefault();
+
+  try {
+    const { title, description } = state;
+    if (title.trim() !== '' && description.trim() !== '') {
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('title', title);
+        formData.append('description', description);
+
+        setErrorMsg('Cv Added');
+        await axios.post('http://localhost:5000/Cv/Score', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+      } else {
+        setErrorMsg('Error.');
+      }
+    } else {
+      setErrorMsg('select right format of cv.');
+    }
+  } catch (error) {
+    error.response && setErrorMsg(error.response.data);
+  }
+
+};
 
   return (
 
     <div className="AdminViewCvList">
+    <Toolbar/>
       {errorMsg && <p className="errorMsg">{errorMsg}</p>}
       <table className="table">
     
@@ -54,6 +90,7 @@ const AdminViewCvList = () => {
             <th>Title</th>
             <th>Description</th>
             <th>Download File</th>
+             <th>Score File</th>
           </tr>
         </thead>
         <tbody>
@@ -73,6 +110,18 @@ const AdminViewCvList = () => {
                       Download
                     </a>
                   </td>
+                   <td>
+                    <a
+                      href="#/"
+                      onClick={() =>
+                        Score(_id, file_path, file_mimetype)
+                      }
+                    >
+                      Score
+                    </a>
+                  </td>
+                  <br/>
+  
                 </tr>
               )
             )
@@ -81,20 +130,21 @@ const AdminViewCvList = () => {
               <td colSpan={3} style={{ fontWeight: '300' }}>
                <h1> No Candidate data Available.</h1>
                   <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+ 
+
               </td>
             </tr>
           )}
         </tbody>
       </table>
+           <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </div>
   );
 };
