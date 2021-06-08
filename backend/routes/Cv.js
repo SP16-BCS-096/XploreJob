@@ -1,8 +1,20 @@
-const path = require('path');
 const express = require('express');
+const { PythonShell } = require('python-shell');
 const multer = require('multer');
 const Cv = require('../models/Cv');
 const Router = express.Router();
+const _ = require('lodash');
+const router = require("express").Router();
+var path = require('path');
+// const pynode = require('@fridgerator/pynode');
+const {spawn} = require('child_process');
+const exec = require('child_process').exec;
+// const pynode = require('@fridgerator/pynode');
+
+const execa = require('execa');
+const util = require('util');
+const testFolder = './';
+const fs = require('fs');
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -24,35 +36,38 @@ const upload = multer({
     cb(undefined, true); // continue with upload
   }
 });
-Router.post(('/team'),(req, res) =>
+Router.post(('/Rank'),(req, res) =>
 {
 
   
-    const title = req.body.title;
-// console.log(util.inspect(req.body, {depth: null}));
+   const title = req.file;
+// console.log(util.inspect(req.body));
 
-
-
-  const subprocess = execa('python ./python_file.py', [title]);
+ const subprocess = execa('python ./Rank.py', [title]);
   subprocess.stdout.pipe(process.stdout);
   
   (async () => {
+    try{
     const {stdout} = await subprocess;
     // Returning Result: 
     res.send(stdout);
+    console.log('child output:', stdout);
+    } 
+    catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+      console.log(error);
+    }
 })();
 
 
 });
 
-Router.post(
-  '/upload',
-  upload.single('file'),
+Router.post('/upload',upload.single('file'),
   async (req, res) => {
     try {
       const { title, description } = req.body;
       const { path, mimetype } = req.file;
-      const file = new File({
+      const file = new Cv({
         title,
         description,
         file_path: path,
@@ -60,8 +75,11 @@ Router.post(
       });
       await file.save();
       res.send('file uploaded successfully.');
-    } catch (error) {
+      console.log('file uploaded successfully');
+    } 
+    catch (error) {
       res.status(400).send('Error while uploading file. Try again later.');
+      console.log(error);
     }
   },
   (error, req, res, next) => {
@@ -74,7 +92,7 @@ Router.post(
 
 Router.get('/getAllFiles', async (req, res) => {
   try {
-    const files = await File.find({});
+    const files = await Cv.find({});
     const sortedByCreationDate = files.sort(
       (a, b) => b.createdAt - a.createdAt
     );
@@ -86,7 +104,7 @@ Router.get('/getAllFiles', async (req, res) => {
 
 Router.get('/download/:id', async (req, res) => {
   try {
-    const file = await File.findById(req.params.id);
+    const file = await Cv.findById(req.params.id);
     res.set({
       'Content-Type': file.file_mimetype
     });
