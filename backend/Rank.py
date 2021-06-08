@@ -62,8 +62,7 @@ def extract_email_addresses(string):
 
 
 def extractPersonName(resumeTitle):
-        #a = 'Cv_saurabh+keshari_1234_Resume'
-        #a = "1234"
+       
         titleSplit = re.split(r'[`\-=~!@#$%^&*()_+\[\]{};\'\\:"|<,./<>?]', resumeTitle)
         title_isNotDigit = []
         for word in titleSplit:
