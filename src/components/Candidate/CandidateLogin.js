@@ -93,23 +93,24 @@ const CandidateLogin = () =>
       <div className ="Candidatecontainer">
       <br/>
       <div className ="CandidateLogin" >
-        <h3>Sign In</h3>
+        <h1> Sign in</h1>
         <form onSubmit={LoginHandler}>
+
           <div className="form-group"> 
-            <label>Email </label>
-            <input  type="text"
+            <input  type="email"
                 required
-                className="form-control"
+                className="form-input"
                 value={LoginEmail}
                                                     aria-label="email"
                                                     title="Enter your valid Email"
                                                     placeholder = "Enter your valid Email"
                                                     onChange={changeEmail}
                                                      required={true}/>
-                <label>Password: </label>
+              </div>                                       
+               <div className="form-group">
             <input  type="Password"
                 required
-                className="form-control"
+                className="form-input"
                 value={LoginPassword}
                                                     onChange={changePassword1}
                                                     pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*"
@@ -119,11 +120,16 @@ const CandidateLogin = () =>
                                                     required={true}/>
           </div>
           <div className="form-group">
-            <input type="submit" value="Sign In" className="button" />
+            <input type="submit" value="Sign In" className="btn btn-primary btn-block" />
           </div>
+
         </form>
+
       </div>
       <br/>
+                <br/>
+          <br/>          <br/>
+         
       </div>
     )
 }

@@ -64,8 +64,11 @@ function sendDataToServer(Survey) {
   return (
     <div className="Sarvey">
      <Toolbar />
-      <h2>Questionnare</h2>
+      <h1>Questionnare</h1>
       {surveyRender}
+      <br/>
+      <br/>
+
     </div>
   );
 }

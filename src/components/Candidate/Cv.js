@@ -7,8 +7,8 @@ import Toolbar from './Toolbar/Toolbar';
 import './Cv.css';
 
 const Cv = (props) => {
-  const [file, setFile] = useState(null); // state for storing actual image
-  const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
+  const [file, setFile] = useState(null); 
+  const [previewSrc, setPreviewSrc] = useState('');
   const [state, setState] = useState({
     title: '',
     description: ''
@@ -48,21 +48,49 @@ const onDrop = (files) => {
         formData.append('title', title);
         formData.append('description', description);
 
-        setErrorMsg('Cv Added');
+        alert('Cv Added');
         await axios.post('http://localhost:5000/Cv/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         });
       } else {
-        setErrorMsg('Please select a file to add.');
+        alert('Please select a file to add.');
       }
     } else {
-      setErrorMsg('Please enter all the field values.');
+      alert('Please enter all the field values.');
     }
   } catch (error) {
-    error.response && setErrorMsg(error.response.data);
+    error.response && alert(error.response.data);
   }
+
+};
+const handleOnRank = async (event) => {
+  event.preventDefault();
+
+  try {
+    const { title, description } = state;
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('title', title);
+        formData.append('description', description);
+
+        
+        await axios.post('http://localhost:5000/Cv/Rank', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+        );
+       
+      } else {
+        alert('Please select a file to add.');
+      }
+    }  catch (error) {
+    error.response && alert(error.response.data);
+  }
+
 };
     return(
 <div>
@@ -96,7 +124,7 @@ const onDrop = (files) => {
                 name="title"
                 className="form-input1"
                 value={state.title || ''}
-                placeholder="Enter title"
+                placeholder="Name"
                 onChange={handleInputChange}
               />                  
                </Col>
@@ -109,7 +137,7 @@ const onDrop = (files) => {
                  name="description"
                 className="form-input2"
                 value={state.description || ''}
-                placeholder="Enter description"
+                placeholder="Document description"
                 onChange={handleInputChange}
               />
             
@@ -119,8 +147,10 @@ const onDrop = (files) => {
   
  
 </div>
-     <Button variant="primary" className="CvPost" type="submit" onClick={handleOnSubmit}>
-          Submit
+    
+        <tr></tr>
+  <Button variant="primary" className="CvPost" type="submit" onClick={handleOnRank}>
+          Score
         </Button>
 
     </div>
