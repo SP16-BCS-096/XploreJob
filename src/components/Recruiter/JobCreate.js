@@ -141,7 +141,7 @@ onChangeJobDescription(e) {
           <div className ="JobCreate">
           <Toolbar/>
           <h1>Post A Job</h1>
-           <div className = "form-container">
+           <div className = "form-containers">
             <div className = "form-content-left">   
             </div>
           <div className = "form-content-right">

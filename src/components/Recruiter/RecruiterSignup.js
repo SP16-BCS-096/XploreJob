@@ -100,7 +100,7 @@ onChangeSignUpPassword(e) {
 
     if(!token){
         return (
-         <div className ="Signupcontainer">
+         <div className ="RecruiterSignup">
          <br/>
           {
         (signUpError)? (
@@ -108,55 +108,67 @@ onChangeSignUpPassword(e) {
           ) : (null)
 
        }
-      <div className ="RecruiterSignup" >
+      <div>
+      <div className = "form-container">
+            <div className = "form-content-left1">   
+            </div>
+          <div className = "form-content-right1">
             <form>
-          <Col sm="4">
-                <h3>Sign Up</h3>
-          
+
                 <div className="form-group">
-                    <label>User name<span class="required">*</span></label>
-                    <input  type="text"
-                required
-                className="form-control"
+                <h3>Sign Up</h3>
+          </div>
+                <div className="form-group">
+        
+            <input type = "text" 
+              required
+              id = "jobtitle"
+              name = "jobtitle"
+              className = "form-input" 
+                placeholder = "Enter Username"
                 value={signUpUsername}
                 onChange={this.onChangeSignUpUsername}
-                required/>
+              />
                 </div>
 
                 <div className="form-group">
-                    <label>Email<span class="required">*</span></label>
+              
                      <input  type="text"
                 required
-                className="form-control"
+                className="form-input"
+                 placeholder = "Enter your Email*"
                 value={signUpEmail}
                 onChange={this.onChangeSignUpEmail}
                 required/>
                 </div>
 
                 <div className="form-group">
-                    <label>Password<span class="required">*</span></label>
+                   
                      <input  type="password"
                 required
-                className="form-control"
+                className="form-input"
+                 placeholder = "Enter your Password*"
                 value={signUpPassword}
                 onChange={this.onChangeSignUpPassword}
                 required/>
                 </div>
  
                 <div className="form-group">
-                    <label>Phone<span class="required">*</span></label>
+
                      <input  type="text"
                 required
-                className="form-control"
+                className="form-input"
+                 placeholder = "Enter your phone number*"
                 value={signUpPhone}
                 onChange={this.onChangeSignUpPhone}
                 required/>
                 </div>
  <div className="form-group">
-                    <label>Company<span class="required">*</span></label>
+                  
                      <input  type="text"
                 required
-                className="form-control"
+                className="form-input"
+                placeholder = "Enter company name*"
                 value={signUpCompany}
                 onChange={this.onChangeSignUpCompany}
                 required/>
@@ -165,16 +177,21 @@ onChangeSignUpPassword(e) {
 
 
                  <div className="form-group">
-            <button className="c" onClick={this.onSignUp}>Sign Up</button>
+            <button className="btn btn-primary btn-block" onClick={this.onSignUp}>Sign Up</button>
           </div>
                 <p className="forgot-password text-right">
                     Already registered <a href="./RecruiterLogin">sign in?</a>
                 </p>
-                </Col>
+              
 
             </form>
             </div>
+
+            </div>
+            </div>
             <br/>
+            <br/><br/><br/>
+            
             </div>
         );
     }

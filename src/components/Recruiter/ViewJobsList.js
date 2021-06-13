@@ -13,7 +13,7 @@ import 'react-awesome-slider/dist/styles.css';
 const JobCreate = props => (
 <tr>
 <div className="thead-dark">
-<div style={{marginLeft: 90, marginRight: 50}}>
+<Card style={{marginLeft: 90, marginRight: 50}}>
 <hr/>
 
 
@@ -38,7 +38,7 @@ const JobCreate = props => (
 <hr/>
   
 
-</div>
+</Card>
     </div>
   
 </tr>
@@ -97,7 +97,7 @@ export default class ViewJobsList extends Component {
      <div className= "ViewJobsList" >
      <Toolbar />
       <Col sm="12">
-        <h2>List of Jobs</h2>
+        <h1>List of Jobs</h1>
         <div >
           <tbody>
             { this.JobCreateList() }

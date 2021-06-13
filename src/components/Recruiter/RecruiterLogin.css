@@ -1,46 +1,60 @@
 .Recruitercontainer{
-    height: 100%;
-    width: 100%;
-    background-image:url("./Images.png");
-    background-position: center;
-    background-size: cover;
-    position: ; 
-}
-.Recruiterlogin { 
-    position: relative;
-    left: 3%;
-    width:400px;
-    height:350px;
-    border-radius: 25px;
-    
-}
-.form-control{
-    margin-left:10px;
-    margin-right: 10px;
-    width: 380px; 
-    margin-top:22px;
+background-color: grey;
 }
 
-h3 {
-  position: absolute;
-  left: 4px;
-  top: 2px;
+
+
+.Recruiterlogin{
+  display: flex;
+  color:black;
+  background-color:rgb(255, 255, 255);
+  box-shadow: 1px 1px 5px 5px #00000044;
+  width:400px;
+  height:380px;
+  flex-direction: column;
+  margin:0 auto;
+  margin-top:10%;
+  align-items:center;
+  border-radius: 10px;
+  
+  transitions: 0.5s;
 }
-label {
-position: relative;
-  left: 10px;
-  top: 32px;
+.form-input{
+  padding:10px;
+  border-radius:4px;
+  background: none;
+  border: 2px solid rgb(211, 211, 211);
+  width:50%;
+  height:20px;
+  transition:0.5s;
+  color: rgba(0, 0, 0, 0.678);
 }
-.button {
-  background-color: #4CAF50;
-  border-radius:25px;
-  left: 10px;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
+
+a{
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+  color: black;
+}
+
+.form-input{
+  display:inline-block;
+  padding:10px;
+  background-color: white;
+  box-shadow: 1px 1px 5px 5px #00000044;
+  border-radius:5px;
+  box-shadow: 1px 1px 5px 5px #00000044;
+}
+
+.login-ahref:hover{
+  letter-spacing:2px;
+  padding-left:110px;
+  padding-right:110px;
+}
+.form-input:hover{
+  box-shadow: 1px 1px 5px 5px #00000044;
+  color:black;
+  width:60%;
+  
+}
+.fornm-input:focus{
+  color: Black;
 }

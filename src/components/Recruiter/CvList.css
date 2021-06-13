@@ -6,17 +6,18 @@
     background-position: center;
     background-size: cover;
     border-radius: 20px; 
-    color: black;
+    color: white;
 
 
 }
 .CvList{
 	height: 100%;
     width: 100%;  
-    background: #20242f;
     color: white;
-  
+ background-image: linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89));
 }
+  
+
 .thead{
 	margin-left: 20px;
 }
