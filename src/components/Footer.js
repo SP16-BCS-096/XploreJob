@@ -36,7 +36,7 @@ return(
 <hr />
 <div className="row">
 <p className="col-sm">
-  &copy;{new Date().getFullYear()} Career Club |All right reserved |Terms of services |Privacy |Contact Us
+  &copy;{new Date().getFullYear()} XploreJob |All right reserved |Terms of services |Privacy |Contact Us
 </p>
 </div>
 	</div>
